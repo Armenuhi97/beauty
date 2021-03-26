@@ -1,12 +1,14 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { DEFAULT_MASTERS } from '@globals/index';
-import { IUser } from '@models/index';
+import { IUser, ServerResponse } from '@models/index';
 import { Store } from '@ngrx/store';
 import { BreadCrumbState } from '@store/breadcrumb/breadcrumb.state';
 import { SetMasters } from '@store/masters/masters.actions';
 import { selectMasters } from '@store/masters/masters.selectors';
 import { MastersState } from '@store/masters/masters.state';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { MasterService } from '../../master.service';
 
 @Component({
   selector: 'app-master',
@@ -15,16 +17,30 @@ import { Observable } from 'rxjs';
   encapsulation: ViewEncapsulation.None
 })
 export class MasterComponent implements OnInit {
-  public masters$: Observable<IUser[]>;
-
-  constructor(
-    private _store: Store<{ breadcrumbs: BreadCrumbState, masters: MastersState }>
-  ) {
-    _store.dispatch(SetMasters({ payload: DEFAULT_MASTERS }));
-    this.masters$ = _store.select(selectMasters);
-  }
+  unsubscribe$ = new Subject();
+  public total: number;
+  public pageIndex = 1;
+  public pageSize = 10;
+  masters:IUser[] = []
+  constructor(private _mesterService: MasterService) { }
 
   ngOnInit(): void {
+    this.getUsersList()
+  }
+  public getUsersList() {
+    const offset = (this.pageIndex - 1) * this.pageSize;
+    this._mesterService.getMasters(offset).pipe(takeUntil(this.unsubscribe$)).subscribe((data: ServerResponse<IUser[]>) => {
+      this.total = data.count;
+      this.masters=data.results
+    })
+  }
+  public nzPageIndexChange(pageIndex: number): void {
+    this.pageIndex = pageIndex;
+    this.getUsersList()
+  }
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
 }

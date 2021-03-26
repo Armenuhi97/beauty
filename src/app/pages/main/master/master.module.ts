@@ -7,6 +7,7 @@ import { SharedModule } from '@shared/shared.module';
 
 import { TranslateModule } from '@ngx-translate/core';
 import { IconsProviderModule } from 'src/app/icons-provider.module';
+import { MasterService } from './master.service';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { IconsProviderModule } from 'src/app/icons-provider.module';
     SharedModule,
     TranslateModule,
     IconsProviderModule
-  ]
+  ],
+  providers: [MasterService]
 })
 export class MasterModule { }

@@ -25,7 +25,6 @@ export class PostsComponent {
   public total: number;
   public pageIndex = 1;
   public pageSize = 10;
-  public posts$: Observable<Post[]>;
   isVisible: boolean = false;
   activePost: Post;
   imageObject = [

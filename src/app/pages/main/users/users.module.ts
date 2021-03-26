@@ -5,6 +5,7 @@ import { SharedModule } from "@shared/shared.module";
 import { IconsProviderModule } from "src/app/icons-provider.module";
 import { UsersComponent } from "./pages";
 import { UsersRoutingModule } from "./users-routing.module";
+import { UsersService } from "./users.service";
 
 @NgModule({
     declarations: [UsersComponent],
@@ -12,6 +13,7 @@ import { UsersRoutingModule } from "./users-routing.module";
         UsersRoutingModule,
         SharedModule,
         TranslateModule,
-        IconsProviderModule]
+        IconsProviderModule],
+        providers:[UsersService]
 })
 export class UsersModule { }
