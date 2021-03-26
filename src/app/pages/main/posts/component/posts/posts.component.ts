@@ -1,13 +1,7 @@
 import { DatePipe } from "@angular/common";
 import { Component } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
-import { DEFAULT_POSTS } from "@globals/index";
 import { Post, ServerResponse } from "@models/index";
-import { Store } from "@ngrx/store";
 import { TranslateService } from "@ngx-translate/core";
-import { BreadCrumbState } from "@store/breadcrumb/breadcrumb.state";
-import { SetPosts } from "@store/posts/posts.action";
-import { selectPost } from "@store/posts/posts.selectors";
 import { Observable, Subject } from "rxjs";
 import { map, switchMap, takeUntil } from "rxjs/operators";
 import { PostService } from "../../post.service";
@@ -21,10 +15,10 @@ import { PostService } from "../../post.service";
 export class PostsComponent {
   selectedValue: string = 'all';
   statusList = [
-    { key: 'all', text: this._translateService.instant('STATUS.ALL') },
-    { key: 'pending', text: this._translateService.instant('STATUS.PENDING') },
-    { key: 'canceled', text: this._translateService.instant('STATUS.CANCELED') },
-    { key: 'accepted', text: this._translateService.instant('STATUS.ACCEPTED') },
+    { key: 'all', text: 'STATUS.ALL' },
+    { key: 'pending', text: 'STATUS.PENDING' },
+    { key: 'canceled', text: 'STATUS.CANCELED' },
+    { key: 'accepted', text: 'STATUS.ACCEPTED' },
   ]
   posts: Post[] = []
   unsubscribe$ = new Subject();
@@ -90,8 +84,6 @@ export class PostsComponent {
           })
       }
     }
-    console.log(this.imageObject);
-
   }
   public nzPageIndexChange(pageIndex: number): void {
     this.pageIndex = pageIndex;
@@ -116,12 +108,10 @@ export class PostsComponent {
       })
     ).subscribe()
   }
-  getTranslateWord(word: string) {
-    return this._translateService.instant(word)
-  }
+
   closeModal() {
     this.isVisible = false;
-
+    this.imageObject=[]
     this.activePost = null
   }
   ngOnDestroy() {

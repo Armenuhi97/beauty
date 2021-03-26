@@ -6,9 +6,7 @@ import { ServerResponse } from "@models/server-respoce";
 @Injectable()
 export class PostService{
     constructor(private _httpClient:HttpClient){}
-    public getPostList(offset:number,status?:string){
-        console.log(status);
-        
+    public getPostList(offset:number,status?:string){        
         let params = new HttpParams().set('authorization', 'true');
         let url=`timeline/post/?limit=10&offset=${offset}`;
         if(status && status !== 'all'){

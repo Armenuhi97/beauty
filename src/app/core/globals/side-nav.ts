@@ -12,6 +12,11 @@ export const DEFAULT_NAVIGATION_ITEMS: ISideNavItem[] = [
         icon: 'setting'
     },
     {
+        label: 'NAVIGATION.POSTS',
+        routerLink: 'posts',
+        icon: 'setting'
+    },
+    {
         label: 'NAVIGATION.MASTERS',
         routerLink: 'masters',
         icon: 'check-square'
@@ -42,11 +47,7 @@ export const DEFAULT_NAVIGATION_ITEMS: ISideNavItem[] = [
         routerLink: 'push-notifications',
         icon: 'setting'
     },
-    {
-        label: 'NAVIGATION.POSTS',
-        routerLink: 'posts',
-        icon: 'setting'
-    },
+  
     {
         label: 'NAVIGATION.POSTS_REVIEWS',
         routerLink: 'post-review',

@@ -5,5 +5,4 @@ export * from './utils';
 export * from './notification';
 export * from './feedback';
 export * from './reviews';
-export * from './post';
 export * from './post-review'
