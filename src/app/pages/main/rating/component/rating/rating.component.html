@@ -1,31 +1,62 @@
-<nz-table #reviewsTable [nzData]="reviews$ | async">
+<nz-table #reviewsTable [nzData]="reviews" (nzPageIndexChange)="nzPageIndexChange($event)" [nzTotal]="total"
+[nzPageSize]="pageSize" [nzPageIndex]="pageIndex" [nzFrontPagination]="false">
     <thead>
         <tr>
             <th>N</th>
-            <th>{{'REVIEWS.MASTERS' | translate}}</th>
-            <th>{{'REVIEWS.CLIENTS' | translate}}</th>
+            <th>{{'REVIEWS.DATE' | translate}}</th>
+            <th>Кто</th>
+            <th>Кого</th>
             <th>{{'REVIEWS.RATING' | translate}}</th>
-            <th>{{'REVIEWS.REVIEW' | translate}}</th>
-            <th></th>
+            <th>{{'REVIEWS.STATUS' | translate}}</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 
-        <tr *ngFor="let review of reviewsTable.data;let in=index">
-            <td>{{ind+1}}</td>
-            <td>{{ review.masters }}</td>
-            <td>{{ review.clients }}</td>
-            <td>{{ review.rating }}</td>
-            <td>{{ review.review}}</td>
+        <tr *ngFor="let review of reviewsTable.data;let ind=index">
+            <td>{{(ind + 1)+((pageIndex-1)*10) }}</td>
+            <td>{{review.created_at | date:'yyyy-MM-dd' }}</td>
+            <td>{{review.from_user_details.first_name}} {{review.from_user_details.last_name}}</td>
+            <td>{{review.to_user_details.first_name}} {{review.to_user_details.last_name}}</td>
+            <td>{{review.rating}}</td>
+            <td><span
+                [ngClass]="{'red':review.status == 'canceled','yellow':review.status == 'pending','green':review.status == 'accepted'}">
+                {{review.status}}</span></td>
+          
             <td>
-                <nz-switch [(ngModel)]="review.isActive"></nz-switch>
-            </td>
-            <td>
-                <a class="action-btn">
+                <a (click)="showModal(ind)" class="action-btn">
                     <i nz-icon nzType="edit" nzTheme="outline"></i>
                 </a>
             </td>
         </tr>
     </tbody>
 </nz-table>
+
+
+<nz-modal [nzVisible]="isVisible" (nzOnCancel)="closeModal()" nzWidth="870px">
+    <div *nzModalContent>
+        <!-- <div class="d-flex comment-person-content">
+            <div></div>
+            <div>-></div>
+            <div></div>
+
+        </div> -->
+        <nz-descriptions  [nzColumn]="2">
+            <nz-descriptions-item [nzTitle]="'Кто'"><span
+                class="status-primary">{{activeReview?.from_user_details.first_name}} {{activeReview?.from_user_details.last_name}}</span></nz-descriptions-item>
+            <nz-descriptions-item [nzTitle]="'Кого'">{{activeReview?.to_user_details.first_name}} {{activeReview?.to_user_details.last_name}}</nz-descriptions-item>
+       
+            <nz-descriptions-item [nzTitle]="'REVIEWS.RATING' | translate">{{activeReview?.rating}}</nz-descriptions-item>
+          </nz-descriptions>
+
+        <nz-card [nzTitle]="'REVIEWS.REVIEW' | translate">
+            <p>{{activeReview?.comment}}</p>
+        </nz-card>      
+    </div>
+    <div *nzModalFooter>
+        <div *ngIf="activeReview?.status == 'pending'">
+            <button nz-button nzType="default" (click)="cancelRating()">{{'REVIEWS.REJECT' | translate}}</button>
+            <button nz-button nzType="primary" (click)="acceptRating()">{{'REVIEWS.ACCEPT' | translate}}</button>
+        </div>
+    </div>
+</nz-modal>

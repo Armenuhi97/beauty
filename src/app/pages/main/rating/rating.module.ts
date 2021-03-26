@@ -4,6 +4,7 @@ import { SharedModule } from "@shared/shared.module";
 import { IconsProviderModule } from "src/app/icons-provider.module";
 import { RatingComponent } from "./component";
 import { RatingRoutingModule } from "./rating-routing.module";
+import { RatingService } from "./rating.service";
 
 @NgModule({
     declarations: [RatingComponent],
@@ -11,6 +12,7 @@ import { RatingRoutingModule } from "./rating-routing.module";
         SharedModule,
         TranslateModule,
         IconsProviderModule,
-        RatingRoutingModule]
+        RatingRoutingModule],
+    providers: [RatingService]
 })
 export class RatingModule { }

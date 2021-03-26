@@ -57,10 +57,14 @@
         "SERVICES_CATEGORY": "Категория услуг"
     },
     "REVIEWS": {
+        "DATE": "Дата",
         "MASTERS": "Мастер",
         "CLIENTS": "Клиент",
         "RATING": "Рейтинг",
-        "REVIEW": "Отзыв"
+        "REVIEW": "Отзыв",
+        "STATUS": "Статус",
+        "REJECT":"Отклонить",
+        "ACCEPT":"Принять"
     },
     "FEEDBACK": {
         "DATE": "Дата",

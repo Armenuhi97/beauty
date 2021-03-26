@@ -57,10 +57,14 @@
         "SERVICES_CATEGORY": "Catégorie de services"
     },
     "REVIEWS": {
+        "DATE": "la date",
         "MASTERS": "Maîtrise",
         "CLIENTS": "Client",
         "RATING": "Notation",
-        "REVIEW": "Retour d'information"
+        "REVIEW": "Retour d'information",
+        "STATUS": "Statut",
+        "REJECT": "Rejeter",
+        "ACCEPT": "Accepter"
     },
     "FEEDBACK": {
         "DATE": "la date",

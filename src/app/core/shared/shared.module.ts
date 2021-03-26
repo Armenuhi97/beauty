@@ -21,11 +21,13 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
+import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 
 @NgModule({
   declarations: [],
   imports: [CommonModule, ReactiveFormsModule, FormsModule],
   exports: [
+    NzDescriptionsModule,
     NzCarouselModule,
     NzDatePickerModule,
     CommonModule,
