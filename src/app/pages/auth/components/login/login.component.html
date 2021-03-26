@@ -1,0 +1,39 @@
+<form (ngSubmit)="login()" nz-form [formGroup]="loginForm" class="login-form">
+  <h1 nz-typography class="text-center font-bold">
+    {{ "PROJECT_TITLE" | translate }}
+  </h1>
+  <nz-form-item>
+    <nz-form-control [nzErrorTip]="loginErrors">
+      <nz-input-group nzPrefixIcon="user">
+        <input autocomplete="username" type="text" nz-input formControlName="username"
+          [placeholder]="'LOGIN.USERNAME' | translate" />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control [nzErrorTip]="loginErrors">
+      <nz-input-group nzPrefixIcon="lock">
+        <input autocomplete="current-password" type="password" nz-input formControlName="password"
+          [placeholder]="'LOGIN.PASSWORD' | translate" />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <button type="submit" nz-button class="login-form-button" [disabled]="loginForm.invalid" [nzLoading]="loading"
+    [nzType]="'primary'">
+    {{ "LOGIN.SIGN_IN" | translate }}
+  </button>
+</form>
+
+<nz-select nzSuffixIcon="global" class="toggle-language" [formControl]="languageControl">
+  <nz-option nzValue="ru" nzLabel="Russian"></nz-option>
+  <nz-option nzValue="fr" nzLabel="Français"></nz-option>
+</nz-select>
+
+<ng-template #loginErrors let-control>
+  <ng-container *ngIf="control.touched && control.hasError('required')">
+    {{ validationMessages.REQUIRED | translate }}
+  </ng-container>
+  <ng-container *ngIf="control.touched && control.hasError('minlength')">
+    {{ validationMessages.MINLENGTH | translate }}
+  </ng-container>
+</ng-template>

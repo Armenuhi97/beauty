@@ -1,0 +1,27 @@
+nz-layout {
+    height: 100vh;
+    
+    nz-header {
+        background: #fff;
+        padding: 0;
+    }
+
+    nz-content {
+        margin: 0 16px;
+    }
+
+    nz-breadCrumb {
+        margin: 16px 0;
+    }
+
+    .inner-content {
+        padding: 24px;
+        background: #fff;
+        min-height: 360px;
+        margin-top: 10px;
+    }
+
+    nz-footer {
+        text-align: center;
+    }
+}

@@ -1,0 +1,6 @@
+<nz-card class="w-100" [nzTitle]="title" [nzExtra]="addItem">
+    <ng-content></ng-content>
+</nz-card>
+<ng-template #addItem>
+    <a>{{'UTILS.ADD' | translate}}</a>
+</ng-template>

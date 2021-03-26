@@ -1,0 +1,10 @@
+<div [class.minimize]="isCollapsed" class="logo">
+  <img nzDisablePreview nz-image nzSrc="assets/images/logo.png" alt="" />
+</div>
+<ul nz-menu nzTheme="light" nzMode="inline">
+  <li class="side-nav-item" [routerLink]="[item.routerLink]" routerLinkActive="ant-menu-item-selected" nz-menu-item
+    *ngFor="let item of sideNavItems$ | async">
+    <i nz-icon nzTheme="outline" [nzType]="item.icon"></i>
+    <span *ngIf="!isCollapsed">{{item.label | translate}}</span>
+  </li>
+</ul>

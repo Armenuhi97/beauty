@@ -1,0 +1,70 @@
+<nz-select [(ngModel)]="selectedValue" (ngModelChange)="filter($event)">
+    <nz-option *ngFor="let option of statusList" [nzValue]="option.key" [nzLabel]="option.text"></nz-option>
+</nz-select>
+<nz-table #postsTable [nzData]="posts" (nzPageIndexChange)="nzPageIndexChange($event)" [nzTotal]="total"
+    [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" [nzFrontPagination]="false">
+    <thead>
+        <tr>
+            <th>N</th>
+            <th>{{'POST.DATE' | translate}}</th>
+            <th>{{'POST.MASTER' | translate}}</th>
+            <th>{{'POST.TEXT' | translate}}</th>
+            <th>{{'POST.STATUS' | translate}}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let post of postsTable.data;let ind=index">
+            <td>{{(ind + 1)+((pageIndex-1)*10) }}</td>
+            <td>{{post.created_at | date:'yyyy-MM-dd' }}</td>
+            <td>{{post.user_details.first_name}} {{post.user_details.last_name}}</td>
+            <td>{{post.text}}</td>
+            <td><span
+                    [ngClass]="{'red':post.status == 'canceled','yellow':post.status == 'pending','green':post.status == 'accepted'}">
+                    {{post.status}}</span></td>
+            <td>
+                <a (click)="showModal(ind)" class="action-btn">
+                    <i nz-icon nzType="edit" nzTheme="outline"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>
+
+<nz-modal [nzVisible]="isVisible"  (nzOnCancel)="closeModal()" nzWidth="870px" >
+    <div *nzModalContent>
+    <div *ngIf="imageObject && imageObject.length">
+        <ng-image-slider [images]="imageObject" #nav></ng-image-slider>
+    </div>
+    <nz-card [nzTitle]="getTranslateWord('POST.Description')">
+        <p>{{activePost?.text}}</p>
+
+    </nz-card>
+    <nz-card [nzTitle]="getTranslateWord('POST.Hashtags')">
+        <div class="d-flex align-items-center hastags-item flex-wrap">
+        <p>#h1</p>
+        <p>#h2</p>
+        <p>#h3</p></div>
+
+    </nz-card>
+</div>
+    <!-- <div >
+        <span>Modal Footer:</span>
+        <button nz-button nzType="default" (click)="handleCancel()">Custom Callback</button>
+        <button nz-button nzType="primary" (click)="onSavePost()" [nzLoading]="isConfirmLoading">Custom Submit</button>
+      </div> -->
+      <!-- <div *nzModalContent>
+        <p>Modal Content</p>
+        <p>Modal Content</p>
+        <p>Modal Content</p>
+        <p>Modal Content</p>
+        <p>Modal Content</p>
+      </div> -->
+      <div  *nzModalFooter>
+          <div *ngIf="activePost?.status == 'pending'">
+        <button nz-button nzType="default" (click)="cancelPost()">{{'POST.REJECT' | translate}}</button> 
+         <button nz-button nzType="primary" (click)="acceptPost()">{{'POST.ACCEPT' | translate}}</button>
+        </div>
+      </div>
+</nz-modal>

@@ -1,0 +1,16 @@
+.active{
+    border: 1px solid  #F9989C !important;
+}
+.delete{
+    color: red;
+}
+.service-card{
+    margin: 10px 5px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    cursor: pointer;
+    button{
+        border: none !important;
+        padding: 7px;
+    }
+}

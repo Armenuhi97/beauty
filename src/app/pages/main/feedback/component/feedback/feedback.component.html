@@ -1,0 +1,27 @@
+<nz-table #feedbacksTable [nzData]="feedbacks$ | async">
+    <thead>
+        <tr>
+            <th>N</th>
+            <th>{{'FEEDBACK.DATE' | translate}}</th>
+            <th>{{'FEEDBACK.NAME' | translate}}</th>
+            <th>{{'FEEDBACK.TYPE' | translate}}</th>
+            <th>{{'FEEDBACK.TEXT' | translate}}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let feedback of feedbacksTable.data;let ind=index">
+            <td>{{ind+1}}</td>
+            <td>{{ feedback.date }}</td>
+            <td>{{ feedback.name }}</td>
+            <td>{{ feedback.type }}</td>
+            <td>{{ feedback.text}}</td>
+            <td>
+                <a class="action-btn">
+                    <i nz-icon nzType="edit" nzTheme="outline"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>

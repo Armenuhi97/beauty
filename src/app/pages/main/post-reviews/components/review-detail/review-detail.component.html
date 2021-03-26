@@ -1,0 +1,30 @@
+<!--  -->
+<form action="" [formGroup]="validateForm">
+    <nz-form-item>
+        <nz-form-control nzHasFeedback>
+            <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-label class="inline-labels">{{'POST_REVIEW.REVIEW' | translate}}</nz-form-label>
+
+    <nz-form-item>
+        <nz-form-control nzHasFeedback>
+            <textarea formControlName="review" nz-input placeholder="Controlled autosize"
+                [nzAutosize]="{ minRows: 3, maxRows: 5 }"></textarea>
+        </nz-form-control>
+    </nz-form-item>
+</form>
+<div class="d-flex align-items-center justify-content-center">
+    <button nz-button [nzType]="'primary'" nzDanger [nzSize]="'medium'">
+        {{'POST_REVIEW.REJECT' | translate}}
+    </button>
+    <button nz-button [nzType]="'primary'" [nzSize]="'medium'">
+        {{'POST_REVIEW.ACCEPT' | translate}}
+    </button>
+</div>

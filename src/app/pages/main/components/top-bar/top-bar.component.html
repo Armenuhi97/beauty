@@ -1,0 +1,8 @@
+<div class="d-flex justify-content-between align-items-center h-100 header">
+    <nz-select nzSuffixIcon="global" class="toggle-language" [formControl]="languageControl">
+        <nz-option nzValue="ru" nzLabel="Russian"></nz-option>
+        <nz-option nzValue="fr" nzLabel="Français"></nz-option>
+    </nz-select>
+    <button (click)="logout()" nz-button nzType="primary" class="logout"><i nz-icon nzType="logout"></i>{{'LOGIN.LOGOUT'
+        | translate}} </button>
+</div>

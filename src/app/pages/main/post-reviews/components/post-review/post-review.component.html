@@ -1,0 +1,27 @@
+<nz-table #potReviewsTable [nzData]="potReviews$ | async">
+    <thead>
+        <tr>
+            <th>N</th>
+            <th>{{'POST_REVIEW.DATE' | translate}}</th>
+            <th>{{'POST_REVIEW.USER' | translate}}</th>
+            <th>{{'POST_REVIEW.REVIEW' | translate}}</th>
+            <th>{{'POST_REVIEW.STATUS' | translate}}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let review of potReviewsTable.data;let ind=index">
+            <td>{{ind+1}}</td>
+            <td>{{ review.date }}</td>
+            <td>{{ review.user }}</td>
+            <td>{{ review.review }}</td>
+            <td>{{ review.status}}</td>
+            <td>
+                <a [routerLink]="[review.id]" class="action-btn">
+                    <i nz-icon nzType="edit" nzTheme="outline"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>

@@ -1,0 +1,31 @@
+<nz-table #reviewsTable [nzData]="reviews$ | async">
+    <thead>
+        <tr>
+            <th>N</th>
+            <th>{{'REVIEWS.MASTERS' | translate}}</th>
+            <th>{{'REVIEWS.CLIENTS' | translate}}</th>
+            <th>{{'REVIEWS.RATING' | translate}}</th>
+            <th>{{'REVIEWS.REVIEW' | translate}}</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let review of reviewsTable.data;let in=index">
+            <td>{{ind+1}}</td>
+            <td>{{ review.masters }}</td>
+            <td>{{ review.clients }}</td>
+            <td>{{ review.rating }}</td>
+            <td>{{ review.review}}</td>
+            <td>
+                <nz-switch [(ngModel)]="review.isActive"></nz-switch>
+            </td>
+            <td>
+                <a class="action-btn">
+                    <i nz-icon nzType="edit" nzTheme="outline"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>

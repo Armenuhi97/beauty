@@ -1,0 +1,81 @@
+<div class="title-container">
+    <button class="add-essence" nz-button nzType="primary" (click)="showModal()">
+        {{'CREATE' | translate}}
+    </button>
+</div>
+<nz-table #emailNotificationsTable [nzData]="emailNotifications$ | async">
+    <thead>
+        <tr>
+            <th>N</th>
+            <th>{{'EMAIL_NOTIFICATION.DATE' | translate}}</th>
+            <th>{{'EMAIL_NOTIFICATION.NAME' | translate}}</th>
+            <th>{{'EMAIL_NOTIFICATION.USER_COUNT' | translate}}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let notification of emailNotificationsTable.data;let ind=index">
+            <td>{{ind+1}}</td>
+            <td>{{ notification.date }}</td>
+            <td>{{ notification.name }}</td>
+            <td>{{ notification.userCount }}</td>
+            <td>
+                <a class="action-btn">
+                    <i nz-icon nzType="edit" nzTheme="outline"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>
+
+<nz-modal [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()" nzWidth="870px" (nzOnOk)="onSaveNotification()">
+
+    <form nz-form [formGroup]="validateForm" [nzLayout]="'vertical'">
+        <div nz-row [nzGutter]="24">
+            <div nz-col [nzSpan]="12">
+                <nz-form-label class="inline-labels" >{{'EMAIL_NOTIFICATION.DATE' |translate}}</nz-form-label>
+                <nz-form-item>
+
+                    <nz-form-control nzHasFeedback >
+                        <nz-date-picker class="w-100" formControlName="date"></nz-date-picker>
+
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col [nzSpan]="12">
+                <nz-form-label class="inline-labels" >{{'EMAIL_NOTIFICATION.TEXT' | translate}}</nz-form-label>
+                <nz-form-item>
+                    <nz-form-control nzHasFeedback >
+                        <input nz-input formControlName="text" placeholder="" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+
+        </div>
+        <div nz-row [nzGutter]="24">
+            <div nz-col [nzSpan]="12">
+                <nz-form-label class="inline-labels" ></nz-form-label>
+
+                <nz-form-item>
+
+                    <nz-form-control nzHasFeedback >
+                        <nz-checkbox-group formControlName="person">
+                        </nz-checkbox-group>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+         
+            <div nz-col [nzSpan]="12">
+                <nz-form-label class="inline-labels" >{{'EMAIL_NOTIFICATION.SEARCH' | translate}}</nz-form-label>
+                <nz-form-item>
+                    <nz-form-control nzHasFeedback >
+                        <input nz-input formControlName="search" placeholder="" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+
+
+    </form>
+</nz-modal>

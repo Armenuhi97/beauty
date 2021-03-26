@@ -1,0 +1,36 @@
+<!-- <div nz-row [nzGutter]="[16, 24]">
+    <div nz-col class="gutter-row" [nzSpan]="12">
+        <app-utils-item-wrapper [title]="'UTILS.SERVICES_CATEGORY' | translate">
+            <app-categories [categories]="categories"></app-categories>
+        </app-utils-item-wrapper>
+    </div>
+</div> -->
+
+<nz-table #utilsTable [nzData]="utils$ | async">
+  <thead>
+    <tr>
+      <th>N</th>
+      <th>{{'UTILS.DATE' | translate}}</th>
+      <th>{{'UTILS.MASTERS' | translate}}</th>
+      <th>{{'UTILS.CLIENTS' | translate}}</th>
+      <th>{{'UTILS.SERVICE' | translate}}</th>
+      <th>{{'UTILS.PRICE' | translate}}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let util of utilsTable.data;let ind =index">
+      <td>{{ind+1}}</td>
+      <td>{{ util.date }}</td>
+      <td>{{ util.masters }}</td>
+      <td>{{ util.clients }}</td>
+      <td>{{ util.service }}</td>
+      <td>{{ util.price }}</td>
+      <td>
+        <a class="action-btn">
+          <i nz-icon nzType="edit" nzTheme="outline"></i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

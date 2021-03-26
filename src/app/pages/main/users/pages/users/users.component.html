@@ -1,0 +1,36 @@
+<nz-table #usersTable [nzData]="users$ | async">
+    <thead>
+        <tr>
+            <th>N</th>
+            <th>{{'USER.FIRST_NAME' | translate}}</th>
+            <th>{{'USER.LAST_NAME' | translate}}</th>
+            <th>{{'USER.EMAIL' | translate}}</th>
+            <th>{{'USER.CITY' | translate}}</th>
+            <th>{{'USER.ORDERS' | translate}}</th>
+            <th>{{'USER.AMOUNTS' | translate}}</th>
+            <th>{{'USER.RATING' | translate}}</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of usersTable.data;let ind=index">
+            <td>{{ind+1}}</td>
+            <td>{{ user.user.first_name }}</td>
+            <td>{{ user.user.last_name }}</td>
+            <td>{{ user.user.email }}</td>
+            <td>{{ user.city }}</td>
+            <td>{{ user.orders }}</td>
+            <td>{{ user.amount }}</td>
+            <td>{{ user.rating }}</td>
+            <td>
+                <nz-switch [(ngModel)]="user.user.is_active"></nz-switch>
+            </td>
+            <td>
+                <a [routerLink]="[user.id]" class="action-btn">
+                    <i nz-icon nzType="edit" nzTheme="outline"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>

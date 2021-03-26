@@ -1,0 +1,103 @@
+{
+    "PROJECT_TITLE": "Beauty Cils",
+    "PROJECT_TITLE_SHORT": "Beauty",
+    "MASTERS": "Maîtrise",
+    "CLIENTS": "Client",
+    "CREATE": "Créer un",
+    "STATUS": {
+        "PENDING": "attente",
+        "CANCELED": "annuler",
+        "ACCEPTED": "accepter",
+        "ALL": "Tout"
+    },
+    "NAVIGATION": {
+        "USERS": "Utilisateurs",
+        "MASTERS": "Maîtrise",
+        "UTILS": "Prestations de service",
+        "REVIEWS": "Retour d'information",
+        "BACKLINK": "Rétroaction",
+        "EMAILNOTIFICATIONS": "Notifications par email",
+        "PUSHNOTIFICATIONS": "Notifications push",
+        "POSTS": "Des postes",
+        "POSTS_REVIEWS": "Publier des avis",
+        "MODERATORS": "Modérateurs",
+        "STATISTICS": "Statistiques",
+        "CATEGORY_UTILS": "Catégorie de services"
+    },
+    "LOGIN": {
+        "SIGN_IN": "Entrer",
+        "USERNAME": "Nom d'utilisateur",
+        "PASSWORD": "MOT DE PASSE",
+        "LOGOUT": "Se déconnecter"
+    },
+    "VALIDATION": {
+        "REQUIRED": "Ceci est un champ obligatoire",
+        "MIN_LENGTH": "Caractères minimum"
+    },
+    "USER": {
+        "FIRST_NAME": "Prénom",
+        "LAST_NAME": "Nom de famille",
+        "EMAIL": "e-mail",
+        "BIRTH_DATE": "Date de naissance",
+        "ORDERS": "Ordres",
+        "AMOUNTS": "Quantité",
+        "RATING": "Notation",
+        "AGE": "Âge",
+        "GENDER": "Le genre",
+        "ADDRESS": "Adresse",
+        "CITY": "Ville"
+    },
+    "UTILS": {
+        "DATE": "la date",
+        "MASTERS": "Maître",
+        "CLIENTS": "Client",
+        "SERVICE": "Un service",
+        "PRICE": "Prix",
+        "ADD": "Ajouter",
+        "SERVICES_CATEGORY": "Catégorie de services"
+    },
+    "REVIEWS": {
+        "MASTERS": "Maîtrise",
+        "CLIENTS": "Client",
+        "RATING": "Notation",
+        "REVIEW": "Retour d'information"
+    },
+    "FEEDBACK": {
+        "DATE": "la date",
+        "NAME": "Nom",
+        "TYPE": "Un type",
+        "TEXT": "Texte"
+    },
+    "EMAIL_NOTIFICATION": {
+        "DATE": "la date",
+        "NAME": "Название",
+        "USER_COUNT": "Qté. utilisateurs",
+        "TEXT": "Texte",
+        "SEARCH": "Chercher"
+    },
+    "POST": {
+        "DATE": "la date",
+        "MASTER": "Maîtr",
+        "TEXT": "Texte",
+        "STATUS": "Statut",
+        "REJECT": "Rejeter",
+        "ACCEPT": "Accepter",
+        "Description": "Description",
+        "Hashtags": "Hashtags"
+    },
+    "POST_REVIEW": {
+        "DATE": "la date",
+        "USER": "Utilisateur",
+        "REVIEW": "Retour d'information",
+        "STATUS": "Statut",
+        "REJECT": "Rejeter",
+        "ACCEPT": "Accepter"
+    },
+    "CATEGORY_UTILS": {
+        "NAME_FR": "Titre en français",
+        "NAME_EN": "Titre en russe",
+        "POPULAR": "Populaire",
+        "SERVICE": "Services",
+        "CATEGORY": "Catégories"
+    }
+}

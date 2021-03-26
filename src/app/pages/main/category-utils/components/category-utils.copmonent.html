@@ -1,0 +1,77 @@
+<div class="d-flex align-items-start justify-content-between">
+  <div class="categories-container">
+    <div class="action-section d-flex align-items-center justify-content-between w-100">
+      <p>{{'CATEGORY_UTILS.CATEGORY' | translate}}</p>
+      <button class="d-flex align-items-center justify-content-center" (click)="onAddCategory()" nz-button
+        nzType="default" nzShape="circle"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+          fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+          <path
+            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+        </svg></button>
+    </div>
+    <div class="category-card">
+      <ng-container *ngIf="categories?.length > 0">
+        <div class="cascade-link-item" *ngFor="let category of categories;let i=index">
+          <app-category-card [category]="category" (cardClicked)="getSubCategoriesByCategory(category, i)"
+            (edit)="onEditCategory(i)" [active]="+activeCategory?.id === +category.id"
+            (delete)="deleteCategory(category.id, i)"></app-category-card>
+        </div>
+
+      </ng-container>
+    </div>
+
+  </div>
+  <div *ngIf="activeCategory" class="categories-container">
+    <div class="action-section d-flex align-items-center justify-content-between w-100">
+      <p>{{'CATEGORY_UTILS.SERVICE' | translate}}</p>
+      <button class="d-flex align-items-center justify-content-center" (click)="onAddService()" nz-button
+        nzType="default" nzShape="circle"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+          fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+          <path
+            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+        </svg></button>
+    </div>
+    <div class="category-card">
+      <ng-container *ngIf="services?.length > 0">
+        <div class="cascade-link-item" *ngFor="let service of services;let i=index">
+          <app-subcategory-card [service]="service" (edit)="onEditService(service,i)"
+            (delete)="deleteService(service.id, i)"></app-subcategory-card>
+        </div>
+
+      </ng-container>
+    </div>
+
+  </div>
+</div>
+
+<nz-modal [nzVisible]="isVisible" nzWidth="700px" (nzOnCancel)="closeModal()" [nzTitle]="title" (nzOnOk)="onSave()">
+  <form nz-form [formGroup]="validateForm" [nzLayout]="'vertical'">
+    <div nz-row [nzGutter]="24">
+      <div nz-col [nzSpan]="12">
+        <nz-form-label class="inline-labels" nzRequired>{{'CATEGORY_UTILS.NAME_EN' | translate}}</nz-form-label>
+        <nz-form-item>
+          <nz-form-control nzHasFeedback [nzErrorTip]="userErrorTpl">
+            <input nz-input formControlName="name_en" type="text" placeholder="" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col [nzSpan]="12">
+        <nz-form-label class="inline-labels" nzRequired>{{'CATEGORY_UTILS.NAME_FR' | translate}}</nz-form-label>
+        <nz-form-item>
+          <nz-form-control nzHasFeedback [nzErrorTip]="userErrorTpl">
+            <input nz-input formControlName="name_fr" type="text" placeholder="" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <nz-form-item *ngIf="type == 'service'">
+      <label nz-checkbox formControlName="is_popular">{{'CATEGORY_UTILS.POPULAR' | translate}}</label>
+    </nz-form-item>
+  </form>
+</nz-modal>
+
+<ng-template #userErrorTpl let-control>
+  <ng-container *ngIf="control.hasError('required')">
+    Это обязательное поле
+  </ng-container>
+</ng-template>

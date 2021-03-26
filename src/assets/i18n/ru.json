@@ -1,0 +1,104 @@
+{
+    "PROJECT_TITLE": "Beauty Cils",
+    "PROJECT_TITLE_SHORT": "Beauty",
+    "MASTERS": "Мастер",
+    "CLIENTS": "Клиент",
+    "CREATE":"Создать",
+    "STATUS":{
+        "PENDING":"в ожидание",
+        "CANCELED":"отменено",
+        "ACCEPTED":"принято",
+        "ALL":"Все"
+    },
+    "NAVIGATION": {
+        "USERS": "Пользователи",
+        "MASTERS": "Мастера",
+        "UTILS": "Услуги",
+        "REVIEWS": "Отзыв и оценки",
+        "BACKLINK": "Обратная связь",
+        "EMAILNOTIFICATIONS": "Уведомления на почту",
+        "PUSHNOTIFICATIONS": "Пуш уведомления",
+        "POSTS": "Посты",
+        "POSTS_REVIEWS": "Отзывы постов",
+        "MODERATORS": "Модераторы",
+        "STATISTICS": "Статистика",
+        "CATEGORY_UTILS": "Услуги категорий"
+    },
+    "LOGIN": {
+        "SIGN_IN": "Войти",
+        "USERNAME": "Имя пользователя",
+        "PASSWORD": "Пароль",
+        "LOGOUT": "Выйти"
+    },
+    "VALIDATION": {
+        "REQUIRED": "Это обязательное поле",
+        "MIN_LENGTH": "Минимальное количество символов"
+    },
+    "USER": {
+        "FIRST_NAME": "Имя",
+        "LAST_NAME": "Фамиля",
+        "EMAIL": "E-mail",
+        "BIRTH_DATE": "Дата рождения",
+        "ORDERS": "Заказы",
+        "AMOUNTS": "Сумма",
+        "RATING": "Рейтинг",
+        "AGE": "Возрост",
+        "GENDER": "Пол",
+        "ADDRESS": "Адрес",
+        "CITY": "Город"
+    },
+    "UTILS": {
+        "DATE": "Дата",
+        "MASTERS": "Мастер",
+        "CLIENTS": "Клиент",
+        "SERVICE": "Услуга",
+        "PRICE": "Цена",
+        "ADD": "Добавить",
+        "SERVICES_CATEGORY": "Категория услуг"
+    },
+    "REVIEWS": {
+        "MASTERS": "Мастер",
+        "CLIENTS": "Клиент",
+        "RATING": "Рейтинг",
+        "REVIEW": "Отзыв"
+    },
+    "FEEDBACK": {
+        "DATE": "Дата",
+        "NAME": "Имя",
+        "TYPE": "Тип",
+        "TEXT": "Текст"
+    },
+    "EMAIL_NOTIFICATION":{
+        "DATE": "Дата",
+        "NAME":"Название",
+        "USER_COUNT":"Кол. юзеров",
+        "TEXT": "Текст",
+        "SEARCH":"Поиски"
+    },
+    "POST": {
+        "DATE": "Дата",
+        "MASTER": "Мастер",
+        "TEXT": "Текст",
+        "STATUS": "Статус",
+        "REJECT":"Отклонить",
+        "ACCEPT":"Принять",
+        "Description": "Описание",
+        "Hashtags": "Хэштеги"
+    },
+    "POST_REVIEW":{
+        "DATE": "Дата",
+        "USER": "Пользователь ",
+        "REVIEW": "Отзыв",
+        "STATUS": "Статус",
+        "REJECT":"Отклонить",
+        "ACCEPT":"Принять"
+
+    },
+    "CATEGORY_UTILS":{
+        "NAME_FR":"Название на французском",
+        "NAME_EN":"Название на русском",
+        "POPULAR":"Популярный",
+        "SERVICE":"Сервисы",
+        "CATEGORY":"Категории"
+    }
+}
