@@ -1,0 +1,98 @@
+<div class="title-container">
+    <div class="d-flex align-items-center justify-content-between">
+        <div>
+            <nz-form-label class="inline-labels">{{'ORDERS.CATEGORY' | translate}}</nz-form-label>
+            <nz-form-item>
+                <nz-select [nzPlaceHolder]="'ORDERS.CATEGORY' | translate" [formControl]="categoryControl"
+                    class="subservice-filter">
+                    <nz-option nzValue="" [nzLabel]="'ORDERS.ALL' | translate"> </nz-option>
+                    <nz-option *ngFor="let category of categories" [nzValue]="category" [nzLabel]="category.name_en">
+                    </nz-option>
+                </nz-select>
+            </nz-form-item>
+        </div>
+        <div>
+            <nz-form-label class="inline-labels">{{'ORDERS.SERVICE' | translate}}</nz-form-label>
+            <nz-form-item>
+                <nz-select [nzPlaceHolder]="'ORDERS.SERVICE' | translate" [formControl]="serviceControl"
+                    class="list-filter">
+                    <nz-option nzValue="" [nzLabel]="'ORDERS.ALL' | translate"></nz-option>
+                    <nz-option *ngFor="let service of services" [nzValue]="service" [nzLabel]="service.name_en">
+                    </nz-option>
+                </nz-select>
+            </nz-form-item>
+        </div>
+    </div>
+</div>
+<nz-table #table [nzData]="orders" (nzPageIndexChange)="nzPageIndexChange($event)" [nzTotal]="total"
+    [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" [nzFrontPagination]="false">
+    <thead>
+        <tr>
+            <th>N</th>
+            <th>{{'ORDERS.MASTER' | translate}}</th>
+            <th>{{'ORDERS.CATEGORY' | translate}}</th>
+            <th>{{'ORDERS.SERVICE' | translate}}</th>
+            <th>{{'ORDERS.DURATION' | translate}}</th>
+            <th>{{'ORDERS.PRICE' | translate}}</th>
+
+            <th></th>
+            <th></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let order of table.data;let ind=index">
+            <td>{{(ind + 1)+((pageIndex-1)*10) }}</td>
+            <td>{{order.category }}</td>
+            <td>{{order.service }}</td>
+            <td>{{order.price}}</td>
+            <td>{{order.duration}}</td>
+            <td>
+                <label nz-checkbox [(ngModel)]="order.popular"></label>
+            </td>
+            <td>
+                <i (click)="editOrder(ind)" nz-icon nzType="edit" nzTheme="outline"></i>
+                <!-- <a [routerLink]="[user.id]" class="action-btn">
+                  <i nz-icon nzType="edit" nzTheme="outline"></i>
+              </a> -->
+            </td>
+            <td></td>
+        </tr>
+    </tbody>
+</nz-table>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="" (nzOnCancel)="handleCancel()" nzWidth="870px" (nzOnOk)="onOrderSave()">
+
+    <form nz-form [formGroup]="validateForm" [nzLayout]="'vertical'">
+        <div nz-row [nzGutter]="24">
+            <div nz-col [nzSpan]="8">
+                <nz-form-label class="inline-labels" nzRequired>{{'ORDERS.PRICE' | translate}}</nz-form-label>
+                <nz-form-item>
+                    <nz-form-control nzHasFeedback [nzErrorTip]="">
+                        <input nz-input formControlName="price" type="number" placeholder="" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col [nzSpan]="8">
+                <nz-form-label class="inline-labels" nzRequired>{{'ORDERS.DURATION' | translate}}</nz-form-label>
+                <nz-form-item>
+                    <!-- <nz-form-control nzHasFeedback [nzErrorTip]="">
+                        <input nz-input formControlName="duration" type="number" placeholder="" />
+                    </nz-form-control> -->
+                    <nz-select formControlName="duration">
+                        <nz-option *ngFor="let item of selectItems" [nzLabel]="item" [nzValue]="item"></nz-option>
+                    </nz-select>
+                </nz-form-item>
+            </div>
+            <div nz-col [nzSpan]="8">
+                <nz-form-label class="inline-labels"></nz-form-label>
+                <nz-form-item>
+                    <nz-form-control >
+                        <label nz-checkbox formControlName="popular"></label>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+
+        </div>
+
+    </form>
+</nz-modal>

@@ -1,0 +1,5 @@
+:host::ng-deep {
+  .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    width: 150px;
+  }
+}

@@ -90,6 +90,13 @@ const routes: Routes = [
             (m) => m.TarifModule
           ),
       },
+      {
+        path: 'order',
+        loadChildren: () =>
+          import('./orders/orders.module').then(
+            (m) => m.OrderModule
+          ),
+      },
     ],
   },
 ];

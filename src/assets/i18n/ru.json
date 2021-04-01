@@ -23,7 +23,8 @@
         "MODERATORS": "Модераторы",
         "STATISTICS": "Статистика",
         "CATEGORY_UTILS": "Услуги категорий",
-        "TARIF":"Тарифы"
+        "TARIF":"Тарифы",
+        "ORDERS":"Заказы"
     },
     "LOGIN": {
         "SIGN_IN": "Войти",
@@ -117,5 +118,13 @@
         "IMAGE":"Изображение",
         "CATEGORY_COUNT":"Количество категорий"
 
+    },
+    "ORDERS":{
+        "ALL":"Все",
+        "MASTER":"Мастер",
+        "CATEGORY":"Категории",
+        "SERVICE" :"Сервисы",
+        "DURATION":"Duration",
+        "PRICE":"Цена"
     }
 }

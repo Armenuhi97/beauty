@@ -22,6 +22,11 @@ export const DEFAULT_NAVIGATION_ITEMS: ISideNavItem[] = [
         icon: 'check-square'
     },
     {
+        label: 'NAVIGATION.ORDERS',
+        routerLink: 'order',
+        icon: 'setting'
+    },
+    {
         label: 'NAVIGATION.UTILS',
         routerLink: 'utils',
         icon: 'setting'

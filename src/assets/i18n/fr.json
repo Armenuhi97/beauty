@@ -23,7 +23,8 @@
         "MODERATORS": "Modérateurs",
         "STATISTICS": "Statistiques",
         "CATEGORY_UTILS": "Catégorie de services",
-        "TARIF":"Tarifs"
+        "TARIF":"Tarifs",
+        "ORDERS":"Commandes"
     },
     "LOGIN": {
         "SIGN_IN": "Entrer",
@@ -115,5 +116,14 @@
         "IMAGE":"Image",
         "CATEGORY_COUNT":"Nombre de Catégories"
 
+    },
+    "ORDERS":{
+        "ALL":"All",
+        "MASTER":"Maîtr",
+        "CATEGORY":"Catégories",
+        "SERVICE" :"Services",
+        "DURATION":"Duration",
+        "PRICE":"Prix"
     }
+    
 }
