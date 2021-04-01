@@ -22,7 +22,8 @@
         "POSTS_REVIEWS": "Publier des avis",
         "MODERATORS": "Modérateurs",
         "STATISTICS": "Statistiques",
-        "CATEGORY_UTILS": "Catégorie de services"
+        "CATEGORY_UTILS": "Catégorie de services",
+        "TARIF":"Tarifs"
     },
     "LOGIN": {
         "SIGN_IN": "Entrer",

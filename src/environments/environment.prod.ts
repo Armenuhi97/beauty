@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  API_URL: 'http://beauty_admin.annaniks.com/'
+  API_URL: 'http://api-beauty.annaniks.com/'
 };

@@ -26,7 +26,11 @@ export const DEFAULT_NAVIGATION_ITEMS: ISideNavItem[] = [
         routerLink: 'utils',
         icon: 'setting'
     },
-
+    {
+        label: 'NAVIGATION.TARIF',
+        routerLink: 'tarif',
+        icon: 'setting'
+    },
     {
         label: 'NAVIGATION.REVIEWS',
         routerLink: 'reviews',

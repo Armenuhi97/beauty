@@ -1,0 +1,32 @@
+<nz-table #table [nzData]="tarifs" (nzPageIndexChange)="nzPageIndexChange($event)" [nzTotal]="total"
+    [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" [nzFrontPagination]="false">
+    <thead>
+        <tr>
+            <th>N</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let tarif of table.data;let ind=index">
+            <td>{{(ind + 1)+((pageIndex-1)*10) }}</td>
+            <td>{{tarif.title_en }}</td>
+            <td>{{tarif.price}}</td>
+            <td>{{tarif.month}}</td>
+
+            <td>
+                <nz-switch [(ngModel)]="tarif.is_active"></nz-switch>
+            </td>
+            <td>
+                <!-- <a [routerLink]="[user.id]" class="action-btn">
+                    <i nz-icon nzType="edit" nzTheme="outline"></i>
+                </a> -->
+            </td>
+        </tr>
+    </tbody>
+</nz-table>

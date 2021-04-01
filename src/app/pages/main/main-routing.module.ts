@@ -83,6 +83,13 @@ const routes: Routes = [
             (m) => m.CategoryUtilsModule
           ),
       },
+      {
+        path: 'tarif',
+        loadChildren: () =>
+          import('./tarif/tarif.module').then(
+            (m) => m.TarifModule
+          ),
+      },
     ],
   },
 ];

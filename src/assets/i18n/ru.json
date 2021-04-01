@@ -22,7 +22,8 @@
         "POSTS_REVIEWS": "Отзывы постов",
         "MODERATORS": "Модераторы",
         "STATISTICS": "Статистика",
-        "CATEGORY_UTILS": "Услуги категорий"
+        "CATEGORY_UTILS": "Услуги категорий",
+        "TARIF":"Тарифы"
     },
     "LOGIN": {
         "SIGN_IN": "Войти",
@@ -104,5 +105,11 @@
         "POPULAR":"Популярный",
         "SERVICE":"Сервисы",
         "CATEGORY":"Категории"
+    },
+    "TARIF":{
+        "NAME_FR":"Название на французском",
+        "NAME_EN":"Название на русском",
+        "Description_EN": "Описание на русском",
+        "Description_FR": "Описание на французском"
     }
 }
