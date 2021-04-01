@@ -1,6 +1,6 @@
 <div class="title-container">
-      <button  class="add-essence" nz-button nzType="primary" (click)="showModal()">{{'UTILS.ADD' | translate}}</button>
-  </div>
+    <button class="add-essence" nz-button nzType="primary" (click)="showModal()">{{'UTILS.ADD' | translate}}</button>
+</div>
 <nz-table #table [nzData]="tarifs" (nzPageIndexChange)="nzPageIndexChange($event)" [nzTotal]="total"
     [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" [nzFrontPagination]="false">
     <thead>
@@ -26,7 +26,7 @@
                 <nz-switch (ngModelChange)="changeStatus(tarif)" [(ngModel)]="tarif.is_active"></nz-switch>
             </td>
             <td>
-                <i (click)="editTarif(ind)" nz-icon nzType="edit" nzTheme="outline"></i>
+                <i (click)="editTarif(ind)" class="pointer" nz-icon nzType="edit" nzTheme="outline"></i>
                 <!-- <a [routerLink]="[user.id]" class="action-btn">
                     <i nz-icon nzType="edit" nzTheme="outline"></i>
                 </a> -->
@@ -108,10 +108,9 @@
                 </nz-form-item>
             </div>
             <div nz-col [nzSpan]="12">
-                <nz-form-label class="inline-labels" nzRequired>{{'TARIF.IMAGE' | translate}}</nz-form-label>
+                <nz-form-label class="inline-labels">{{'TARIF.IMAGE' | translate}}</nz-form-label>
                 <div class="clearfix">
-                    <nz-upload nzListType="picture" [nzShowUploadList]="false"
-                        (nzChange)="handleImageChange($event)"
+                    <nz-upload nzListType="picture" [nzShowUploadList]="false" (nzChange)="handleImageChange($event)"
                         [nzHeaders]="{ authorization: 'authorization-text' }">
                         <button nz-button><i nz-icon nzType="upload"></i>{{'TARIF.IMAGE' | translate}}</button>
                     </nz-upload>
