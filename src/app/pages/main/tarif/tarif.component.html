@@ -1,12 +1,15 @@
+<div class="title-container">
+      <button  class="add-essence" nz-button nzType="primary" (click)="showModal()">{{'UTILS.ADD' | translate}}</button>
+  </div>
 <nz-table #table [nzData]="tarifs" (nzPageIndexChange)="nzPageIndexChange($event)" [nzTotal]="total"
     [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" [nzFrontPagination]="false">
     <thead>
         <tr>
             <th>N</th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
+            <th>{{'TARIF.NAME' | translate}}</th>
+            <th>{{'TARIF.PRICE' | translate}}</th>
+            <th>{{'TARIF.MONTH' | translate}}</th>
+            <th>{{'TARIF.CATEGORY_COUNT' | translate}}</th>
             <th></th>
             <th></th>
 
@@ -18,11 +21,12 @@
             <td>{{tarif.title_en }}</td>
             <td>{{tarif.price}}</td>
             <td>{{tarif.month}}</td>
-
+            <td>{{tarif.category_count}}</td>
             <td>
-                <nz-switch [(ngModel)]="tarif.is_active"></nz-switch>
+                <nz-switch (ngModelChange)="changeStatus(tarif)" [(ngModel)]="tarif.is_active"></nz-switch>
             </td>
             <td>
+                <i (click)="editTarif(ind)" nz-icon nzType="edit" nzTheme="outline"></i>
                 <!-- <a [routerLink]="[user.id]" class="action-btn">
                     <i nz-icon nzType="edit" nzTheme="outline"></i>
                 </a> -->
@@ -30,3 +34,93 @@
         </tr>
     </tbody>
 </nz-table>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="" (nzOnCancel)="handleCancel()" nzWidth="870px" (nzOnOk)="onTarifSave()">
+
+    <form nz-form [formGroup]="validateForm" [nzLayout]="'vertical'">
+        <div nz-row [nzGutter]="24">
+            <div nz-col [nzSpan]="12">
+                <nz-form-label class="inline-labels" nzRequired>{{'TARIF.NAME_EN' | translate}}</nz-form-label>
+                <nz-form-item>
+                    <nz-form-control nzHasFeedback [nzErrorTip]="">
+                        <input nz-input formControlName="title_en" placeholder="" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col [nzSpan]="12">
+                <nz-form-label class="inline-labels" nzRequired>{{'TARIF.NAME_FR' | translate}}</nz-form-label>
+                <nz-form-item>
+                    <nz-form-control nzHasFeedback [nzErrorTip]="">
+                        <input nz-input formControlName="title_fr" placeholder="" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+
+        </div>
+        <div nz-row [nzGutter]="24">
+            <div nz-col [nzSpan]="12">
+                <nz-form-label class="inline-labels" nzRequired>{{'TARIF.Description_EN' | translate}}</nz-form-label>
+                <nz-form-item>
+                    <nz-form-control nzHasFeedback [nzErrorTip]="">
+                        <input nz-input formControlName="description_en" placeholder="" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col [nzSpan]="12">
+                <nz-form-label class="inline-labels" nzRequired>{{'TARIF.Description_FR' | translate}}</nz-form-label>
+                <nz-form-item>
+                    <nz-form-control nzHasFeedback [nzErrorTip]="">
+                        <input nz-input formControlName="description_fr" placeholder="" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+
+        </div>
+        <div nz-row [nzGutter]="24">
+            <div nz-col [nzSpan]="12">
+                <nz-form-label class="inline-labels" nzRequired>{{'TARIF.PRICE' | translate}}</nz-form-label>
+                <nz-form-item>
+                    <nz-form-control nzHasFeedback [nzErrorTip]="">
+                        <input nz-input formControlName="price" type="number" placeholder="" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col [nzSpan]="12">
+                <nz-form-label class="inline-labels" nzRequired>{{'TARIF.MONTH' | translate}}</nz-form-label>
+                <nz-form-item>
+                    <nz-form-control nzHasFeedback [nzErrorTip]="">
+                        <nz-select formControlName="month">
+                            <nz-option *ngFor="let item of selectItems" [nzLabel]="item" [nzValue]="item"></nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+        <div nz-row [nzGutter]="24">
+
+            <div nz-col [nzSpan]="12">
+                <nz-form-label class="inline-labels" nzRequired>{{'TARIF.CATEGORY_COUNT' | translate}}</nz-form-label>
+                <nz-form-item>
+                    <nz-form-control nzHasFeedback [nzErrorTip]="">
+                        <nz-select formControlName="category_count">
+                            <nz-option *ngFor="let item of selectItems" [nzLabel]="item" [nzValue]="item"></nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col [nzSpan]="12">
+                <nz-form-label class="inline-labels" nzRequired>{{'TARIF.IMAGE' | translate}}</nz-form-label>
+                <div class="clearfix">
+                    <nz-upload nzListType="picture" [nzShowUploadList]="false"
+                        (nzChange)="handleImageChange($event)"
+                        [nzHeaders]="{ authorization: 'authorization-text' }">
+                        <button nz-button><i nz-icon nzType="upload"></i>{{'TARIF.IMAGE' | translate}}</button>
+                    </nz-upload>
+                </div>
+                <img *ngIf="validateForm.get('showingImage').value" class="img-fluid preview-image"
+                    [src]="validateForm.get('showingImage').value" />
+            </div>
+        </div>
+
+
+    </form>
+</nz-modal>

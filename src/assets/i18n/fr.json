@@ -104,5 +104,16 @@
         "POPULAR": "Populaire",
         "SERVICE": "Services",
         "CATEGORY": "Catégories"
+    },
+    "TARIF":{
+        "NAME_FR": "Titre en français",
+        "NAME_EN": "Titre en russe",
+        "Description_EN": "Description en russe",
+        "Description_FR": "Description en français",
+        "PRICE":"Prix",
+        "MONTH":"Mois",
+        "IMAGE":"Image",
+        "CATEGORY_COUNT":"Nombre de Catégories"
+
     }
 }
