@@ -1,0 +1,28 @@
+<nz-tabset (nzSelectChange)="changeTab($event)">
+    <nz-tab [nzTitle]="'USER.USER_INFO' | translate">
+        <app-user-info [info]="user"></app-user-info>
+    </nz-tab>
+    <nz-tab [nzTitle]="'USER.REVIEW' | translate">
+        <nz-table #usersTable [nzData]="reviews" (nzPageIndexChange)="nzPageIndexChange($event)" [nzTotal]="total"
+            [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" [nzFrontPagination]="false">
+            <thead>
+                <tr>
+                    <th>N</th>
+                    <th>{{'REVIEWS.DATE' | translate}}</th>
+                    <th>{{'REVIEWS.MASTERS' | translate}}</th>
+                    <th>{{'REVIEWS.REVIEW' | translate}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of usersTable.data;let ind=index">
+                    <td>{{(ind + 1)+((pageIndex-1)*10) }}</td>
+                    <td>{{review.created_at | date:'yyyy-MM-dd' }}</td>
+                    <td>{{review.to_user_details.first_name}} {{review.to_user_details.last_name}}</td>
+                    <td>{{review?.comment}}</td>                   
+                </tr>
+            </tbody>
+        </nz-table>
+
+    </nz-tab>
+    <nz-tab [nzTitle]="'USER.HISTORY' | translate"></nz-tab>
+</nz-tabset>

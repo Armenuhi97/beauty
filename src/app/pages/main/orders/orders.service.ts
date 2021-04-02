@@ -6,7 +6,7 @@ import { ServerResponse } from "@models/server-respoce";
 @Injectable()
 export class OrdersService{
     constructor(private _httpClient:HttpClient){}
-    public getOrders(){
+    public getOrders(category,service,status){
         return this._httpClient.get('')
     }
     getCategoriesList() {

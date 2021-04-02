@@ -24,7 +24,8 @@
         "STATISTICS": "Statistiques",
         "CATEGORY_UTILS": "Catégorie de services",
         "TARIF": "Tarifs",
-        "ORDERS": "Commandes"
+        "ORDERS": "Commandes",
+        "BOUGHT_TARIF":"Tarifs achetés"
     },
     "LOGIN": {
         "SIGN_IN": "Entrer",
@@ -47,7 +48,10 @@
         "AGE": "Âge",
         "GENDER": "Le genre",
         "ADDRESS": "Adresse",
-        "CITY": "Ville"
+        "CITY": "Ville",
+        "USER_INFO":"Données",
+        "REVIEW":"Retour d'information",
+        "HISTORY":"Histoire"
     },
     "UTILS": {
         "DATE": "la date",
@@ -119,11 +123,23 @@
         "CATEGORY_COUNT": "Nombre de Catégories"
     },
     "ORDERS": {
+        "DATE": "la date",
         "ALL": "All",
         "MASTER": "Maîtr",
+        "CLIENT":"Client",
         "CATEGORY": "Catégories",
         "SERVICE": "Services",
         "DURATION": "Duration",
-        "PRICE": "Prix"
+        "PRICE": "Prix",
+        "STATUS": "Statut"
+    },
+    "BOUGHT_TARIF":{
+        "EXP_DATE":"EXP",
+        "BUY_DATE":"BUY",
+        "MASTER": "Maîtr",
+        "CATEGORY": "Catégories",
+        "TARIF": "Tarifs",
+        "PRICE": "Prix",
+        "TOTAL":"Total"
     }
 }

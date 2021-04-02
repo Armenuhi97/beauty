@@ -1,0 +1,36 @@
+<div class="title-container d-flex align-items-center  justify-content-between">
+    <h1>{{'NAVIGATION.BOUGHT_TARIF' | translate}}</h1>
+    <h3>{{'BOUGHT_TARIF.TOTAL' | translate}} 45</h3>
+</div>
+<!-- tarif filter -->
+<nz-table #table [nzData]="tarifs" (nzPageIndexChange)="nzPageIndexChange($event)" [nzTotal]="total"
+    [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" [nzFrontPagination]="false">
+    <thead>
+        <tr>
+            <th>N</th>
+            <th nzSortFn="true" (nzSortOrderChange)="sort($event,'buy_date')">{{'BOUGHT_TARIF.EXP_DATE' | translate}}</th>
+            <th nzSortFn="true" (nzSortOrderChange)="sort($event,'exp_date')">{{'BOUGHT_TARIF.BUY_DATE' | translate}}</th>
+            <th>{{'BOUGHT_TARIF.MASTER' | translate}}</th>
+            <th>{{'BOUGHT_TARIF.TARIF' | translate}}</th>
+            <th>{{'BOUGHT_TARIF.PRICE' | translate}}</th>
+            <th></th>
+            <th></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let order of table.data;let ind=index">
+            <td style="width: 10px;">{{(ind + 1)+((pageIndex-1)*10) }}</td>
+            <td>EXP_DATE</td>
+            <td>BUY_DATE</td>
+            <td>MASTER</td>
+            <td>TARIF</td>
+            <td>PRICE</td>
+            
+            <td>
+                <i class="pointer" (click)="editTarif(ind)" nz-icon nzType="edit" nzTheme="outline"></i>
+            </td>
+            <td></td>
+        </tr>
+    </tbody>
+</nz-table>

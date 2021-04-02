@@ -7,7 +7,6 @@
             <th>{{'USER.LAST_NAME' | translate}}</th>
             <th>{{'USER.EMAIL' | translate}}</th>
             <th>{{'USER.CITY' | translate}}</th>
-            <th>{{'USER.AMOUNTS' | translate}}</th>
             <th>{{'USER.RATING' | translate}}</th>
             <th></th>
             <th></th>
@@ -20,7 +19,6 @@
             <td>{{ user.user.last_name }}</td>
             <td>{{ user.user.email }}</td>
             <td>{{ user.city }}</td>
-            <td>{{ user.amount }}</td>
             <td>{{ user.rating }}</td>
             <td>
                 <nz-switch [(ngModel)]="user.user.is_active"></nz-switch>

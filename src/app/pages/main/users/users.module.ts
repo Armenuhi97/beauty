@@ -3,17 +3,18 @@ import { NgModule } from "@angular/core";
 import { TranslateModule } from "@ngx-translate/core";
 import { SharedModule } from "@shared/shared.module";
 import { IconsProviderModule } from "src/app/icons-provider.module";
-import { UsersComponent } from "./pages";
 import { UsersRoutingModule } from "./users-routing.module";
 import { UsersService } from "./users.service";
 
 @NgModule({
-    declarations: [UsersComponent],
-    imports: [CommonModule,
+    declarations: [UsersRoutingModule.components],
+    imports: [
+        CommonModule,
         UsersRoutingModule,
         SharedModule,
         TranslateModule,
-        IconsProviderModule],
-        providers:[UsersService]
+        IconsProviderModule
+    ],
+    providers: [UsersService]
 })
 export class UsersModule { }

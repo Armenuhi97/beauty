@@ -3,12 +3,12 @@
     "PROJECT_TITLE_SHORT": "Beauty",
     "MASTERS": "Мастер",
     "CLIENTS": "Клиент",
-    "CREATE":"Создать",
-    "STATUS":{
-        "PENDING":"в ожидание",
-        "CANCELED":"отменено",
-        "ACCEPTED":"принято",
-        "ALL":"Все"
+    "CREATE": "Создать",
+    "STATUS": {
+        "PENDING": "в ожидание",
+        "CANCELED": "отменено",
+        "ACCEPTED": "принято",
+        "ALL": "Все"
     },
     "NAVIGATION": {
         "USERS": "Пользователи",
@@ -23,8 +23,9 @@
         "MODERATORS": "Модераторы",
         "STATISTICS": "Статистика",
         "CATEGORY_UTILS": "Услуги категорий",
-        "TARIF":"Тарифы",
-        "ORDERS":"Заказы"
+        "TARIF": "Тарифы",
+        "ORDERS": "Заказы",
+        "BOUGHT_TARIF":"Купленные тарифы"
     },
     "LOGIN": {
         "SIGN_IN": "Войти",
@@ -47,7 +48,10 @@
         "AGE": "Возрост",
         "GENDER": "Пол",
         "ADDRESS": "Адрес",
-        "CITY": "Город"
+        "CITY": "Город",
+        "USER_INFO":"Данные",
+        "REVIEW":"Отзывы",
+        "HISTORY":"История"
     },
     "UTILS": {
         "DATE": "Дата",
@@ -65,8 +69,8 @@
         "RATING": "Рейтинг",
         "REVIEW": "Отзыв",
         "STATUS": "Статус",
-        "REJECT":"Отклонить",
-        "ACCEPT":"Принять"
+        "REJECT": "Отклонить",
+        "ACCEPT": "Принять"
     },
     "FEEDBACK": {
         "DATE": "Дата",
@@ -74,58 +78,68 @@
         "TYPE": "Тип",
         "TEXT": "Текст"
     },
-    "EMAIL_NOTIFICATION":{
+    "EMAIL_NOTIFICATION": {
         "DATE": "Дата",
-        "NAME":"Название",
-        "USER_COUNT":"Кол. юзеров",
+        "NAME": "Название",
+        "USER_COUNT": "Кол. юзеров",
         "TEXT": "Текст",
-        "SEARCH":"Поиски"
+        "SEARCH": "Поиски"
     },
     "POST": {
         "DATE": "Дата",
         "MASTER": "Мастер",
         "TEXT": "Текст",
         "STATUS": "Статус",
-        "REJECT":"Отклонить",
-        "ACCEPT":"Принять",
+        "REJECT": "Отклонить",
+        "ACCEPT": "Принять",
         "Description": "Описание",
         "Hashtags": "Хэштеги"
     },
-    "POST_REVIEW":{
+    "POST_REVIEW": {
         "DATE": "Дата",
         "USER": "Пользователь ",
         "REVIEW": "Отзыв",
         "STATUS": "Статус",
-        "REJECT":"Отклонить",
-        "ACCEPT":"Принять"
-
+        "REJECT": "Отклонить",
+        "ACCEPT": "Принять"
     },
-    "CATEGORY_UTILS":{
-        "NAME_FR":"Название на французском",
-        "NAME_EN":"Название на русском",
-        "POPULAR":"Популярный",
-        "SERVICE":"Сервисы",
-        "CATEGORY":"Категории"
+    "CATEGORY_UTILS": {
+        "NAME_FR": "Название на французском",
+        "NAME_EN": "Название на русском",
+        "POPULAR": "Популярный",
+        "SERVICE": "Сервисы",
+        "CATEGORY": "Категории"
     },
-    "TARIF":{
-        "NAME":"Название",
-        "NAME_FR":"Название на французском",
-        "NAME_EN":"Название на русском",
+    "TARIF": {
+        "NAME": "Название",
+        "NAME_FR": "Название на французском",
+        "NAME_EN": "Название на русском",
         "Description": "Описание",
         "Description_EN": "Описание на русском",
         "Description_FR": "Описание на французском",
-        "PRICE":"Цена",
-        "MONTH":"Месяц",
-        "IMAGE":"Изображение",
-        "CATEGORY_COUNT":"Количество категорий"
-
+        "PRICE": "Цена",
+        "MONTH": "Месяц",
+        "IMAGE": "Изображение",
+        "CATEGORY_COUNT": "Кол. категорий"
     },
-    "ORDERS":{
-        "ALL":"Все",
-        "MASTER":"Мастер",
-        "CATEGORY":"Категории",
-        "SERVICE" :"Сервисы",
-        "DURATION":"Duration",
-        "PRICE":"Цена"
+    "ORDERS": {
+        "DATE": "Дата",
+        "ALL": "Все",
+        "MASTER": "Мастер",
+        "CLIENT": "Клиент",
+        "CATEGORY": "Категории",
+        "SERVICE": "Сервисы",
+        "DURATION": "Duration",
+        "PRICE": "Цена",
+        "STATUS": "Статус"
+    },
+    "BOUGHT_TARIF": {
+        "EXP_DATE": "EXP",
+        "BUY_DATE": "BUY",
+        "MASTER": "Мастер",
+        "CATEGORY": "Категории",
+        "TARIF": "Тарифы",
+        "PRICE": "Цена",
+        "TOTAL":"Общая сумма"
     }
 }

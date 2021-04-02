@@ -21,9 +21,15 @@ export const DEFAULT_NAVIGATION_ITEMS: ISideNavItem[] = [
         routerLink: 'masters',
         icon: 'check-square'
     },
+    
     {
         label: 'NAVIGATION.ORDERS',
         routerLink: 'order',
+        icon: 'setting'
+    },
+    {
+        label: 'NAVIGATION.BOUGHT_TARIF',
+        routerLink: 'buy-tarifs',
         icon: 'setting'
     },
     {

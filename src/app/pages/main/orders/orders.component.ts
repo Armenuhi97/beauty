@@ -14,12 +14,18 @@ import { OrdersService } from "./orders.service";
 export class OrdersComponent {
     unsubscribe$ = new Subject();
     orders: any[] = [{
-        category:1,
-        service:1,
-        price:'150.00',
-        duration:1,
-        popular:false
+        category: 1,
+        service: 1,
+        price: '150.00',
+        duration: 1,
+        popular: false
     }]
+    statusList = [
+        { key: '', text: 'STATUS.ALL' },
+        { key: 'pending', text: 'STATUS.PENDING' },
+        { key: 'canceled', text: 'STATUS.CANCELED' },
+        { key: 'accepted', text: 'STATUS.ACCEPTED' },
+    ]
     public total: number;
     public pageIndex = 1;
     public pageSize = 10;
@@ -30,6 +36,7 @@ export class OrdersComponent {
     selectItems = [];
     categories: Category[] = [];
     services: Service[];
+    statusControl = new FormControl('')
     categoryControl = new FormControl('');
     serviceControl = new FormControl('');
     constructor(private _orderService: OrdersService,
@@ -40,9 +47,9 @@ export class OrdersComponent {
         this.initSelectItems()
         this.initForm();
         this.subscribeToCategoryChange();
-        this.subscribeToServiceChange()
+        this.subscribeToServiceChange();
+        this.subscribeToStatus()
         this.combineObservable()
-        // this.getOrders().pipe(takeUntil(this.unsubscribe$)).subscribe()
     }
     combineObservable() {
         const combine = forkJoin(
@@ -50,6 +57,7 @@ export class OrdersComponent {
         )
         combine.pipe(takeUntil(this.unsubscribe$)).subscribe()
     }
+
     public getCategories() {
         return this._orderService.getCategoriesList().pipe(
             map((data: ServerResponse<Category[]>) => {
@@ -62,8 +70,15 @@ export class OrdersComponent {
             this.selectItems.push(i + 1)
         }
     }
+    subscribeToStatus(){
+        this.statusControl.valueChanges.pipe(takeUntil(this.unsubscribe$)).subscribe((data: string) => {
+            console.log(data);
+            // this.getOrders()
+
+        }); 
+    }
     subscribeToCategoryChange(): void {
-        this.categoryControl.valueChanges.pipe(takeUntil(this.unsubscribe$)).subscribe((data:Category) => {
+        this.categoryControl.valueChanges.pipe(takeUntil(this.unsubscribe$)).subscribe((data: Category) => {
             console.log(data);
             this.serviceControl.setValue('')
             if (data) {
@@ -79,7 +94,7 @@ export class OrdersComponent {
     subscribeToServiceChange(): void {
         this.serviceControl.valueChanges.pipe(takeUntil(this.unsubscribe$)).subscribe((data) => {
             // if (data)
-                // this.getOrders().pipe(takeUntil(this.unsubscribe$)).subscribe()
+            // this.getOrders().pipe(takeUntil(this.unsubscribe$)).subscribe()
 
         });
     }
@@ -104,7 +119,7 @@ export class OrdersComponent {
         // this._orderService.changetarifStatus(tarif.id).pipe(takeUntil(this.unsubscribe$)).subscribe()
     }
     public getOrders() {
-        return this._orderService.getOrders().pipe(map((data: ServerResponse<any[]>) => {
+        return this._orderService.getOrders(this.categoryControl.value,this.serviceControl.value,this.statusControl.value).pipe(map((data: ServerResponse<any[]>) => {
             console.log(data);
 
             this.total = data.count;
@@ -113,9 +128,9 @@ export class OrdersComponent {
     }
     initForm() {
         this.validateForm = this._fb.group({
-            duration:[null,Validators.required],
-            price:[null,Validators.required],
-            popular:[false]
+            duration: [null, Validators.required],
+            price: [null, Validators.required],
+            popular: [false]
         })
     }
 

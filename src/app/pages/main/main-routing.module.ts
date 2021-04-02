@@ -97,6 +97,13 @@ const routes: Routes = [
             (m) => m.OrderModule
           ),
       },
+      {
+        path: 'buy-tarifs',
+        loadChildren: () =>
+          import('./bought-tarif/bought-tarif.module').then(
+            (m) => m.BougthTarifModule
+          ),
+      },
     ],
   },
 ];

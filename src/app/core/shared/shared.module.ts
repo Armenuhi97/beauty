@@ -22,11 +22,13 @@ import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
 
 @NgModule({
   declarations: [],
   imports: [CommonModule, ReactiveFormsModule, FormsModule],
   exports: [
+    NzTabsModule,
     NzDescriptionsModule,
     NzCarouselModule,
     NzDatePickerModule,

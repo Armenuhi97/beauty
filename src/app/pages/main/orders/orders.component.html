@@ -11,6 +11,7 @@
                 </nz-select>
             </nz-form-item>
         </div>
+   
         <div>
             <nz-form-label class="inline-labels">{{'ORDERS.SERVICE' | translate}}</nz-form-label>
             <nz-form-item>
@@ -22,6 +23,15 @@
                 </nz-select>
             </nz-form-item>
         </div>
+        <div>
+            <nz-form-label class="inline-labels">{{'ORDERS.STATUS' | translate}}</nz-form-label>
+            <nz-form-item>
+                <nz-select [formControl]="statusControl">
+                    <nz-option *ngFor="let option of statusList" [nzValue]="option.key"
+                        [nzLabel]="option.text | translate"></nz-option>
+                </nz-select>
+            </nz-form-item>
+        </div>
     </div>
 </div>
 <nz-table #table [nzData]="orders" (nzPageIndexChange)="nzPageIndexChange($event)" [nzTotal]="total"
@@ -29,13 +39,13 @@
     <thead>
         <tr>
             <th>N</th>
+            <th>{{'ORDERS.DATE' | translate}}</th>
+            <th>{{'ORDERS.CLIENT' | translate}}</th>
             <th>{{'ORDERS.MASTER' | translate}}</th>
             <th>{{'ORDERS.CATEGORY' | translate}}</th>
             <th>{{'ORDERS.SERVICE' | translate}}</th>
-            <th>{{'ORDERS.DURATION' | translate}}</th>
             <th>{{'ORDERS.PRICE' | translate}}</th>
-
-            <th></th>
+            <th>{{'ORDERS.STATUS' | translate}}</th>
             <th></th>
 
         </tr>
@@ -43,20 +53,19 @@
     <tbody>
         <tr *ngFor="let order of table.data;let ind=index">
             <td>{{(ind + 1)+((pageIndex-1)*10) }}</td>
+            <td>date</td>
+            <td>client</td>
+            <td>master</td>
             <td>{{order.category }}</td>
             <td>{{order.service }}</td>
             <td>{{order.price}}</td>
-            <td>{{order.duration}}</td>
-            <td>
-                <label nz-checkbox [(ngModel)]="order.popular"></label>
-            </td>
+            <td>status</td>
             <td>
                 <i class="pointer" (click)="editOrder(ind)" nz-icon nzType="edit" nzTheme="outline"></i>
                 <!-- <a [routerLink]="[user.id]" class="action-btn">
                   <i nz-icon nzType="edit" nzTheme="outline"></i>
               </a> -->
             </td>
-            <td></td>
         </tr>
     </tbody>
 </nz-table>
@@ -86,7 +95,7 @@
             <div nz-col [nzSpan]="8">
                 <nz-form-label class="inline-labels"></nz-form-label>
                 <nz-form-item>
-                    <nz-form-control >
+                    <nz-form-control>
                         <label nz-checkbox formControlName="popular"></label>
                     </nz-form-control>
                 </nz-form-item>
