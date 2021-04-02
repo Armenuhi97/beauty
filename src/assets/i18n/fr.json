@@ -23,8 +23,8 @@
         "MODERATORS": "Modérateurs",
         "STATISTICS": "Statistiques",
         "CATEGORY_UTILS": "Catégorie de services",
-        "TARIF":"Tarifs",
-        "ORDERS":"Commandes"
+        "TARIF": "Tarifs",
+        "ORDERS": "Commandes"
     },
     "LOGIN": {
         "SIGN_IN": "Entrer",
@@ -106,24 +106,24 @@
         "SERVICE": "Services",
         "CATEGORY": "Catégories"
     },
-    "TARIF":{
+    "TARIF": {
+        "NAME":"Titre",
         "NAME_FR": "Titre en français",
         "NAME_EN": "Titre en russe",
+        "Description": "Description",
         "Description_EN": "Description en russe",
         "Description_FR": "Description en français",
-        "PRICE":"Prix",
-        "MONTH":"Mois",
-        "IMAGE":"Image",
-        "CATEGORY_COUNT":"Nombre de Catégories"
-
+        "PRICE": "Prix",
+        "MONTH": "Mois",
+        "IMAGE": "Image",
+        "CATEGORY_COUNT": "Nombre de Catégories"
     },
-    "ORDERS":{
-        "ALL":"All",
-        "MASTER":"Maîtr",
-        "CATEGORY":"Catégories",
-        "SERVICE" :"Services",
-        "DURATION":"Duration",
-        "PRICE":"Prix"
+    "ORDERS": {
+        "ALL": "All",
+        "MASTER": "Maîtr",
+        "CATEGORY": "Catégories",
+        "SERVICE": "Services",
+        "DURATION": "Duration",
+        "PRICE": "Prix"
     }
-    
 }

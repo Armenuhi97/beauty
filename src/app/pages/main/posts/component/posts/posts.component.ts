@@ -60,7 +60,7 @@ export class PostsComponent {
   }
   getPostList(status?: string) {
     const offset = (this.pageIndex - 1) * this.pageSize;
-    return this._postService.getPostList(offset, status).pipe(map((data: ServerResponse<Post[]>) => {
+    return this._postService.getPostList(offset, this.selectedValue).pipe(map((data: ServerResponse<Post[]>) => {
       this.total = data.count;
       this.posts = data.results
     }))

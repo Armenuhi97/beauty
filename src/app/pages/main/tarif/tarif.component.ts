@@ -79,7 +79,7 @@ export class TarifComponent {
             category_count: [null, Validators.required],
             description_en: [null, Validators.required],
             description_fr: [null, Validators.required],
-            image: [null],
+            image: [null,Validators.required],
             showingImage: [null],
             month: [null, Validators.required],
             price: [null, Validators.required],
