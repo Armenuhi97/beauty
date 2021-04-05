@@ -6,14 +6,16 @@ import { NzUploadChangeParam } from "ng-zorro-antd/upload";
 import { Subject } from "rxjs";
 import { map, switchMap, takeUntil } from "rxjs/operators";
 import { TarifService } from "./tarif.service";
-// import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { UplopadFileService } from "src/app/core/services/upload-file.service";
 import { getBase64 } from "src/app/core/utils/baser64";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
     selector: 'app-tarif',
     templateUrl: 'tarif.component.html',
-    styleUrls: ['tarif.component.scss']
+    styleUrls: ['tarif.component.scss'],
+    providers:[NzMessageService]
 })
 export class TarifComponent {
     unsubscribe$ = new Subject();
@@ -27,7 +29,8 @@ export class TarifComponent {
     editIndex: number;
     selectItems = []
     constructor(private _tarifService: TarifService,
-        // private _nzMessages: NzMessageService,
+        private _nzMessages: NzMessageService,
+        private _translateService:TranslateService,
         private _uploadService: UplopadFileService,
         private _fb: FormBuilder) { }
 
@@ -100,7 +103,8 @@ export class TarifComponent {
                 this.validateForm.controls[i].markAsDirty();
                 this.validateForm.controls[i].updateValueAndValidity();
             }
-            // this._nzMessages.error('Validate error');
+            this._nzMessages.error(this._translateService.instant('ERROR.VALIDATE'));
+
             return;
         }
         const formValue = this.validateForm.value;

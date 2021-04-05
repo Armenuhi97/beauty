@@ -10,6 +10,11 @@
         "ACCEPTED": "accepter",
         "ALL": "Tout"
     },
+    "ERROR":{
+        "VALIDATE":"Erreur de validation",
+        "FAILED":"Что то пошло не так",
+        "SUCCESS":"Opération réussie"
+    },
     "NAVIGATION": {
         "USERS": "Utilisateurs",
         "MASTERS": "Maîtrise",
@@ -51,7 +56,9 @@
         "CITY": "Ville",
         "USER_INFO":"Données",
         "REVIEW":"Retour d'information",
-        "HISTORY":"Histoire"
+        "HISTORY":"Histoire",
+        "ABOUT":"à propos de nous",
+        "PHONE":"Numéro de téléphone"
     },
     "UTILS": {
         "DATE": "la date",

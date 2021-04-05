@@ -9,11 +9,12 @@ import { map, switchMap, takeUntil } from "rxjs/operators";
 import { CategoryUtilsService } from "../category-utils.service";
 import { getBase64 } from 'src/app/core/utils/baser64';
 import { UplopadFileService } from "src/app/core/services/upload-file.service";
-
+import { NzMessageService } from 'ng-zorro-antd/message';
 @Component({
     selector: 'app-category-utils',
     templateUrl: 'category-utils.copmonent.html',
-    styleUrls: ['category-utils.copmonent.scss']
+    styleUrls: ['category-utils.copmonent.scss'],
+    providers: [NzMessageService]
 })
 export class CategoryUtilsComponent {
     categories: Category[] = [];
@@ -29,6 +30,7 @@ export class CategoryUtilsComponent {
     constructor(private _categoriesUtilsService: CategoryUtilsService,
         private _translateService: TranslateService,
         private _uploadService: UplopadFileService,
+        private _nzMessages: NzMessageService,
         private _fb: FormBuilder) { }
 
     ngOnInit() {
@@ -58,17 +60,22 @@ export class CategoryUtilsComponent {
 
     onAddCategory() {
         this.type = 'category';
-        this.title = this.getTranslateWord('CATEGORY_UTILS.CATEGORY')
+        this.title = 'CATEGORY_UTILS.CATEGORY'
         this.openModal()
     }
 
     onSave() {
-        if (this.validateForm.valid)
-            if (this.type == 'category') {
-                this.addNewCategory()
-            } else {
-                this.addNewService()
-            }
+        if (this.validateForm.invalid) {
+            this.validateForm.markAllAsTouched();
+
+            this._nzMessages.error(this._translateService.instant('ERROR.VALIDATE'));
+            return;
+        }
+        if (this.type == 'category') {
+            this.addNewCategory()
+        } else {
+            this.addNewService()
+        }
     }
 
     getSubCategoriesByCategory(category: Category) {
@@ -83,7 +90,7 @@ export class CategoryUtilsComponent {
     }
     onEditCategory(index: number) {
         this.type = 'category';
-        this.title = this.getTranslateWord('CATEGORY_UTILS.CATEGORY')
+        this.title = 'CATEGORY_UTILS.CATEGORY'
         // this.editItem = service;
         this.editIndex = index;
         this.validateForm.patchValue({
@@ -112,13 +119,13 @@ export class CategoryUtilsComponent {
     }
     onAddService() {
         this.type = 'service';
-        this.title = this.getTranslateWord('CATEGORY_UTILS.SERVICE')
+        this.title = 'CATEGORY_UTILS.SERVICE'
         this.openModal()
     }
 
     onEditService(service: Service, index: number) {
         this.type = 'service';
-        this.title = this.getTranslateWord('CATEGORY_UTILS.SERVICE')
+        this.title = 'CATEGORY_UTILS.SERVICE'
 
         this.editItem = service;
         this.editIndex = index;
@@ -147,6 +154,7 @@ export class CategoryUtilsComponent {
         })
     }
     addNewCategory() {
+
         let sendResponse: Category = {
             icon: this.validateForm.get('icon').value,
             name_en: this.validateForm.get('name_en').value,
@@ -205,7 +213,7 @@ export class CategoryUtilsComponent {
         }
 
     }
-    _sendSaveOrEditServiceRequest(sendResponse) {
+    private _sendSaveOrEditServiceRequest(sendResponse) {
 
         if (!this.editItem) {
             this._categoriesUtilsService.addService(sendResponse).pipe(takeUntil(this.unsubscribe$)).subscribe((val: any) => {

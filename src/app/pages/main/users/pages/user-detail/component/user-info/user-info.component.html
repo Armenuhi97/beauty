@@ -1,7 +1,22 @@
+<div class="main-entity d-flex align-items-center">
+    <img *ngIf="info?.image" [src]="info?.image" alt="">
+    <h1> {{info?.user?.last_name}} {{info?.user?.first_name}}</h1>
+</div>
 <nz-descriptions class="order-details" nzTitle="" [nzColumn]="2">
-    <nz-descriptions-item [nzTitle]="'USER.FIRST_NAME' | translate"><span
+
+    <!-- <nz-descriptions-item [nzTitle]="'USER.FIRST_NAME' | translate"><span
             class="status-primary">{{info?.user?.first_name}}</span></nz-descriptions-item>
-    <nz-descriptions-item [nzTitle]="'USER.LAST_NAME' | translate">{{info?.user?.last_name}}</nz-descriptions-item>
+    <nz-descriptions-item [nzTitle]="'USER.LAST_NAME' | translate"></nz-descriptions-item> -->
     <nz-descriptions-item [nzTitle]="'USER.EMAIL' | translate">{{info?.user?.email}}</nz-descriptions-item>
     <nz-descriptions-item [nzTitle]="'USER.CITY' | translate">{{info?.city}}</nz-descriptions-item>
+
+    <nz-descriptions-item [nzTitle]="'USER.BIRTH_DATE' | translate"><span
+            class="status-primary">{{info?.birth_date}}</span></nz-descriptions-item>
+    <nz-descriptions-item [nzTitle]="'USER.ADDRESS' | translate"><span class="status-primary">{{info?.address}}</span>
+    </nz-descriptions-item>
+    <nz-descriptions-item [nzTitle]="'USER.PHONE' | translate"><span
+            class="status-primary">{{info?.phone_number}}</span>
+    </nz-descriptions-item>
+    <nz-descriptions-item [nzTitle]="'USER.ABOUT' | translate"><span class="status-primary">{{info?.about}}</span>
+    </nz-descriptions-item>
 </nz-descriptions>
