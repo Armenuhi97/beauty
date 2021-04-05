@@ -8,6 +8,7 @@ import { map, switchMap, takeUntil } from "rxjs/operators";
 import { TarifService } from "./tarif.service";
 // import { NzMessageService } from 'ng-zorro-antd/message';
 import { UplopadFileService } from "src/app/core/services/upload-file.service";
+import { getBase64 } from "src/app/core/utils/baser64";
 
 @Component({
     selector: 'app-tarif',
@@ -90,7 +91,7 @@ export class TarifComponent {
     public async handleImageChange(image: NzUploadChangeParam): Promise<void> {
         this.validateForm.get('image').setValue(image.file.originFileObj);
         // tslint:disable-next-line:no-non-null-assertion
-        const base64Image = await this.getBase64(image.file.originFileObj!);
+        const base64Image = await getBase64(image.file.originFileObj!);
         this.validateForm.get('showingImage').setValue(base64Image);
     }
     public onTarifSave() {
@@ -165,14 +166,7 @@ export class TarifComponent {
                 }
             );
     }
-    getBase64(file: File): Promise<string | ArrayBuffer | null> {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = error => reject(error);
-        });
-    }
+  
 
     public nzPageIndexChange(pageIndex: number): void {
         this.pageIndex = pageIndex;

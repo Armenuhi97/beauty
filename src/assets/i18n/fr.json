@@ -108,7 +108,8 @@
         "NAME_EN": "Titre en russe",
         "POPULAR": "Populaire",
         "SERVICE": "Services",
-        "CATEGORY": "Catégories"
+        "CATEGORY": "Catégories",
+        "IMAGE": "Image"
     },
     "TARIF": {
         "NAME":"Titre",

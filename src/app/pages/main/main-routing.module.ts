@@ -9,7 +9,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'category-utils',
+        redirectTo: 'users',
         pathMatch: 'full'
       },
       {

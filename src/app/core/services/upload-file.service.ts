@@ -8,9 +8,9 @@ export class UplopadFileService{
         private httpClient: HttpClient,
       ) { }
     
-      public uploadFile(file): Observable<{ url: string }> {
+      public uploadFile(file): Observable<string> {
         const formData = new FormData();
         formData.append('file_url', file);
-        return this.httpClient.post<{ url: string }>(`files/files/`, formData);
+        return this.httpClient.post< string >(`files/files/`, formData);
       }
 }

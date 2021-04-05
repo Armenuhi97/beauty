@@ -67,6 +67,17 @@
     <nz-form-item *ngIf="type == 'service'">
       <label nz-checkbox formControlName="is_popular">{{'CATEGORY_UTILS.POPULAR' | translate}}</label>
     </nz-form-item>
+    <div nz-col [nzSpan]="12">
+      <nz-form-label class="inline-labels" nzRequired>{{'CATEGORY_UTILS.IMAGE' | translate}}</nz-form-label>
+      <div class="clearfix">
+        <nz-upload nzListType="picture" [nzShowUploadList]="false" (nzChange)="handleImageChange($event)"
+          [nzHeaders]="{ authorization: 'authorization-text' }">
+          <button nz-button><i nz-icon nzType="upload"></i>{{'CATEGORY_UTILS.IMAGE' | translate}}</button>
+        </nz-upload>
+      </div>
+      <img *ngIf="validateForm.get('showingImage').value" class="img-fluid preview-image"
+        [src]="validateForm.get('showingImage').value" />
+    </div>
   </form>
 </nz-modal>
 

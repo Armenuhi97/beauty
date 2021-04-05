@@ -3,9 +3,12 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Category, Service } from "@models/category";
 import { ServerResponse } from "@models/server-respoce";
 import { TranslateService } from "@ngx-translate/core";
+import { NzUploadChangeParam } from "ng-zorro-antd/upload";
 import { Subject } from "rxjs";
 import { map, switchMap, takeUntil } from "rxjs/operators";
 import { CategoryUtilsService } from "../category-utils.service";
+import { getBase64 } from 'src/app/core/utils/baser64';
+import { UplopadFileService } from "src/app/core/services/upload-file.service";
 
 @Component({
     selector: 'app-category-utils',
@@ -25,6 +28,7 @@ export class CategoryUtilsComponent {
     title: string
     constructor(private _categoriesUtilsService: CategoryUtilsService,
         private _translateService: TranslateService,
+        private _uploadService: UplopadFileService,
         private _fb: FormBuilder) { }
 
     ngOnInit() {
@@ -46,7 +50,9 @@ export class CategoryUtilsComponent {
         this.validateForm = this._fb.group({
             name_en: [null, Validators.required],
             name_fr: [null, Validators.required],
-            is_popular: [false]
+            is_popular: [false],
+            showingImage: [null, Validators.required],
+            icon: [null, Validators.required]
         })
     }
 
@@ -69,7 +75,12 @@ export class CategoryUtilsComponent {
         this.activeCategory = category;
         this.services = category.services;
     }
-
+    public async handleImageChange(image: NzUploadChangeParam): Promise<void> {
+        this.validateForm.get('icon').setValue(image.file.originFileObj);
+        // tslint:disable-next-line:no-non-null-assertion
+        const base64Image = await getBase64(image.file.originFileObj!);
+        this.validateForm.get('showingImage').setValue(base64Image);
+    }
     onEditCategory(index: number) {
         this.type = 'category';
         this.title = this.getTranslateWord('CATEGORY_UTILS.CATEGORY')
@@ -77,7 +88,10 @@ export class CategoryUtilsComponent {
         this.editIndex = index;
         this.validateForm.patchValue({
             name_en: this.categories[index].name_en,
-            name_fr: this.categories[index].name_fr
+            name_fr: this.categories[index].name_fr,
+            showingImage: this.categories[index].icon,
+            icon: this.categories[index].icon
+
         });
         this.openModal()
     }
@@ -111,7 +125,10 @@ export class CategoryUtilsComponent {
         this.validateForm.patchValue({
             name_en: service.name_en,
             name_fr: service.name_fr,
-            is_popular: service.is_popular
+            is_popular: service.is_popular,
+            showingImage: service.icon,
+            icon: service.icon
+
         });
         this.openModal()
     }
@@ -131,10 +148,24 @@ export class CategoryUtilsComponent {
     }
     addNewCategory() {
         let sendResponse: Category = {
-            icon: '',
+            icon: this.validateForm.get('icon').value,
             name_en: this.validateForm.get('name_en').value,
             name_fr: this.validateForm.get('name_fr').value,
         };
+
+        if (typeof sendResponse.icon === 'string' || !sendResponse.icon) {
+            this._sendSaveOrEditCategoryRequest(sendResponse);
+        } else {
+            this._uploadService.uploadFile(sendResponse.icon)
+                .pipe(takeUntil(this.unsubscribe$))
+                .subscribe((response) => {
+                    sendResponse.icon = response;
+                    this._sendSaveOrEditCategoryRequest(sendResponse);
+                });
+        }
+    }
+
+    private _sendSaveOrEditCategoryRequest(sendResponse): void {
         if (this.editIndex || this.editIndex == 0) {
             this._categoriesUtilsService.editCategory(this.categories[this.editIndex].id, sendResponse).pipe(takeUntil(this.unsubscribe$),
                 switchMap(() => {
@@ -155,12 +186,27 @@ export class CategoryUtilsComponent {
     }
     addNewService() {
         let sendResponse: Service = {
-            icon: '',
+            icon: this.validateForm.get('icon').value,
             name_en: this.validateForm.get('name_en').value,
             name_fr: this.validateForm.get('name_fr').value,
             category: this.activeCategory.id,
             is_popular: this.validateForm.get('is_popular').value ? true : false
         };
+
+        if (typeof sendResponse.icon === 'string' || !sendResponse.icon) {
+            this._sendSaveOrEditServiceRequest(sendResponse);
+        } else {
+            this._uploadService.uploadFile(sendResponse.icon)
+                .pipe(takeUntil(this.unsubscribe$))
+                .subscribe((response) => {
+                    sendResponse.icon = response;
+                    this._sendSaveOrEditServiceRequest(sendResponse);
+                });
+        }
+
+    }
+    _sendSaveOrEditServiceRequest(sendResponse) {
+
         if (!this.editItem) {
             this._categoriesUtilsService.addService(sendResponse).pipe(takeUntil(this.unsubscribe$)).subscribe((val: any) => {
                 this.categories.map((data) => {
@@ -182,7 +228,7 @@ export class CategoryUtilsComponent {
                             if (+index == +this.editIndex) {
                                 data.services[index] = result
                             }
-                        })                        
+                        })
                     }
                     return data
                 })
