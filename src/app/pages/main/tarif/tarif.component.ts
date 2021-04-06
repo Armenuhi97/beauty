@@ -73,7 +73,8 @@ export class TarifComponent {
         this._tarifService.changetarifStatus(tarif.id).pipe(takeUntil(this.unsubscribe$)).subscribe()
     }
     public getTarifs() {
-        return this._tarifService.getTarif().pipe(map((data: ServerResponse<Tarif[]>) => {
+        const offset = (this.pageIndex - 1) * this.pageSize;
+        return this._tarifService.getTarif(offset).pipe(map((data: ServerResponse<Tarif[]>) => {
             this.total = data.count;
             this.tarifs = data.results
         }))

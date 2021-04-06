@@ -4,8 +4,9 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class TarifService {
     constructor(private _httpClient: HttpClient) { }
-    getTarif() {
-        return this._httpClient.get('utils/tarif/')
+    getTarif(offset:number) {
+        
+        return this._httpClient.get(`utils/tarif/?limit=10&offset=${offset}`)
     }
     public changetarifStatus(id: number) {
         return this._httpClient.get(`utils/activate-deactivate-tarif/${id}/`)
