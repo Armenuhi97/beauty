@@ -47,7 +47,7 @@
       <td>{{ util.service_details.name_en }}</td>
       <td>{{util.minutes | myTime}}</td>
       <td>{{ util.price }}</td>
-      <td> <label nz-checkbox [(ngModel)]="util.go_home"></label></td>
+      <td> <label style="pointer-events: none;" nz-checkbox [(ngModel)]="util.go_home"></label></td>
       <td>{{util.go_home_price}}</td>
       <td>{{util.prepay_percent}}</td>
 

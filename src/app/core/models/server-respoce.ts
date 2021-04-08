@@ -3,4 +3,5 @@ export interface ServerResponse<T> {
     next: null
     previous: null
     results: T
+    sum?:number
 }

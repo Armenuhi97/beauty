@@ -1,18 +1,22 @@
+import { DatePipe } from "@angular/common";
 import { Component } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { Category } from "@models/category";
+import { ServerResponse } from "@models/server-respoce";
 import { Subject } from "rxjs";
-import { takeUntil } from "rxjs/operators";
+import { map, takeUntil } from "rxjs/operators";
 import { BoughtTarifService } from "./bought-tarif.service";
 
 @Component({
     selector: 'app-bought-tarif',
     templateUrl: 'bought-tarif.component.html',
-    styleUrls: ['bought-tarif.component.scss']
+    styleUrls: ['bought-tarif.component.scss'],
+    providers:[DatePipe]
 })
-export class BougthTarifComponent { 
+export class BougthTarifComponent {
+    totalSum:number;
     unsubscribe$ = new Subject();
-   public tarifs=[]
+    public tarifs = []
     public total: number;
     public pageIndex = 1;
     public pageSize = 10;
@@ -22,7 +26,7 @@ export class BougthTarifComponent {
     editIndex: number;
     selectItems = [];
     categories: Category[] = [];
-   
+
     constructor(private _boughtTarifService: BoughtTarifService,
         // private _nzMessages: NzMessageService,
         private _fb: FormBuilder) { }
@@ -30,15 +34,16 @@ export class BougthTarifComponent {
     ngOnInit() {
         this.initSelectItems()
         this.initForm();
-      
-    } 
+        this.getTarifs().pipe(takeUntil(this.unsubscribe$)).subscribe()
+
+    }
 
     initSelectItems() {
         for (let i = 0; i < 12; i++) {
             this.selectItems.push(i + 1)
         }
     }
-  
+
     public showModal(): void {
         this.isVisible = true;
     }
@@ -60,13 +65,14 @@ export class BougthTarifComponent {
     public changeStatus(order) {
         // this._boughtTarifService.changetarifStatus(tarif.id).pipe(takeUntil(this.unsubscribe$)).subscribe()
     }
-    public getTarifs() {
-        // return this._boughtTarifService.getTarifs(this.categoryControl.value,this.serviceControl.value,this.statusControl.value).pipe(map((data: ServerResponse<any[]>) => {
-        //     console.log(data);
+    public getTarifs(sign?: string) {
+        const offset = (this.pageIndex - 1) * this.pageSize;
 
-        //     this.total = data.count;
-        //     this.orders = data.results
-        // }))
+        return this._boughtTarifService.getBoughtTarifs(offset, sign).pipe(map((data: ServerResponse<any[]>) => {
+            this.totalSum=data.sum
+            this.total = data.count;
+            this.tarifs = data.results
+        }))
     }
     initForm() {
         this.validateForm = this._fb.group({
@@ -98,12 +104,20 @@ export class BougthTarifComponent {
     }
 
     sort(sort, key: string): void {
+        console.log(sort);
+        
         if (sort == 'ascend') {
+            this.pageIndex = 1;
+            this.getTarifs('-').pipe(takeUntil(this.unsubscribe$)).subscribe()
             // this.clientTable.sort((a, b) => { return b[key] - a[key] });
         } else {
             if (sort == 'descend') {
+                this.pageIndex = 1;
+                this.getTarifs('+').pipe(takeUntil(this.unsubscribe$)).subscribe()
                 // this.clientTable.sort((a, b) => { return a[key] - b[key] });
             } else {
+                this.pageIndex = 1;
+                this.getTarifs().pipe(takeUntil(this.unsubscribe$)).subscribe()
                 // this.clientTable.sort((a, b) => { return b.id - a.id });
             }
         }
