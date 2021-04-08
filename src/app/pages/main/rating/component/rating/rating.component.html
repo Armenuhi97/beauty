@@ -1,11 +1,14 @@
+<nz-select [(ngModel)]="selectedValue" (ngModelChange)="filter($event)">
+    <nz-option *ngFor="let option of statusList" [nzValue]="option.key" [nzLabel]="option.text | translate"></nz-option>
+</nz-select>
 <nz-table #reviewsTable [nzData]="reviews" (nzPageIndexChange)="nzPageIndexChange($event)" [nzTotal]="total"
-[nzPageSize]="pageSize" [nzPageIndex]="pageIndex" [nzFrontPagination]="false">
+    [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" [nzFrontPagination]="false">
     <thead>
         <tr>
             <th>N</th>
             <th>{{'REVIEWS.DATE' | translate}}</th>
-            <th>Кто</th>
-            <th>Кого</th>
+            <th>{{'REVIEWS.FROM' | translate}}</th>
+            <th>{{'REVIEWS.TO' | translate}}</th>
             <th>{{'REVIEWS.RATING' | translate}}</th>
             <th>{{'REVIEWS.STATUS' | translate}}</th>
             <th></th>
@@ -16,13 +19,27 @@
         <tr *ngFor="let review of reviewsTable.data;let ind=index">
             <td>{{(ind + 1)+((pageIndex-1)*10) }}</td>
             <td>{{review.created_at | date:'yyyy-MM-dd' }}</td>
-            <td>{{review.from_user_details.first_name}} {{review.from_user_details.last_name}}</td>
-            <td>{{review.to_user_details.first_name}} {{review.to_user_details.last_name}}</td>
+            <td>
+                <div>
+                    {{review.from_user_details.user.first_name}} {{review.from_user_details.user.last_name}}
+                </div>
+                <div class="role">
+                    ({{setRole(review.from_user_details.user_role.code) | translate}})
+                </div>
+            </td>
+            <td>
+                <div>
+                    {{review.to_user_details.user.first_name}} {{review.to_user_details.user.last_name}}
+                </div>
+                <div class="role">
+                    ({{setRole(review.to_user_details.user_role.code) | translate}})
+                </div>
+            </td>
             <td>{{review.rating}}</td>
             <td><span
-                [ngClass]="{'red':review.status == 'canceled','yellow':review.status == 'pending','green':review.status == 'accepted'}">
-                {{review.status}}</span></td>
-          
+                    [ngClass]="{'red':review.status == 'canceled','yellow':review.status == 'pending','green':review.status == 'accepted'}">
+                    {{review.status}}</span></td>
+
             <td>
                 <a (click)="showModal(ind)" class="action-btn">
                     <i nz-icon nzType="edit" nzTheme="outline"></i>
@@ -41,17 +58,23 @@
             <div></div>
 
         </div> -->
-        <nz-descriptions  [nzColumn]="2">
-            <nz-descriptions-item [nzTitle]="'Кто'"><span
-                class="status-primary">{{activeReview?.from_user_details.first_name}} {{activeReview?.from_user_details.last_name}}</span></nz-descriptions-item>
-            <nz-descriptions-item [nzTitle]="'Кого'">{{activeReview?.to_user_details.first_name}} {{activeReview?.to_user_details.last_name}}</nz-descriptions-item>
-       
-            <nz-descriptions-item [nzTitle]="'REVIEWS.RATING' | translate">{{activeReview?.rating}}</nz-descriptions-item>
-          </nz-descriptions>
+        <nz-descriptions [nzColumn]="2">
+            <nz-descriptions-item [nzTitle]="'REVIEWS.FROM' | translate"><span
+                    class="status-primary">{{activeReview?.from_user_details?.user?.first_name}}
+                    {{activeReview?.from_user_details?.user?.last_name}}
+                    ({{setRole(activeReview?.from_user_details?.user_role?.code) | translate}})</span></nz-descriptions-item>
+            <nz-descriptions-item [nzTitle]="'REVIEWS.TO' | translate">
+                {{activeReview?.to_user_details?.user?.first_name}}
+                {{activeReview?.to_user_details?.user?.last_name}} (
+                {{setRole(activeReview?.to_user_details?.user_role?.code) | translate}})</nz-descriptions-item>
+
+            <nz-descriptions-item [nzTitle]="'REVIEWS.RATING' | translate">{{activeReview?.rating}}
+            </nz-descriptions-item>
+        </nz-descriptions>
 
         <nz-card [nzTitle]="'REVIEWS.REVIEW' | translate">
             <p>{{activeReview?.comment}}</p>
-        </nz-card>      
+        </nz-card>
     </div>
     <div *nzModalFooter>
         <div *ngIf="activeReview?.status == 'pending'">

@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { Reviews, ServerResponse } from "@models/index";
 import { Subject } from "rxjs";
 import { map, switchMap, takeUntil } from "rxjs/operators";
+import { StatusService } from "src/app/core/services/status.service";
 import { RatingService } from "../../rating.service";
 
 @Component({
@@ -17,10 +18,13 @@ export class RatingComponent {
   public pageSize = 10;
   isVisible: boolean = false;
   activeReview: Reviews;
-
+  selectedValue: string = 'all';
+  statusList = []
   constructor(
-    public _ratingService: RatingService
+    public _ratingService: RatingService,
+    private _statusService: StatusService
   ) {
+    this.statusList = this._statusService.getStatusList()
   }
   ngOnInit(): void {
     this.getReviewList().pipe(takeUntil(this.unsubscribe$)).subscribe()
@@ -40,9 +44,18 @@ export class RatingComponent {
   showModal(index: number) {
     this.isVisible = true;
     this.activeReview = this.reviews[index];
-    console.log(this.activeReview);
-    
- 
+
+  }
+  setRole(role:string){
+    if(role == 'CL'){
+      return 'REVIEWS.CLIENTS'
+    }else{
+      if(role == 'MST'){
+        return 'REVIEWS.MASTERS'
+      }else{
+        return 'admin'
+      }
+    }
   }
   public nzPageIndexChange(pageIndex: number): void {
     this.pageIndex = pageIndex;

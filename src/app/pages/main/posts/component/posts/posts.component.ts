@@ -4,6 +4,7 @@ import { Post, ServerResponse } from "@models/index";
 import { TranslateService } from "@ngx-translate/core";
 import { Observable, Subject } from "rxjs";
 import { map, switchMap, takeUntil } from "rxjs/operators";
+import { StatusService } from "src/app/core/services/status.service";
 import { PostService } from "../../post.service";
 
 @Component({
@@ -15,10 +16,7 @@ import { PostService } from "../../post.service";
 export class PostsComponent {
   selectedValue: string = 'all';
   statusList = [
-    { key: 'all', text: 'STATUS.ALL' },
-    { key: 'pending', text: 'STATUS.PENDING' },
-    { key: 'canceled', text: 'STATUS.CANCELED' },
-    { key: 'accepted', text: 'STATUS.ACCEPTED' },
+
   ]
   posts: Post[] = []
   unsubscribe$ = new Subject();
@@ -47,9 +45,11 @@ export class PostsComponent {
     // }
   ]
   constructor(
+    private _statusService:StatusService,
     public _postService: PostService,
     private _translateService: TranslateService,
   ) {
+    this.statusList=this._statusService.getStatusList()
   }
   ngOnInit(): void {
     this.getPostList().pipe(takeUntil(this.unsubscribe$)).subscribe()

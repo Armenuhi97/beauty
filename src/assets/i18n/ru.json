@@ -67,7 +67,12 @@
         "SERVICE": "Услуга",
         "PRICE": "Цена",
         "ADD": "Добавить",
-        "SERVICES_CATEGORY": "Категория услуг"
+        "SERVICES_CATEGORY": "Категория услуг",
+        "MINUTES":"Минут",
+        "GO_HOME":"go home",
+        "GO_HOME_PRICE":"go home price",
+       "PREPARAY_PERCENT" :"проценты предоплаты"
+        
     },
     "REVIEWS": {
         "DATE": "Дата",
@@ -77,13 +82,18 @@
         "REVIEW": "Отзыв",
         "STATUS": "Статус",
         "REJECT": "Отклонить",
-        "ACCEPT": "Принять"
+        "ACCEPT": "Принять",
+        "FROM":"Отправитель",
+        "TO":"Получатель"
     },
     "FEEDBACK": {
         "DATE": "Дата",
         "NAME": "Имя",
-        "TYPE": "Тип",
-        "TEXT": "Текст"
+        "STATUS": "Статус",
+        "TEXT": "Текст",
+        "ROLE":"Роль",
+        "ANSWERED":"Отвеченные",
+        "UNANSWERED":"Неотвеченные"
     },
     "EMAIL_NOTIFICATION": {
         "DATE": "Дата",
@@ -100,7 +110,9 @@
         "REJECT": "Отклонить",
         "ACCEPT": "Принять",
         "Description": "Описание",
-        "Hashtags": "Хэштеги"
+        "Hashtags": "Хэштеги",
+        "COMMENT":"Коментарии"
+        
     },
     "POST_REVIEW": {
         "DATE": "Дата",

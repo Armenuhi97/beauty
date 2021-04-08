@@ -1,27 +1,71 @@
-<nz-table #feedbacksTable [nzData]="feedbacks$ | async">
+<div class="d-flex align-items-center justify-content-between">
+    <div>
+        <nz-form-label class="inline-labels">{{'FEEDBACK.ROLE' | translate}}</nz-form-label>
+        <nz-form-item>
+            <nz-select [nzPlaceHolder]="'ORDERS.CATEGORY' | translate" [formControl]="roleControl"
+                class="subservice-filter">
+                <nz-option nzValue="" [nzLabel]="'ORDERS.ALL' | translate"> </nz-option>
+                <nz-option *ngFor="let role of rolesList" [nzValue]="role.code" [nzLabel]="role.label | translate">
+                </nz-option>
+            </nz-select>
+        </nz-form-item>
+    </div>
+
+    <div>
+        <nz-form-label class="inline-labels">{{'FEEDBACK.STATUS' | translate}}</nz-form-label>
+        <nz-form-item>
+            <nz-select [nzPlaceHolder]="'FEEDBACK.ANSWERED' | translate" [formControl]="answeredControl"
+                class="list-filter">
+                <nz-option nzValue="" [nzLabel]="'ORDERS.ALL' | translate"></nz-option>
+                <nz-option *ngFor="let ans of answeredList" [nzValue]="ans.type" [nzLabel]="ans.label | translate">
+                </nz-option>
+            </nz-select>
+        </nz-form-item>
+    </div>
+</div>
+<nz-table #feedbacksTable [nzData]="feedbacks" (nzPageIndexChange)="nzPageIndexChange($event)" [nzTotal]="total"
+    [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" [nzFrontPagination]="false">
     <thead>
         <tr>
             <th>N</th>
             <th>{{'FEEDBACK.DATE' | translate}}</th>
             <th>{{'FEEDBACK.NAME' | translate}}</th>
-            <th>{{'FEEDBACK.TYPE' | translate}}</th>
+            
             <th>{{'FEEDBACK.TEXT' | translate}}</th>
+            <th>{{'FEEDBACK.STATUS' | translate}}</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 
         <tr *ngFor="let feedback of feedbacksTable.data;let ind=index">
-            <td>{{ind+1}}</td>
-            <td>{{ feedback.date }}</td>
-            <td>{{ feedback.name }}</td>
-            <td>{{ feedback.type }}</td>
-            <td>{{ feedback.text}}</td>
+            <td>{{(ind + 1)+((pageIndex-1)*10) }}</td>
+            <td>{{ feedback.created_at | date:'yyyy-MM-dd' }}</td>
+            <td>{{ feedback.user_details.user.username }}</td>           
+            <td><span class="message">{{ feedback.message}}</span></td>
+            <td> <label style="pointer-events: none !important;" [disbaled]="true" nz-checkbox
+                [(ngModel)]="feedback.is_answered"></label></td>
             <td>
                 <a class="action-btn">
-                    <i nz-icon nzType="edit" nzTheme="outline"></i>
+                    <i (click)="editFeedback(feedback,index)" nz-icon nzType="edit" nzTheme="outline"></i>
                 </a>
             </td>
         </tr>
     </tbody>
 </nz-table>
+<nz-modal [nzVisible]="isVisible" nzWidth="700px" (nzOnCancel)="closeModal()">
+    <div *nzModalContent>
+        <nz-form-label class="inline-labels"> {{'FEEDBACK.TEXT' | translate}}</nz-form-label>
+        <nz-form-item>
+            <nz-form-control>
+                <div>{{activeFeedback?.message}}</div>
+                <!-- <input nz-input formControlName="name_fr" type="text" placeholder="" /> -->
+            </nz-form-control>
+        </nz-form-item>
+    </div>
+    <div *nzModalFooter>
+        <div>
+            <button nz-button nzType="default">Ответить в чате</button>
+        </div>
+    </div>
+</nz-modal>

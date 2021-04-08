@@ -1,0 +1,20 @@
+<nz-table #commentTable [nzData]="postComments" (nzPageIndexChange)="nzPageIndexChange($event)" [nzTotal]="total"
+[nzPageSize]="pageSize" [nzPageIndex]="pageIndex" [nzFrontPagination]="false">
+    <thead>
+        <tr>
+            <th>N</th>
+            <th>{{'POST.DATE' | translate}}</th>
+            <th>{{'POST_REVIEW.USER' | translate}}</th>
+            <th>{{'POST.COMMENT' | translate}}</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let comment of commentTable.data;let ind=index">
+            <td>{{(ind + 1)+((pageIndex-1)*10) }}</td>
+            <td>{{comment.created_at | date:'yyyy-MM-dd' }}</td>
+            <td>{{comment.user_details.first_name}} {{comment.user_details.last_name}}</td>
+            <td>{{comment?.comment}}</td>            
+        </tr>
+    </tbody>
+</nz-table>

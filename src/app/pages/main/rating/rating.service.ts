@@ -9,7 +9,9 @@ export class RatingService {
     public getRatingList(offset:number,status?:string){        
         let params = new HttpParams().set('authorization', 'true');
         let url=`timeline/review/?limit=10&offset=${offset}`;
-  
+        if (status && status !== 'all') {
+            url += `&status=${status}`
+        }
         return this._httpClient.get<ServerResponse<Reviews[]>>(url,{ params })
     }
 

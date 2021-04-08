@@ -53,8 +53,8 @@ export class CategoryUtilsComponent {
             name_en: [null, Validators.required],
             name_fr: [null, Validators.required],
             is_popular: [false],
-            showingImage: [null, Validators.required],
-            icon: [null, Validators.required]
+            showingImage: [null],
+            icon: [null]
         })
     }
 
@@ -154,23 +154,21 @@ export class CategoryUtilsComponent {
         })
     }
     addNewCategory() {
-
         let sendResponse: Category = {
-            icon: this.validateForm.get('icon').value,
             name_en: this.validateForm.get('name_en').value,
             name_fr: this.validateForm.get('name_fr').value,
         };
 
-        if (typeof sendResponse.icon === 'string' || !sendResponse.icon) {
+        // if (typeof sendResponse.icon === 'string' || !sendResponse.icon) {
             this._sendSaveOrEditCategoryRequest(sendResponse);
-        } else {
-            this._uploadService.uploadFile(sendResponse.icon)
-                .pipe(takeUntil(this.unsubscribe$))
-                .subscribe((response) => {
-                    sendResponse.icon = response;
-                    this._sendSaveOrEditCategoryRequest(sendResponse);
-                });
-        }
+        // } else {
+        //     this._uploadService.uploadFile(sendResponse.icon)
+        //         .pipe(takeUntil(this.unsubscribe$))
+        //         .subscribe((response) => {
+        //             sendResponse.icon = response;
+        //             this._sendSaveOrEditCategoryRequest(sendResponse);
+        //         });
+        // }
     }
 
     private _sendSaveOrEditCategoryRequest(sendResponse): void {

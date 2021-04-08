@@ -33,23 +33,31 @@
 </nz-table>
 
 <nz-modal [nzVisible]="isVisible" (nzOnCancel)="closeModal()" nzWidth="870px">
+
     <div *nzModalContent>
-        <div *ngIf="imageObject && imageObject.length">
-            <ng-image-slider [images]="imageObject" #nav></ng-image-slider>
-        </div>
-        <nz-card [nzTitle]="'POST.Description' | translate">
-            <p>{{activePost?.text}}</p>
+        <!--  (nzSelectChange)="changeTab($event)" -->
+        <nz-tabset>
+            <nz-tab [nzTitle]="'POST.Description' | translate">
+                <div *ngIf="imageObject && imageObject.length">
+                    <ng-image-slider [images]="imageObject" #nav></ng-image-slider>
+                </div>
+                <nz-card [nzTitle]="'POST.Description' | translate">
+                    <p>{{activePost?.text}}</p>
 
-        </nz-card>
-        <nz-card [nzTitle]="'POST.Hashtags' | translate">
-            <div class="d-flex align-items-center hastags-item flex-wrap">
-                <p>#h1</p>
-                <p>#h2</p>
-                <p>#h3</p>
-                <p>#h4</p>
-            </div>
+                </nz-card>
+                <nz-card [nzTitle]="'POST.Hashtags' | translate">
+                    <div class="d-flex align-items-center hastags-item flex-wrap">
+                        <p *ngFor="let hashtag of activePost?.hash_tag_posts">#{{hashtag?.hash_tag_details?.text}}</p>
 
-        </nz-card>
+                    </div>
+
+                </nz-card>
+            </nz-tab>
+            <nz-tab [nzTitle]="'POST.COMMENT' | translate">
+               <app-post-comment [postId]="activePost?.id"></app-post-comment>
+            </nz-tab>
+        </nz-tabset>
+
     </div>
     <div *nzModalFooter>
         <div *ngIf="activePost?.status == 'pending'">

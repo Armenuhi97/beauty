@@ -67,7 +67,11 @@
         "SERVICE": "Un service",
         "PRICE": "Prix",
         "ADD": "Ajouter",
-        "SERVICES_CATEGORY": "Catégorie de services"
+        "SERVICES_CATEGORY": "Catégorie de services",
+        "MINUTES":"Min",
+        "GO_HOME":"rentrer",
+        "GO_HOME_PRICE":"aller à la maison prix",
+       "PREPARAY_PERCENT" :"pourcentage de prépaiement"
     },
     "REVIEWS": {
         "DATE": "la date",
@@ -77,13 +81,18 @@
         "REVIEW": "Retour d'information",
         "STATUS": "Statut",
         "REJECT": "Rejeter",
-        "ACCEPT": "Accepter"
+        "ACCEPT": "Accepter",
+        "FROM":"Expéditeur",
+        "TO":"Destinataire"
     },
     "FEEDBACK": {
         "DATE": "la date",
         "NAME": "Nom",
-        "TYPE": "Un type",
-        "TEXT": "Texte"
+        "STATUS": "Statut",
+        "TEXT": "Texte",
+        "ROLE":"Rôle",
+        "ANSWERED":"Réponses",
+        "UNANSWERED":"Sans réponse"
     },
     "EMAIL_NOTIFICATION": {
         "DATE": "la date",
@@ -100,7 +109,8 @@
         "REJECT": "Rejeter",
         "ACCEPT": "Accepter",
         "Description": "Description",
-        "Hashtags": "Hashtags"
+        "Hashtags": "Hashtags",
+        "COMMENT":"Commentaires"
     },
     "POST_REVIEW": {
         "DATE": "la date",
