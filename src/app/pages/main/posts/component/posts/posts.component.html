@@ -31,11 +31,12 @@
         </tr>
     </tbody>
 </nz-table>
-
-<nz-modal [nzVisible]="isVisible" (nzOnCancel)="closeModal()" nzWidth="870px">
+<div *ngIf="isVisible">
+    <app-post-modal [activePost]="activePost" (close)="closePost($event)"></app-post-modal>
+</div>
+<!-- <nz-modal [nzVisible]="isVisible" (nzOnCancel)="closeModal()" nzWidth="870px">
 
     <div *nzModalContent>
-        <!--  (nzSelectChange)="changeTab($event)" -->
         <nz-tabset>
             <nz-tab [nzTitle]="'POST.Description' | translate">
                 <div *ngIf="imageObject && imageObject.length">
@@ -65,4 +66,4 @@
             <button nz-button nzType="primary" (click)="acceptPost()">{{'POST.ACCEPT' | translate}}</button>
         </div>
     </div>
-</nz-modal>
+</nz-modal> -->

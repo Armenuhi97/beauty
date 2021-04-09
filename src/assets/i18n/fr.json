@@ -58,7 +58,8 @@
         "REVIEW":"Retour d'information",
         "HISTORY":"Histoire",
         "ABOUT":"à propos de nous",
-        "PHONE":"Numéro de téléphone"
+        "PHONE":"Numéro de téléphone",
+        "CALENDAR":"Calendrier"
     },
     "UTILS": {
         "DATE": "la date",
@@ -152,8 +153,8 @@
         "STATUS": "Statut"
     },
     "BOUGHT_TARIF":{
-        "EXP_DATE":"EXP",
-        "BUY_DATE":"BUY",
+        "EXP_DATE":"Date  expiration",
+        "BUY_DATE":"Date d'achat",
         "MASTER": "Maîtr",
         "CATEGORY": "Catégories",
         "TARIF": "Tarifs",

@@ -1,14 +1,9 @@
-<div class="title-container d-flex align-items-center  justify-content-between">
-    <h1>{{'NAVIGATION.BOUGHT_TARIF' | translate}}</h1>
-    <h3>{{'BOUGHT_TARIF.TOTAL' | translate}} € {{totalSum | number}}</h3>
-</div>
-<!-- tarif filter -->
 <nz-table #table [nzData]="tarifs" (nzPageIndexChange)="nzPageIndexChange($event)" [nzTotal]="total"
     [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" [nzFrontPagination]="false">
     <thead>
         <tr>
             <th>N</th>
-            <th style="width: 200px;" nzSortFn="true" (nzSortOrderChange)="sort($event)">{{'BOUGHT_TARIF.EXP_DATE' |
+            <th >{{'BOUGHT_TARIF.EXP_DATE' |
                 translate}}
             </th>
             <th>{{'BOUGHT_TARIF.BUY_DATE' | translate}}</th>

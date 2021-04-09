@@ -1,5 +1,6 @@
 import { DatePipe } from "@angular/common";
 import { Component } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { Post, ServerResponse } from "@models/index";
 import { TranslateService } from "@ngx-translate/core";
 import { Observable, Subject } from "rxjs";
@@ -15,9 +16,7 @@ import { PostService } from "../../post.service";
 })
 export class PostsComponent {
   selectedValue: string = 'all';
-  statusList = [
-
-  ]
+  statusList = [  ]
   posts: Post[] = []
   unsubscribe$ = new Subject();
   public total: number;
@@ -25,38 +24,22 @@ export class PostsComponent {
   public pageSize = 10;
   isVisible: boolean = false;
   activePost: Post;
-  imageObject = [
-    //   {
-    //   video: 'https://youtu.be/tYa6OLQHrEc',
-    //   title: 'Youtube example one with title.',
-    //   alt: 'youtube video'
-    // }, {
-    //   video: 'https://youtu.be/6pxRHBw-k8M',
-    //   alt: 'youtube video'
-    // }, {
-    //   video: 'https://sanjayv.github.io/ng-image-slider/contents/assets/video/movie2.mp4',
-    //   posterImage: "https://slotuniverses.co.uk/wp-content/uploads/sites/12030/upload_fed1091b34dcf8203c0729c4faa62315.png",
-    //   title: 'Youtube example one with title.'
-    // },
-    // {
-    //   image: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    //   thumbImage: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    //   alt: 'Image alt'
-    // }
-  ]
   constructor(
-    private _statusService:StatusService,
+    private _statusService: StatusService,
     public _postService: PostService,
     private _translateService: TranslateService,
+    private _route: ActivatedRoute
   ) {
-    this.statusList=this._statusService.getStatusList()
+    this.statusList = this._statusService.getStatusList()
   }
   ngOnInit(): void {
-    this.getPostList().pipe(takeUntil(this.unsubscribe$)).subscribe()
+    this.getPostList().pipe(takeUntil(this.unsubscribe$)).subscribe();
+    this.checkQueryParams()
   }
   filter($event) {
     this.pageIndex = 1;
-    this.getPostList($event).pipe(takeUntil(this.unsubscribe$)).subscribe()
+    this.getPostList($event).pipe(takeUntil(this.unsubscribe$)).subscribe();
+   
   }
   getPostList(status?: string) {
     const offset = (this.pageIndex - 1) * this.pageSize;
@@ -67,50 +50,59 @@ export class PostsComponent {
   }
 
   showModal(index: number) {
-    this.imageObject = []
     this.isVisible = true;
     this.activePost = this.posts[index];
-    for (let file of this.activePost.files) {
-      if (file.file_type == 'video') {
-        this.imageObject.push({
-          video: file.file_url,
-        })
-      } else {
-        if (file.file_type == 'image')
-          this.imageObject.push({
-            image: file.file_url,
-            thumbImage: file.file_url
-          })
-      }
+  
+  }
+  public checkQueryParams() {
+    let params = this._route.snapshot.queryParams;    
+    if (params && params.id) {
+      this._postService.getPostById(params.id).pipe(takeUntil(this.unsubscribe$)).subscribe((data: Post) => {
+        if (data) {
+          this.isVisible = true;
+          this.activePost = data;          
+        }
+      })
     }
   }
   public nzPageIndexChange(pageIndex: number): void {
     this.pageIndex = pageIndex;
     this.getPostList().pipe(takeUntil(this.unsubscribe$)).subscribe();
   }
+  closePost(evt) {
+    this.activePost = null;
+    if (!evt) {
+      this.closeModal();
+      return
+    }
+    if (evt == 'cancel' || evt == 'accept') {
+      this.closeModal()
+      this.getPostList().pipe(takeUntil(this.unsubscribe$)).subscribe()
+    }
 
+
+  }
   acceptPost() {
-    this._postService.acceptPost(this.activePost.id).pipe(
-      takeUntil(this.unsubscribe$),
-      switchMap(() => {
-        this.closeModal()
-        return this.getPostList()
-      })
-    ).subscribe()
+    // this._postService.acceptPost(this.activePost.id).pipe(
+    //   takeUntil(this.unsubscribe$),
+    //   switchMap(() => {
+    this.closeModal()
+    this.getPostList().pipe(takeUntil(this.unsubscribe$)).subscribe()
+    //   })
+    // ).subscribe()
   }
   cancelPost() {
-    this._postService.cancelPost(this.activePost.id).pipe(
-      takeUntil(this.unsubscribe$),
-      switchMap(() => {
-        this.closeModal()
-        return this.getPostList()
-      })
-    ).subscribe()
+    // this._postService.cancelPost(this.activePost.id).pipe(
+    //   takeUntil(this.unsubscribe$),
+    //   switchMap(() => {
+    this.closeModal()
+    this.getPostList().pipe(takeUntil(this.unsubscribe$)).subscribe()
+    //   })
+    // ).subscribe()
   }
 
   closeModal() {
     this.isVisible = false;
-    this.imageObject=[]
     this.activePost = null
   }
   ngOnDestroy() {

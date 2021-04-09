@@ -1,9 +1,14 @@
-<nz-table #potReviewsTable [nzData]="potReviews$ | async">
+<nz-select [(ngModel)]="selectedValue" (ngModelChange)="filter($event)">
+    <nz-option *ngFor="let option of statusList" [nzValue]="option.key" [nzLabel]="option.text | translate"></nz-option>
+</nz-select>
+<nz-table #potReviewsTable [nzData]="potReviews" (nzPageIndexChange)="nzPageIndexChange($event)" [nzTotal]="total"
+    [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" [nzFrontPagination]="false">
     <thead>
         <tr>
             <th>N</th>
             <th>{{'POST_REVIEW.DATE' | translate}}</th>
             <th>{{'POST_REVIEW.USER' | translate}}</th>
+            <th>{{'NAVIGATION.POSTS' | translate}}</th>
             <th>{{'POST_REVIEW.REVIEW' | translate}}</th>
             <th>{{'POST_REVIEW.STATUS' | translate}}</th>
             <th></th>
@@ -12,16 +17,35 @@
     <tbody>
 
         <tr *ngFor="let review of potReviewsTable.data;let ind=index">
-            <td>{{ind+1}}</td>
-            <td>{{ review.date }}</td>
-            <td>{{ review.user }}</td>
-            <td>{{ review.review }}</td>
-            <td>{{ review.status}}</td>
+            <td>{{(ind + 1)+((pageIndex-1)*10) }}</td>
+            <td>{{review.created_at | date:'yyyy-MM-dd' }}</td>
+            <td>{{review.user_details.first_name}} {{review.user_details.last_name}}</td>
+            <td><a (click)="openPostModal(review.post)">Перейти на пост</a></td>
+            <td><span class="message"> {{review.comment}}</span></td>
+            <td><span
+                    [ngClass]="{'red':review.status == 'canceled','yellow':review.status == 'pending','green':review.status == 'accepted'}">{{review.status}}</span>
+            </td>
             <td>
-                <a [routerLink]="[review.id]" class="action-btn">
+                <a (click)="showModal(ind)" class="action-btn">
                     <i nz-icon nzType="edit" nzTheme="outline"></i>
                 </a>
             </td>
         </tr>
     </tbody>
 </nz-table>
+<!-- <div *ngIf="isVisiblePostModal">
+    <app-post-modal [activePost]="activePost" (close)="closePost($event)"></app-post-modal>
+</div> -->
+<nz-modal [nzVisible]="isVisible" (nzOnCancel)="closeModal()" nzWidth="870px">
+    <div *nzModalContent>
+        <nz-card [nzTitle]="'POST_REVIEW.REVIEW' | translate">
+            <p>{{activeComment?.comment}}</p>
+        </nz-card>
+    </div>
+    <div *nzModalFooter>
+        <div *ngIf="activeComment?.status == 'pending'">
+            <button nz-button nzType="default" (click)="cancelComment()">{{'POST_REVIEW.REJECT' | translate}}</button>
+            <button nz-button nzType="primary" (click)="acceptComment()">{{'POST_REVIEW.ACCEPT' | translate}}</button>
+        </div>
+    </div>
+</nz-modal>

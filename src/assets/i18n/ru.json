@@ -24,7 +24,7 @@
         "EMAILNOTIFICATIONS": "Email рассылка",
         "PUSHNOTIFICATIONS": "Уведомления",
         "POSTS": "Посты",
-        "POSTS_REVIEWS": "Отзывы постов",
+        "POSTS_REVIEWS": "Коментарии постов",
         "MODERATORS": "Модераторы",
         "STATISTICS": "Статистика",
         "CATEGORY_UTILS": "Услуги категорий",
@@ -44,7 +44,7 @@
     },
     "USER": {
         "FIRST_NAME": "Имя",
-        "LAST_NAME": "Фамиля",
+        "LAST_NAME": "Фамилия",
         "EMAIL": "E-mail",
         "BIRTH_DATE": "Дата рождения",
         "ORDERS": "Заказы",
@@ -58,7 +58,8 @@
         "REVIEW":"Отзывы",
         "HISTORY":"История",
         "ABOUT":"О себе",
-        "PHONE":"Номер телефона"
+        "PHONE":"Номер телефона",
+        "CALENDAR":"Календарь"
     },
     "UTILS": {
         "DATE": "Дата",
@@ -117,7 +118,7 @@
     "POST_REVIEW": {
         "DATE": "Дата",
         "USER": "Пользователь ",
-        "REVIEW": "Отзыв",
+        "REVIEW": "Коментария",
         "STATUS": "Статус",
         "REJECT": "Отклонить",
         "ACCEPT": "Принять"
@@ -154,8 +155,8 @@
         "STATUS": "Статус"
     },
     "BOUGHT_TARIF": {
-        "EXP_DATE": "EXP",
-        "BUY_DATE": "BUY",
+        "EXP_DATE": "Дата истекания",
+        "BUY_DATE": "Дата покупки",
         "MASTER": "Мастер",
         "CATEGORY": "Категории",
         "TARIF": "Тарифы",

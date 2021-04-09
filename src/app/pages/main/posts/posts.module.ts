@@ -6,9 +6,10 @@ import { PostCommentComponent, PostsComponent } from "./component";
 import { PostsRoutingModule } from "./posts-routing.module";
 import { NgImageSliderModule } from 'ng-image-slider';
 import { PostService } from "./post.service";
+import { PostModalComponent } from "./component/post-modal/post-modal.component";
 
 @NgModule({
-    declarations: [PostsComponent, PostCommentComponent],
+    declarations: [PostsComponent, PostCommentComponent,PostModalComponent],
     imports: [PostsRoutingModule, NgImageSliderModule, SharedModule, IconsProviderModule, TranslateModule],
     providers: [PostService]
 

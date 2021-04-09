@@ -30,4 +30,5 @@ export class PostService {
         let params = new HttpParams().set('authorization', 'true');
         return this._httpClient.get(`timeline/cancel-post/${id}/`, { params })
     }
+   
 }
