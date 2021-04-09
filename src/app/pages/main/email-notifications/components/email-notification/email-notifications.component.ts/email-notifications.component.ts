@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { DEFAULT_NOTIFICATIONS } from "@globals/index";
 import { EmailNotification } from "@models/index";
 import { Store } from "@ngrx/store";
@@ -17,7 +17,9 @@ import { Observable } from "rxjs";
 export class EmailNotificationsComponent {
   public emailNotifications$: Observable<EmailNotification[]>;
   validateForm: FormGroup;
-  isVisible: boolean = false
+  isVisible: boolean = false;
+  config;
+  quillConfig={}
   persons = [{ value: 1, label: this.getTranslateWord('MASTERS'), checked: false },
   { value: 2, label: this.getTranslateWord('CLIENTS'), checked: false }]
   constructor(
@@ -30,27 +32,45 @@ export class EmailNotificationsComponent {
   }
 
   ngOnInit(): void {
-    this.initForm()
+   
+    this.initForm();
+    this._initConfig()
   }
-  public getTranslateWord(key: string) {    
+  public getTranslateWord(key: string) {
     return this._translateService.instant(key)
+  }
+
+  private _initConfig() {
+    this.quillConfig = {
+			toolbar: {
+				container: [
+					['bold', 'italic', 'underline', 'strike'], ['link'] // toggled buttons            
+				],
+      }
+    }
   }
   initForm() {
     this.validateForm = this._fb.group({
-      date: [null],
-      text: [null],
-      person: [null],
-      search: [null]
+      date: [null,Validators.required],
+      text: [null,Validators.required],
+      person: [null,Validators.required],
+      title: [null,Validators.required]
     })
     this.validateForm.get('person').setValue(this.persons)
   }
   showModal() {
+    // this._initConfig()
     this.isVisible = true
   }
-  onSaveNotification() { }
+  onSaveNotification() {
+    if (this.validateForm.valid) {
+      this.handleCancel()
+    }
+  }
   handleCancel() {
     this.isVisible = false;
     this.validateForm.reset();
+
     this.validateForm.get('person').setValue(this.persons)
 
   }
