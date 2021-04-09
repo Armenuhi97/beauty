@@ -19,7 +19,7 @@ export class EmailNotificationsComponent {
   validateForm: FormGroup;
   isVisible: boolean = false;
   config;
-  quillConfig={}
+  quillConfig = {}
   persons = [{ value: 1, label: this.getTranslateWord('MASTERS'), checked: false },
   { value: 2, label: this.getTranslateWord('CLIENTS'), checked: false }]
   constructor(
@@ -32,7 +32,7 @@ export class EmailNotificationsComponent {
   }
 
   ngOnInit(): void {
-   
+
     this.initForm();
     this._initConfig()
   }
@@ -42,27 +42,27 @@ export class EmailNotificationsComponent {
 
   private _initConfig() {
     this.quillConfig = {
-			toolbar: {
-				container: [
-					['bold', 'italic', 'underline', 'strike'], ['link'] // toggled buttons            
-				],
+      toolbar: {
+        container: [
+          ['bold', 'italic', 'underline', 'strike'], ['link']
+        ],
       }
     }
   }
   initForm() {
     this.validateForm = this._fb.group({
-      date: [null,Validators.required],
-      text: [null,Validators.required],
-      person: [null,Validators.required],
-      title: [null,Validators.required]
+      date: [null, Validators.required],
+      text: [null, Validators.required],
+      person: [null, Validators.required],
+      title: [null, Validators.required]
     })
-    this.validateForm.get('person').setValue(this.persons)
+    // this.validateForm.get('person').setValue(this.persons)
   }
   showModal() {
-    // this._initConfig()
     this.isVisible = true
   }
   onSaveNotification() {
+    this.validateForm.markAsTouched()
     if (this.validateForm.valid) {
       this.handleCancel()
     }
@@ -71,7 +71,7 @@ export class EmailNotificationsComponent {
     this.isVisible = false;
     this.validateForm.reset();
 
-    this.validateForm.get('person').setValue(this.persons)
+    // this.validateForm.get('person').setValue(this.persons)
 
   }
 }

@@ -53,8 +53,12 @@
                 <nz-form-label class="inline-labels"></nz-form-label>
                 <nz-form-item>
                     <nz-form-control nzHasFeedback>
-                        <nz-checkbox-group formControlName="person">
-                        </nz-checkbox-group>
+                        <!-- <nz-checkbox-group formControlName="person">
+                        </nz-checkbox-group> -->
+                        <nz-radio-group formControlName="person">
+                            <label *ngFor="let person of persons" nz-radio [nzValue]="person.value">{{person.label}}</label>
+                            
+                          </nz-radio-group>
                     </nz-form-control>
                 </nz-form-item>
             </div>
