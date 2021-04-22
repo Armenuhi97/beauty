@@ -2,6 +2,7 @@ import { DatePipe } from "@angular/common";
 import { Component } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Category, Service } from "@models/category";
+import { OrderItem } from "@models/order";
 import { ServerResponse } from "@models/server-respoce";
 import { forkJoin, Subject } from "rxjs";
 import { map, switchMap, takeUntil } from "rxjs/operators";
@@ -15,13 +16,7 @@ import { OrdersService } from "./orders.service";
 })
 export class OrdersComponent {
     unsubscribe$ = new Subject();
-    orders: any[] = [{
-        category: 1,
-        service: 1,
-        price: '150.00',
-        duration: 1,
-        popular: false
-    }]
+    orders:OrderItem[]=[]
     statusList = [
         { key: '', text: 'STATUS.ALL' },
         { key: 'pending', text: 'STATUS.PENDING' },
@@ -35,7 +30,6 @@ export class OrdersComponent {
     isVisible: boolean = false;
     validateForm: FormGroup;
     editIndex: number;
-    selectItems = [];
     categories: Category[] = [];
     services: Service[];
     statusControl = new FormControl('')
@@ -46,7 +40,6 @@ export class OrdersComponent {
         private _fb: FormBuilder) { }
 
     ngOnInit() {
-        this.initSelectItems()
         this.initForm();
         this.subscribeToCategoryChange();
         this.subscribeToServiceChange();
@@ -68,11 +61,7 @@ export class OrdersComponent {
             })
         )
     }
-    initSelectItems() {
-        for (let i = 0; i < 12; i++) {
-            this.selectItems.push(i + 1)
-        }
-    }
+   
     subscribeToStatus() {
         this.statusControl.valueChanges.pipe(takeUntil(this.unsubscribe$),
             switchMap(() => { return this.getOrders() })).subscribe();
@@ -115,7 +104,7 @@ export class OrdersComponent {
     }
     public getOrders() {
         let offset = (this.pageIndex - 1) * this.pageSize;
-        return this._orderService.getOrders(offset, this.checkPropertyValue(this.categoryControl.value, 'id'), this.checkPropertyValue(this.serviceControl.value, 'id'), this.statusControl.value).pipe(map((data: ServerResponse<any[]>) => {
+        return this._orderService.getOrders(offset, this.checkPropertyValue(this.categoryControl.value, 'id'), this.checkPropertyValue(this.serviceControl.value, 'id'), this.statusControl.value).pipe(map((data: ServerResponse<OrderItem[]>) => {
             this.total = data.count;
             this.orders = data.results
         }))

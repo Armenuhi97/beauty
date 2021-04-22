@@ -12,7 +12,7 @@ import { MasterService } from "../../../../master.service";
 })
 export class MasterHistoryComponent {
     unsubscribe$ = new Subject();
-    orders:OrderItem[] = [];
+    orders: OrderItem[] = [];
     public id: number;
     public total: number;
     public pageIndex = 1;
@@ -26,13 +26,13 @@ export class MasterHistoryComponent {
         }
     }
 
-    constructor(private _masterService:MasterService) { }
+    constructor(private _masterService: MasterService) { }
 
     ngOnInit() { }
 
-    public getOrders() {
+    public getOrders(): void {
         let offset = (this.pageIndex - 1) * this.pageSize;
-        return this._masterService.getOrderHistory(offset, this.id).pipe(takeUntil(this.unsubscribe$),map((data: ServerResponse<OrderItem[]>) => {
+        this._masterService.getOrderHistory(offset, this.id).pipe(takeUntil(this.unsubscribe$), map((data: ServerResponse<OrderItem[]>) => {
             this.total = data.count;
             this.orders = data.results
         })).subscribe()

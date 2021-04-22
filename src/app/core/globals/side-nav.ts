@@ -5,7 +5,7 @@ export const DEFAULT_NAVIGATION_ITEMS: ISideNavItem[] = [
         label: 'NAVIGATION.USERS',
         routerLink: 'users',
         icon: 'user',
-        isFinish: false
+        isFinish: true
     },
     {
         label: 'NAVIGATION.MASTERS',
@@ -37,7 +37,7 @@ export const DEFAULT_NAVIGATION_ITEMS: ISideNavItem[] = [
         label: 'NAVIGATION.ORDERS',
         routerLink: 'order',
         icon: 'setting',
-        isFinish: false
+        isFinish: true
     },
     {
         label: 'NAVIGATION.TARIF',

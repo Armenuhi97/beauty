@@ -7,10 +7,10 @@ import { TranslateModule } from '@ngx-translate/core';
 import { IconsProviderModule } from 'src/app/icons-provider.module';
 import { MasterService } from './master.service';
 import { MasterDetailsComponent } from './pages/master-details/master-details.component';
-import { MasterHistoryComponent, MasterTarifComponent } from './pages/master-details/components';
+import { CalendarItemComponent, MasterHistoryComponent, MasterTarifComponent } from './pages/master-details/components';
 
 @NgModule({
-  declarations: [MasterComponent,MasterDetailsComponent,MasterTarifComponent,MasterHistoryComponent],
+  declarations: [MasterComponent,MasterDetailsComponent,MasterTarifComponent,MasterHistoryComponent,CalendarItemComponent],
   imports: [
     CommonModule,
     MasterRoutingModule,

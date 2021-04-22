@@ -1,0 +1,7 @@
+<!-- <nz-calendar [(ngModel)]="date" [(nzMode)]="mode" ></nz-calendar> -->
+<nz-calendar [nzFullscreen]="false" [(ngModel)]="date" (ngModelChange)="panelChange($event)"></nz-calendar>
+<div class="services">
+    <button>service 1</button>
+    <button>service 2</button>
+    <button>service 3</button>
+</div>

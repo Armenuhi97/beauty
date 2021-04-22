@@ -1,5 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { OrderItem } from "@models/order";
+import { ServerResponse } from "@models/server-respoce";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class UsersService {
@@ -13,7 +16,7 @@ export class UsersService {
     public getClientReview(id: number, offset: number) {
         return this._httpClient.get(`timeline/review/?from_user=${id}&limit&offset=${offset}`)
     }
-    public getOrderHistory(offset: number, userId: number) {
-        return this._httpClient.get(`schedule/order/?offset=${offset}&user_id=${userId}`)
+    public getOrderHistory(offset: number, userId: number):Observable<ServerResponse<OrderItem[]>> {
+        return this._httpClient.get<ServerResponse<OrderItem[]>>(`schedule/order/?offset=${offset}&user_id=${userId}`)
     }
 }

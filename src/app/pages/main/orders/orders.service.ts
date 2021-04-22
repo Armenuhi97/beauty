@@ -10,7 +10,7 @@ export class OrdersService{
         let url=`schedule/order/?offset=${offset}` 
 
         if(category){
-            url+=`&category_id=${category}`
+            url+=`&service__category=${category}`
         }
         if(service){
             url+=`&service_id=${service}`

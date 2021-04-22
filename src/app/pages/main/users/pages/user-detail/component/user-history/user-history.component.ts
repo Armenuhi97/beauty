@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+import { OrderItem } from "@models/order";
 import { ServerResponse } from "@models/server-respoce";
 import { Subject } from "rxjs";
 import { map, takeUntil } from "rxjs/operators";
@@ -11,7 +12,7 @@ import { UsersService } from "../../../../users.service";
 })
 export class UserHistoryComponent {
     unsubscribe$ = new Subject();
-    orders = [];
+    orders: OrderItem[] = [];
     public id: number;
     public total: number;
     public pageIndex = 1;
@@ -29,9 +30,9 @@ export class UserHistoryComponent {
 
     ngOnInit() { }
 
-    public getOrders() {
+    public getOrders(): void {
         let offset = (this.pageIndex - 1) * this.pageSize;
-        return this._userService.getOrderHistory(offset, this.id).pipe(takeUntil(this.unsubscribe$),map((data: ServerResponse<any[]>) => {
+        this._userService.getOrderHistory(offset, this.id).pipe(takeUntil(this.unsubscribe$), map((data: ServerResponse<OrderItem[]>) => {
             this.total = data.count;
             this.orders = data.results
         })).subscribe()

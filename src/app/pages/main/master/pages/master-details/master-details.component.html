@@ -7,17 +7,20 @@
         <nz-descriptions class="order-details" nzTitle="" [nzColumn]="2">
             <nz-descriptions-item [nzTitle]="'USER.EMAIL' | translate">{{master?.user?.email}}</nz-descriptions-item>
             <nz-descriptions-item [nzTitle]="'USER.CITY' | translate">{{master?.city}}</nz-descriptions-item>
-        
+
             <nz-descriptions-item [nzTitle]="'USER.BIRTH_DATE' | translate"><span
                     class="status-primary">{{master?.birth_date}}</span></nz-descriptions-item>
-            <nz-descriptions-item [nzTitle]="'USER.ADDRESS' | translate"><span class="status-primary">{{master?.address}}</span>
+            <nz-descriptions-item [nzTitle]="'USER.ADDRESS' | translate"><span
+                    class="status-primary">{{master?.address}}</span>
             </nz-descriptions-item>
             <nz-descriptions-item [nzTitle]="'USER.PHONE' | translate"><span
                     class="status-primary">{{master?.phone_number}}</span>
             </nz-descriptions-item>
-            <nz-descriptions-item [nzTitle]="'USER.ABOUT' | translate"><span class="status-primary">{{master?.about}}</span>
+            <nz-descriptions-item [nzTitle]="'USER.ABOUT' | translate"><span
+                    class="status-primary">{{master?.about}}</span>
             </nz-descriptions-item>
-            <nz-descriptions-item [nzTitle]="'USER.RATING' | translate"><span class="status-primary">{{master?.rating}}</span>
+            <nz-descriptions-item [nzTitle]="'USER.RATING' | translate"><span
+                    class="status-primary">{{master?.rating}}</span>
             </nz-descriptions-item>
         </nz-descriptions>
     </nz-tab>
@@ -38,8 +41,8 @@
                     <td>{{(ind + 1)+((pageIndex-1)*10) }}</td>
                     <td>{{review.created_at | date:'yyyy-MM-dd' }}</td>
                     <td>{{review.to_user_details.user.first_name}} {{review.to_user_details.user.last_name}}</td>
-                    <td>{{review?.comment}}</td>  
-                    <td>{{review?.rating}}</td>                   
+                    <td>{{review?.comment}}</td>
+                    <td>{{review?.rating}}</td>
                 </tr>
             </tbody>
         </nz-table>
@@ -51,5 +54,7 @@
     <nz-tab [nzTitle]="'NAVIGATION.TARIF' | translate">
         <app-master-tarif [id]="id"></app-master-tarif>
     </nz-tab>
-    <nz-tab [nzTitle]="'USER.CALENDAR' | translate"></nz-tab>
+    <nz-tab [nzTitle]="'USER.CALENDAR' | translate">
+        <app-calendar-item [id]="id"></app-calendar-item>
+    </nz-tab>
 </nz-tabset>

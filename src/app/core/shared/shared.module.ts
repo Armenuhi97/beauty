@@ -24,11 +24,13 @@ import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { QuillModule } from 'ngx-quill'
+import { NzCalendarModule } from 'ng-zorro-antd/calendar';
 
 @NgModule({
   declarations: [],
   imports: [CommonModule,QuillModule.forRoot(), ReactiveFormsModule, FormsModule],
   exports: [
+    NzCalendarModule,
     QuillModule,
     NzTabsModule,
     NzDescriptionsModule,
