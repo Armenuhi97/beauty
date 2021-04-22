@@ -99,7 +99,8 @@
         "DATE": "la date",
         "NAME": "Название",
         "USER_COUNT": "Qté. utilisateurs",
-        "TEXT": "Texte",
+        "TEXT_EN": "Texte en russe",
+        "TEXT_FR": "Texte en français",
         "SEARCH": "Chercher"
     },
     "POST": {

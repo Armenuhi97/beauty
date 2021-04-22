@@ -1,7 +1,7 @@
-import { EmailNotification } from "@models/index";
+import { NotificationModel } from "@models/index";
 
 export class EmailNotificationState {
-    emailNotifications: EmailNotification[];
+    emailNotifications: NotificationModel[];
 }
 
 export const initialState: EmailNotificationState = {

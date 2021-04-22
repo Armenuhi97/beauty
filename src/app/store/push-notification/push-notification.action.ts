@@ -1,4 +1,4 @@
-import { EmailNotification } from '@models/index';
+import { NotificationModel } from '@models/index';
 import { createAction, props } from '@ngrx/store';
 
 enum EPushNotificationActions {
@@ -8,10 +8,10 @@ enum EPushNotificationActions {
 
 export const SetPushNotification = createAction(
     EPushNotificationActions.SetPushNotification,
-    props<{ payload: EmailNotification[] }>()
+    props<{ payload: NotificationModel[] }>()
 );
 
 export const AddPushNotification = createAction(
     EPushNotificationActions.AddPushNotification,
-    props<{ payload: EmailNotification }>()
+    props<{ payload: NotificationModel }>()
 );

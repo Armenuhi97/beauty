@@ -75,13 +75,13 @@ export const DEFAULT_NAVIGATION_ITEMS: ISideNavItem[] = [
         label: 'NAVIGATION.EMAILNOTIFICATIONS',
         routerLink: 'email-notifications',
         icon: 'setting',
-        isFinish: false
+        isFinish: true
     },
     {
         label: 'NAVIGATION.PUSHNOTIFICATIONS',
         routerLink: 'push-notifications',
         icon: 'setting',
-        isFinish: false
+        isFinish: true
     },
 
 

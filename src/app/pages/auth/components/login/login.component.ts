@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private _initForm(): void {
     this.loginForm = this._fb.group({
-      username: ['stepan.kakosyan4', [Validators.required, Validators.minLength(6)]],
+      username: ['admin1', [Validators.required, Validators.minLength(6)]],
       password: ['Gyumri22+', [Validators.required, Validators.minLength(6)]],
       role_code: 'ADM'
     });

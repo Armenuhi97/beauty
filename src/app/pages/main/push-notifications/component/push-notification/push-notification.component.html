@@ -3,13 +3,14 @@
         {{'CREATE' | translate}}
     </button>
 </div>
-<nz-table #pushNotificationsTable [nzData]="pushNotifications$ | async">
+<nz-table #pushNotificationsTable [nzData]="pushNotification" (nzPageIndexChange)="nzPageIndexChange($event)"
+    [nzTotal]="total" [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" [nzFrontPagination]="false">
     <thead>
         <tr>
             <th>N</th>
             <th>{{'EMAIL_NOTIFICATION.DATE' | translate}}</th>
             <th>{{'EMAIL_NOTIFICATION.NAME' | translate}}</th>
-            <th>{{'EMAIL_NOTIFICATION.USER_COUNT' | translate}}</th>
+            <th>{{'EMAIL_NOTIFICATION.TEXT_EN' | translate}}</th>
             <th></th>
         </tr>
     </thead>
@@ -17,11 +18,11 @@
 
         <tr *ngFor="let notification of pushNotificationsTable.data;let ind=index">
             <td>{{ind+1}}</td>
-            <td>{{ notification.date }}</td>
+            <td>{{ notification.execute_date | date: 'yyyy-MM-dd HH:mm' }}</td>
             <td>{{ notification.name }}</td>
-            <td>{{ notification.userCount }}</td>
+            <td><span [innerHtml]="notification.text_en"></span></td>
             <td>
-                <a class="action-btn">
+                <a (click)="editNotification(ind)" class="action-btn">
                     <i nz-icon nzType="edit" nzTheme="outline"></i>
                 </a>
             </td>
@@ -29,7 +30,8 @@
     </tbody>
 </nz-table>
 
-<nz-modal [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()" nzWidth="870px" (nzOnOk)="onSaveNotification()">
+
+<!-- <nz-modal [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()" nzWidth="870px" (nzOnOk)="onSaveNotification()">
 
     <form nz-form [formGroup]="validateForm" [nzLayout]="'vertical'">
         <div nz-row [nzGutter]="24">
@@ -77,5 +79,61 @@
         </div>
 
 
+    </form>
+</nz-modal> -->
+
+<nz-modal [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()" nzWidth="870px" (nzOnOk)="onSaveNotification()">
+
+    <form nz-form [formGroup]="validateForm" [nzLayout]="'vertical'">
+        <div nz-row [nzGutter]="24">
+            <div nz-col [nzSpan]="8">
+                <nz-form-label class="inline-labels">{{'EMAIL_NOTIFICATION.NAME' |translate}}</nz-form-label>
+                <nz-form-item>
+                    <nz-form-control nzHasFeedback>
+                        <input nz-input formControlName="title" placeholder="" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col [nzSpan]="8">
+                <nz-form-label class="inline-labels">{{'EMAIL_NOTIFICATION.DATE' |translate}}</nz-form-label>
+                <nz-form-item>
+                    <nz-form-control nzHasFeedback>
+                        <nz-date-picker nzShowTime nzFormat="yyyy-MM-dd HH:mm" class="w-100" formControlName="date"></nz-date-picker>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col [nzSpan]="8">
+                <nz-form-label class="inline-labels"></nz-form-label>
+                <nz-form-item>
+                    <nz-form-control nzHasFeedback>
+                        <nz-checkbox-group formControlName="person">
+                        </nz-checkbox-group>
+                        <!-- <nz-radio-group formControlName="person">
+                            <label *ngFor="let person of persons" nz-radio [nzValue]="person.value">{{person.label}}</label>
+                            
+                          </nz-radio-group> -->
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+
+        </div>
+        <div nz-row [nzGutter]="24">
+            <div nz-col [nzSpan]="12">
+                <nz-form-label class="inline-labels">{{'EMAIL_NOTIFICATION.TEXT_EN' | translate}}</nz-form-label>
+                <nz-form-item>
+                    <nz-form-control>
+                        <quill-editor formControlName="text_en" [modules]="quillConfig"></quill-editor>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col [nzSpan]="12">
+                <nz-form-label class="inline-labels">{{'EMAIL_NOTIFICATION.TEXT_FR' | translate}}</nz-form-label>
+                <nz-form-item>
+                    <nz-form-control>
+                        <quill-editor formControlName="text_fr" [modules]="quillConfig"></quill-editor>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
     </form>
 </nz-modal>
