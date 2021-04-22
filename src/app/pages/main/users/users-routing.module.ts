@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { UserDetailComponent, UsersComponent } from "./pages";
-import { UserInfoComponent } from "./pages/user-detail/component/user-info/user-info.component";
+import { UserHistoryComponent, UserInfoComponent } from "./pages/user-detail/component";
 
 const routes = [
     { path: '', component: UsersComponent },
@@ -13,5 +13,5 @@ const routes = [
     exports: [RouterModule]
 })
 export class UsersRoutingModule {
-    static components = [UserDetailComponent, UsersComponent, UserInfoComponent];
+    static components = [UserDetailComponent, UsersComponent, UserInfoComponent, UserHistoryComponent];
 }

@@ -1,0 +1,25 @@
+<nz-table #table [nzData]="orders" (nzPageIndexChange)="nzPageIndexChange($event)" [nzTotal]="total"
+    [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" [nzFrontPagination]="false">
+    <thead>
+        <tr>
+            <th>N</th>
+            <th>{{'ORDERS.DATE' | translate}}</th>
+            <th>{{'ORDERS.MASTER' | translate}}</th>
+            <th>{{'ORDERS.CATEGORY' | translate}}</th>
+            <th>{{'ORDERS.SERVICE' | translate}}</th>
+            <th>{{'ORDERS.PRICE' | translate}}</th>
+            <th>{{'ORDERS.STATUS' | translate}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let order of table.data;let ind=index">
+            <td>{{(ind + 1)+((pageIndex-1)*10) }}</td>
+            <td>{{order?.event?.created | date:'yyyy-MM-dd'}}</td>
+            <td>{{order?.master?.user?.first_name}} {{order?.master?.user?.last_name}}</td>
+            <td>{{order?.service?.category_details?.name_en }}</td>
+            <td>{{order?.service?.name_en }}</td>
+            <td>{{order?.price}}</td>
+            <td>{{order?.status}}</td>
+        </tr>
+    </tbody>
+</nz-table>

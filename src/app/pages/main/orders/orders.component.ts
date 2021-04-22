@@ -1,15 +1,17 @@
+import { DatePipe } from "@angular/common";
 import { Component } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Category, Service } from "@models/category";
 import { ServerResponse } from "@models/server-respoce";
 import { forkJoin, Subject } from "rxjs";
-import { map, takeUntil } from "rxjs/operators";
+import { map, switchMap, takeUntil } from "rxjs/operators";
 import { OrdersService } from "./orders.service";
 
 @Component({
     selector: 'app-orders',
     templateUrl: 'orders.component.html',
-    styleUrls: ['orders.component.scss']
+    styleUrls: ['orders.component.scss'],
+    providers: [DatePipe]
 })
 export class OrdersComponent {
     unsubscribe$ = new Subject();
@@ -53,7 +55,8 @@ export class OrdersComponent {
     }
     combineObservable() {
         const combine = forkJoin(
-            this.getCategories()
+            this.getCategories(),
+            this.getOrders()
         )
         combine.pipe(takeUntil(this.unsubscribe$)).subscribe()
     }
@@ -70,33 +73,25 @@ export class OrdersComponent {
             this.selectItems.push(i + 1)
         }
     }
-    subscribeToStatus(){
-        this.statusControl.valueChanges.pipe(takeUntil(this.unsubscribe$)).subscribe((data: string) => {
-            console.log(data);
-            // this.getOrders()
-
-        }); 
+    subscribeToStatus() {
+        this.statusControl.valueChanges.pipe(takeUntil(this.unsubscribe$),
+            switchMap(() => { return this.getOrders() })).subscribe();
     }
     subscribeToCategoryChange(): void {
-        this.categoryControl.valueChanges.pipe(takeUntil(this.unsubscribe$)).subscribe((data: Category) => {
-            console.log(data);
-            this.serviceControl.setValue('')
-            if (data) {
-                this.services = data.services;
-                //request this.getOrders().pipe(takeUntil(this.unsubscribe$)).subscribe()
-            } else {
-                this.services = []
-                //request this.getOrders().pipe(takeUntil(this.unsubscribe$)).subscribe()
-            }
-
-        });
+        this.categoryControl.valueChanges.pipe(takeUntil(this.unsubscribe$),
+            switchMap((data: Category) => {
+                this.serviceControl.setValue('')
+                if (data) {
+                    this.services = data.services;
+                } else {
+                    this.services = []
+                }
+                return this.getOrders()
+            })).subscribe();
     }
     subscribeToServiceChange(): void {
-        this.serviceControl.valueChanges.pipe(takeUntil(this.unsubscribe$)).subscribe((data) => {
-            // if (data)
-            // this.getOrders().pipe(takeUntil(this.unsubscribe$)).subscribe()
-
-        });
+        this.serviceControl.valueChanges.pipe(takeUntil(this.unsubscribe$),
+            switchMap(() => { return this.getOrders() })).subscribe();
     }
     public showModal(): void {
         this.isVisible = true;
@@ -119,12 +114,14 @@ export class OrdersComponent {
         // this._orderService.changetarifStatus(tarif.id).pipe(takeUntil(this.unsubscribe$)).subscribe()
     }
     public getOrders() {
-        return this._orderService.getOrders(this.categoryControl.value,this.serviceControl.value,this.statusControl.value).pipe(map((data: ServerResponse<any[]>) => {
-            console.log(data);
-
+        let offset = (this.pageIndex - 1) * this.pageSize;
+        return this._orderService.getOrders(offset, this.checkPropertyValue(this.categoryControl.value, 'id'), this.checkPropertyValue(this.serviceControl.value, 'id'), this.statusControl.value).pipe(map((data: ServerResponse<any[]>) => {
             this.total = data.count;
             this.orders = data.results
         }))
+    }
+    public checkPropertyValue(object: object | Array<any>, element: string | number, returnValue = null) {
+        return (object != null && object[element]) ? object[element] : returnValue;
     }
     initForm() {
         this.validateForm = this._fb.group({
@@ -154,10 +151,7 @@ export class OrdersComponent {
             "price": formValue.price,
             "category_count": formValue.category_count,
         };
-
     }
-
-
 
     public nzPageIndexChange(pageIndex: number): void {
         this.pageIndex = pageIndex;

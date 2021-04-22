@@ -45,7 +45,9 @@
         </nz-table>
 
     </nz-tab>
-    <nz-tab [nzTitle]="'USER.HISTORY' | translate"></nz-tab>
+    <nz-tab [nzTitle]="'USER.HISTORY' | translate">
+        <app-master-history [id]="id"></app-master-history>
+    </nz-tab>
     <nz-tab [nzTitle]="'NAVIGATION.TARIF' | translate">
         <app-master-tarif [id]="id"></app-master-tarif>
     </nz-tab>

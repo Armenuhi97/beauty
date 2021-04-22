@@ -26,6 +26,8 @@
         </nz-table>
 
     </nz-tab>
-    <nz-tab [nzTitle]="'USER.HISTORY' | translate"></nz-tab>
+    <nz-tab [nzTitle]="'USER.HISTORY' | translate">
+        <app-user-history [id]="id"></app-user-history>
+    </nz-tab>
    
 </nz-tabset>
