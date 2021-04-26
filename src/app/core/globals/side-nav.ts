@@ -93,9 +93,9 @@ export const DEFAULT_NAVIGATION_ITEMS: ISideNavItem[] = [
     },
     {
         label: 'NAVIGATION.STATISTICS',
-        routerLink: '#',
+        routerLink: 'statistic',
         icon: 'setting',
-        isFinish: false
+        isFinish: true
     },
 
 

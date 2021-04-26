@@ -104,6 +104,13 @@ const routes: Routes = [
             (m) => m.BougthTarifModule
           ),
       },
+      {
+        path: 'statistic',
+        loadChildren: () =>
+          import('./statistics/statistics.module').then(
+            (m) => m.StatisticModule
+          ),
+      },
     ],
   },
 ];
