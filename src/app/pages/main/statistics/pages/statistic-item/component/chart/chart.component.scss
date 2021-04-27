@@ -1,8 +1,10 @@
 .title{
-    margin: 0 5px;
-    max-width: 50%;
+    margin: 5px 0;
 }
 :host::ng-deep{
+    canvas{
+        margin: 0 auto;
+    }
     .chartjs-render-monitor{
         max-height: 500px !important;
         max-width: 996px !important;
@@ -10,4 +12,5 @@
 }
 .m-top-15{
     margin-top: 15px;
+    flex-direction: column;
 }

@@ -67,19 +67,19 @@ export class StatisticItemComponent {
           break;
         }
         case 'post': {
-          this.getPostStatistic(start, end)
+          this.getPostStatistic(start, end).pipe(takeUntil(this.unsubscribe$)).subscribe()
           break
         }
         case 'comment': {
-          this.getCommentStatistic(start, end)
+          this.getCommentStatistic(start, end).pipe(takeUntil(this.unsubscribe$)).subscribe()
           break
         }
         case 'order': {
-          this.getOrderStatistic(start, end)
+          this.getOrderStatistic(start, end).pipe(takeUntil(this.unsubscribe$)).subscribe()
           break
         }
-        case 'servie': {
-          this.getMasterServiseStatistic(start, end)
+        case 'service': {
+          this.getMasterServiseStatistic(start, end).pipe(takeUntil(this.unsubscribe$)).subscribe()
           break
         }
       }

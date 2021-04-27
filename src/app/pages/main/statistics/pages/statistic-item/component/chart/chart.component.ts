@@ -26,9 +26,10 @@ export class ChartComponent {
             let statistic = $event;
             let selectMonth = this.dateControl.value.getMonth();
             let selectYear = this.dateControl.value.getFullYear();
-            this.lineChartLabels = this.getDaysInMonth(selectMonth, selectYear)
+            let days = this.getDaysInMonth(selectMonth, selectYear, 'yyyy-MM-dd');
+            this.lineChartLabels = this.getDaysInMonth(selectMonth, selectYear, 'dd');
             let arr = []
-            for (let d of this.lineChartLabels) {
+            for (let d of days) {
                 if (statistic && statistic.length) {
                     let item = statistic.filter((el) => { return el.created_at__date == d })
                     if (item && item[0]) {
@@ -41,7 +42,7 @@ export class ChartComponent {
                     arr.push(0)
                 }
             }
-            this.lineChartData = [{ data: arr,label:'' }]
+            this.lineChartData = [{ data: arr, label: this.title }]
         }
     }
     lineChartData: ChartDataSets[] = []
@@ -50,6 +51,16 @@ export class ChartComponent {
 
     lineChartOptions = {
         responsive: true,
+        // options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        min:0
+                    }
+                }]
+            }
+        // }
     };
 
     lineChartColors: Color[] = [
@@ -59,7 +70,7 @@ export class ChartComponent {
         },
     ];
 
-    lineChartLegend = true;
+    lineChartLegend = false;
     lineChartPlugins = [];
     lineChartType = 'line';
 
@@ -76,11 +87,11 @@ export class ChartComponent {
         })
     }
 
-    getDaysInMonth(month, year) {
+    getDaysInMonth(month, year, format) {
         var date = new Date(year, month, 1);
         var days = [];
         while (date.getMonth() === month) {
-            days.push(this._datePipe.transform(new Date(date), 'yyyy-MM-dd'));
+            days.push(this._datePipe.transform(new Date(date), format));
             date.setDate(date.getDate() + 1);
         }
         return days;

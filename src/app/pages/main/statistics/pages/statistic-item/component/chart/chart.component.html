@@ -1,4 +1,4 @@
-<div class="d-flex align-items-center m-top-15">
+<div class="d-flex align-items-center justify-content-center m-top-15">
     <nz-date-picker nzMode="month" [formControl]="dateControl" ></nz-date-picker>
 
     <div class="title">{{title}}</div>
@@ -10,8 +10,9 @@
         [labels]="lineChartLabels" 
         [options]="lineChartOptions"
         [colors]="lineChartColors" 
-        [legend]="''" 
+        [legend]="false" 
         [chartType]="lineChartType" 
-        [plugins]="lineChartPlugins">
+        [plugins]="lineChartPlugins"
+       >
     </canvas>
 </div>
