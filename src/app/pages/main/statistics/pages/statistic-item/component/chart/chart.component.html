@@ -1,11 +1,16 @@
-<nz-date-picker nzMode="month" [formControl]="dateControl" ></nz-date-picker>
+<div class="d-flex align-items-center m-top-15">
+    <nz-date-picker nzMode="month" [formControl]="dateControl" ></nz-date-picker>
+
+    <div class="title">{{title}}</div>
+
+</div>
 <div class="chart-wrapper">
     <canvas baseChart 
         [datasets]="lineChartData" 
         [labels]="lineChartLabels" 
         [options]="lineChartOptions"
         [colors]="lineChartColors" 
-        [legend]="lineChartLegend" 
+        [legend]="''" 
         [chartType]="lineChartType" 
         [plugins]="lineChartPlugins">
     </canvas>

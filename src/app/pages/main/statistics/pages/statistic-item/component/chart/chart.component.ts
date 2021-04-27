@@ -15,28 +15,38 @@ export class ChartComponent {
     unsubscribe$ = new Subject();
     @Output('changeDate') private _changeDate = new EventEmitter()
     dateControl = new FormControl(new Date());
+    title: string;
+    @Input('title')
+    set setTitle($event) {
+        this.title = $event
+    }
     @Input('array')
-    set setArray($event:StatisticItem[]) {
-        console.log($event);
+    set setArray($event: StatisticItem[]) {
         if ($event && this.dateControl.value) {
             let statistic = $event;
             let selectMonth = this.dateControl.value.getMonth();
             let selectYear = this.dateControl.value.getFullYear();
-            console.log($event);
-            let end = this._datePipe.transform(this._calculateLastDayInMonth(selectMonth, selectYear), 'yyyy-MM-dd');
-            let start = this._datePipe.transform(this._calculateFirstDayInMonth(selectMonth, selectYear), 'yyyy-MM-dd');
-            this.lineChartLabels = statistic.map((data)=>{return data.created_at__date});
-            let arr=statistic.map((data)=>{return data.count});
-            this.lineChartData=[{data:arr}]
+            this.lineChartLabels = this.getDaysInMonth(selectMonth, selectYear)
+            let arr = []
+            for (let d of this.lineChartLabels) {
+                if (statistic && statistic.length) {
+                    let item = statistic.filter((el) => { return el.created_at__date == d })
+                    if (item && item[0]) {
+                        let index = statistic.indexOf(item[0])
+                        arr.push(statistic[index].count)
+                    } else {
+                        arr.push(0)
+                    }
+                } else {
+                    arr.push(0)
+                }
+            }
+            this.lineChartData = [{ data: arr,label:'' }]
         }
     }
     lineChartData: ChartDataSets[] = []
-    // [
-    //     { data: [85, 72, 78, 75, 77, 75] },
-    // ];
 
-    lineChartLabels: Label[] =[]
-    // = ['January', 'February', 'March', 'April', 'May', 'June'];
+    lineChartLabels: Label[] = []
 
     lineChartOptions = {
         responsive: true,
@@ -61,17 +71,19 @@ export class ChartComponent {
 
     subscribeToDateChange() {
         this.dateControl.valueChanges.pipe(takeUntil(this.unsubscribe$)).subscribe((value) => {
-            console.log(value);
             if (value)
                 this._changeDate.emit(value)
         })
     }
-    private _calculateLastDayInMonth(month: number, year: number) {
 
-        return new Date(year, month + 1, 0);
-    }
-    private _calculateFirstDayInMonth(month: number, year: number) {
-        return new Date(year, month, 1);
+    getDaysInMonth(month, year) {
+        var date = new Date(year, month, 1);
+        var days = [];
+        while (date.getMonth() === month) {
+            days.push(this._datePipe.transform(new Date(date), 'yyyy-MM-dd'));
+            date.setDate(date.getDate() + 1);
+        }
+        return days;
     }
     ngOnDestroy() {
         this.unsubscribe$.next();

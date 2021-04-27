@@ -12,9 +12,14 @@ import { StatisticsService } from "../../statistics.service";
   providers: [DatePipe]
 })
 export class StatisticItemComponent {
-  jondedMasterSatistics:StatisticItem[]=[]
-  unsubscribe$ = new Subject();
+  jondedMasterStatistics: StatisticItem[] = [];
+  jondedClientStatistics: StatisticItem[] = []
 
+  unsubscribe$ = new Subject();
+  postStatistic: StatisticItem[] = [];
+  commentStatistic:StatisticItem[]=[];
+  orderStatistic:StatisticItem[]=[];
+  masterServiceStatistic: StatisticItem[]=[]
   constructor(private _statisticService: StatisticsService, private _datePipe: DatePipe) { }
 
   ngOnInit() {
@@ -34,7 +39,13 @@ export class StatisticItemComponent {
     let start = this._datePipe.transform(this._calculateFirstDayInMonth(currentMonth, currentYear), 'yyyy-MM-dd');
 
     const combine = forkJoin(
-      this.getJoinedUser(start, end, 'MST')
+      this.getJoinedUser(start, end, 'MST'),
+      this.getJoinedUser(start, end, 'CL'),
+
+      this.getPostStatistic(start, end),
+      this.getCommentStatistic(start,end),
+      this.getOrderStatistic(start, end),
+      this.getMasterServiseStatistic(start,end)
     )
     combine.pipe(takeUntil(this.unsubscribe$)).subscribe()
   }
@@ -51,14 +62,67 @@ export class StatisticItemComponent {
           this.getJoinedUser(start, end, 'MST').pipe(takeUntil(this.unsubscribe$)).subscribe()
           break;
         }
+        case 'joinCL': {
+          this.getJoinedUser(start, end, 'CL').pipe(takeUntil(this.unsubscribe$)).subscribe()
+          break;
+        }
+        case 'post': {
+          this.getPostStatistic(start, end)
+          break
+        }
+        case 'comment': {
+          this.getCommentStatistic(start, end)
+          break
+        }
+        case 'order': {
+          this.getOrderStatistic(start, end)
+          break
+        }
+        case 'servie': {
+          this.getMasterServiseStatistic(start, end)
+          break
+        }
       }
     }
   }
-  public getJoinedUser(start, end, role) {
+  public getJoinedUser(start:string, end:string, role:string) {
     return this._statisticService.getJoinedUsers(start, end, role).pipe(
-      map((data:StatisticItem[])=>{
+      map((data: StatisticItem[]) => {
         console.log(data);
-        this.jondedMasterSatistics=data
+        if (role == 'MST') {
+          this.jondedMasterStatistics = data
+        } else {
+          this.jondedClientStatistics = data
+        }
+      })
+    )
+  }
+  public getPostStatistic(start:string, end:string) {
+    return this._statisticService.getStatisticPost(start, end).pipe(
+      map((data: StatisticItem[]) => {
+        this.postStatistic = data
+      })
+    )
+  }
+  public getCommentStatistic(start:string, end:string) {
+    return this._statisticService.getStatisticPostComment(start, end).pipe(
+      map((data: StatisticItem[]) => {
+        this.commentStatistic = data
+      })
+    )
+  }
+
+    public getOrderStatistic(start:string, end:string) {
+    return this._statisticService.getStatisticOrder(start, end).pipe(
+      map((data: StatisticItem[]) => {
+        this.commentStatistic = data
+      })
+    )
+  }
+  public getMasterServiseStatistic(start:string, end:string) {
+    return this._statisticService.getStatisticMasterService(start, end).pipe(
+      map((data: StatisticItem[]) => {
+        this.masterServiceStatistic = data
       })
     )
   }

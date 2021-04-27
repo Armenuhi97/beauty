@@ -1,0 +1,13 @@
+.title{
+    margin: 0 5px;
+    max-width: 50%;
+}
+:host::ng-deep{
+    .chartjs-render-monitor{
+        max-height: 500px !important;
+        max-width: 996px !important;
+    }
+}
+.m-top-15{
+    margin-top: 15px;
+}
