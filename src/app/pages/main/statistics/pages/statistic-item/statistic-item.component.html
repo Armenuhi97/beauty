@@ -1,11 +1,11 @@
-<app-chart title="Кол-во зарегестрированных Мастеров" [array]="jondedMasterStatistics"  (changeDate)="changeDate($event,'joinMST')"></app-chart>
+<app-chart title="STATISTICS.MASTER_STATISTIC" [array]="jondedMasterStatistics"  (changeDate)="changeDate($event,'joinMST')"></app-chart>
 
-<app-chart title="Кол-во зарегестрированных пользователей" [array]="jondedClientStatistics"  (changeDate)="changeDate($event,'joinCL')"></app-chart>
+<app-chart title="STATISTICS.USER_STATISTIC" [array]="jondedClientStatistics"  (changeDate)="changeDate($event,'joinCL')"></app-chart>
 
-<app-chart title="Кол-во постов каждый день" [array]="postStatistic"  (changeDate)="changeDate($event,'post')"></app-chart>
+<app-chart title="STATISTICS.POST_STATISTIC" [array]="postStatistic"  (changeDate)="changeDate($event,'post')"></app-chart>
 
-<app-chart title="Кол-во комментариев каждый день" [array]="commentStatistic"  (changeDate)="changeDate($event,'comment')"></app-chart>
+<app-chart title="STATISTICS.COMMENT_STATISTIC" [array]="commentStatistic"  (changeDate)="changeDate($event,'comment')"></app-chart>
 
-<app-chart title="Кол-во резерваций каждый день" [array]="orderStatistic"  (changeDate)="changeDate($event,'order')"></app-chart>
+<app-chart title="STATISTICS.ORDER_STATISTIC" [array]="orderStatistic"  (changeDate)="changeDate($event,'order')"></app-chart>
 
-<app-chart title="Кол-во опубликованных услуг мастерами каждый день" [array]="masterServiceStatistic"  (changeDate)="changeDate($event,'service')"></app-chart>
+<app-chart title="STATISTICS.CATEGORY_STATISTIC" [array]="masterServiceStatistic"  (changeDate)="changeDate($event,'service')"></app-chart>

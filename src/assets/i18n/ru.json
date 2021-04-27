@@ -10,10 +10,10 @@
         "ACCEPTED": "принято",
         "ALL": "Все"
     },
-    "ERROR":{
-        "VALIDATE":"Ошибка валидации",
-        "FAILED":"Что то пошло не так",
-        "SUCCESS":"Операция успешно выполнена"
+    "ERROR": {
+        "VALIDATE": "Ошибка валидации",
+        "FAILED": "Что то пошло не так",
+        "SUCCESS": "Операция успешно выполнена"
     },
     "NAVIGATION": {
         "USERS": "Пользователи",
@@ -30,7 +30,7 @@
         "CATEGORY_UTILS": "Услуги категорий",
         "TARIF": "Тарифы",
         "ORDERS": "Заказы",
-        "BOUGHT_TARIF":"Купленные тарифы"
+        "BOUGHT_TARIF": "Купленные тарифы"
     },
     "LOGIN": {
         "SIGN_IN": "Войти",
@@ -54,12 +54,12 @@
         "GENDER": "Пол",
         "ADDRESS": "Адрес",
         "CITY": "Город",
-        "USER_INFO":"Данные",
-        "REVIEW":"Отзывы",
-        "HISTORY":"История",
-        "ABOUT":"О себе",
-        "PHONE":"Номер телефона",
-        "CALENDAR":"Календарь"
+        "USER_INFO": "Данные",
+        "REVIEW": "Отзывы",
+        "HISTORY": "История",
+        "ABOUT": "О себе",
+        "PHONE": "Номер телефона",
+        "CALENDAR": "Календарь"
     },
     "UTILS": {
         "DATE": "Дата",
@@ -69,11 +69,10 @@
         "PRICE": "Цена",
         "ADD": "Добавить",
         "SERVICES_CATEGORY": "Категория услуг",
-        "MINUTES":"Минут",
-        "GO_HOME":"go home",
-        "GO_HOME_PRICE":"go home price",
-       "PREPARAY_PERCENT" :"проценты предоплаты"
-        
+        "MINUTES": "Минут",
+        "GO_HOME": "go home",
+        "GO_HOME_PRICE": "go home price",
+        "PREPARAY_PERCENT": "проценты предоплаты"
     },
     "REVIEWS": {
         "DATE": "Дата",
@@ -84,17 +83,17 @@
         "STATUS": "Статус",
         "REJECT": "Отклонить",
         "ACCEPT": "Принять",
-        "FROM":"Отправитель",
-        "TO":"Получатель"
+        "FROM": "Отправитель",
+        "TO": "Получатель"
     },
     "FEEDBACK": {
         "DATE": "Дата",
         "NAME": "Имя",
         "STATUS": "Статус",
         "TEXT": "Текст",
-        "ROLE":"Роль",
-        "ANSWERED":"Отвеченные",
-        "UNANSWERED":"Неотвеченные"
+        "ROLE": "Роль",
+        "ANSWERED": "Отвеченные",
+        "UNANSWERED": "Неотвеченные"
     },
     "EMAIL_NOTIFICATION": {
         "DATE": "Дата",
@@ -113,8 +112,7 @@
         "ACCEPT": "Принять",
         "Description": "Описание",
         "Hashtags": "Хэштеги",
-        "COMMENT":"Коментарии"
-        
+        "COMMENT": "Коментарии"
     },
     "POST_REVIEW": {
         "DATE": "Дата",
@@ -162,6 +160,14 @@
         "CATEGORY": "Категории",
         "TARIF": "Тарифы",
         "PRICE": "Цена",
-        "TOTAL":"Общая сумма"
+        "TOTAL": "Общая сумма"
+    },
+    "STATISTICS": {
+        "USER_STATISTIC": "Кол-во зарегестрированных пользователей",
+        "MASTER_STATISTIC": "Кол-во Зарегестророванных Мастеров",
+        "CATEGORY_STATISTIC": "Кол-во опубликованных услуг мастерами каждый день",
+        "POST_STATISTIC": "Кол-во постов каждый день ",
+        "COMMENT_STATISTIC": "Кол-во комментариев каждый день",
+        "ORDER_STATISTIC": "Кол-во резерваций каждый день"
     }
 }

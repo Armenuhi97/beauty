@@ -54,7 +54,6 @@ export class StatisticItemComponent {
       let date = $event
       let selectMonth = date.getMonth();
       let selectYear = date.getFullYear();
-      console.log($event);
       let end = this._datePipe.transform(this._calculateLastDayInMonth(selectMonth, selectYear), 'yyyy-MM-dd');
       let start = this._datePipe.transform(this._calculateFirstDayInMonth(selectMonth, selectYear), 'yyyy-MM-dd');
       switch (type) {
@@ -88,7 +87,6 @@ export class StatisticItemComponent {
   public getJoinedUser(start:string, end:string, role:string) {
     return this._statisticService.getJoinedUsers(start, end, role).pipe(
       map((data: StatisticItem[]) => {
-        console.log(data);
         if (role == 'MST') {
           this.jondedMasterStatistics = data
         } else {

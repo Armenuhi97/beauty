@@ -62,9 +62,7 @@ export class FeedbackComponent {
     const offset = (this.pageIndex - 1) * this.pageSize;
 
     return this._feedbackService.getFeedBacks(offset, this.answeredControl.value, this.roleControl.value).pipe(
-      map((data: ServerResponse<any>) => {
-        console.log(data.results);
-        
+      map((data: ServerResponse<any>) => {        
         this.total = data.count;
         this.feedbacks = data.results
       })

@@ -26,7 +26,6 @@ export class UsersComponent {
     this._userService.getUsers(offset).pipe(takeUntil(this.unsubscribe$)).subscribe((data: ServerResponse<IUser[]>) => {
       this.total = data.count;
       this.users=data.results
-      console.log(data);
 
     })
   }

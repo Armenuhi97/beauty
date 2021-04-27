@@ -161,5 +161,13 @@
         "TARIF": "Tarifs",
         "PRICE": "Prix",
         "TOTAL":"Total"
+    },
+    "STATISTICS": {
+        "USER_STATISTIC": "Кол-во зарегестрированных пользователей",
+        "MASTER_STATISTIC": "Кол-во Зарегестророванных Мастеров",
+        "CATEGORY_STATISTIC": "Кол-во опубликованных услуг мастерами каждый день",
+        "POST_STATISTIC": "Кол-во постов каждый день ",
+        "COMMENT_STATISTIC": "Кол-во комментариев каждый день",
+        "ORDER_STATISTIC": "Кол-во резерваций каждый день"
     }
 }

@@ -49,7 +49,6 @@ export class UtilsComponent implements OnInit {
     return this._utilsService.getCategoriesList().pipe(
       map((data: ServerResponse<Category[]>) => {
         this.categories = data.results
-        console.log(data);
 
       })
     )
@@ -91,7 +90,6 @@ export class UtilsComponent implements OnInit {
 
     return this._utilsService.getUtils(offset, service, category).pipe(
       map((data) => {
-        console.log(data.results);
 
         this.total = data.count;
         this.utils = data.results

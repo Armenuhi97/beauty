@@ -125,9 +125,7 @@ export class TarifComponent {
             this._uploadService.uploadFile(formValue.image)
                 .pipe(takeUntil(this.unsubscribe$))
                 .subscribe((response) => {
-                    sendingData.image = response;
-                    console.log(sendingData);
-                    
+                    sendingData.image = response;                    
                     this._sendSaveOrRequest(sendingData);
                 });
         }

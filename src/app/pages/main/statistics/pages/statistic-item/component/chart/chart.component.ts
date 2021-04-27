@@ -81,7 +81,7 @@ export class ChartComponent {
     }
 
     subscribeToDateChange() {
-        this.dateControl.valueChanges.pipe(takeUntil(this.unsubscribe$)).subscribe((value) => {
+        this.dateControl.valueChanges.pipe(takeUntil(this.unsubscribe$)).subscribe((value) => {            
             if (value)
                 this._changeDate.emit(value)
         })
