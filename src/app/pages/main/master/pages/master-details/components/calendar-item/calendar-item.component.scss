@@ -20,8 +20,29 @@
         border: none;
         // min-height: 100vh;
         // min-height:calc(var(--vh, 1vh) * 100);
-        min-width: 320px;
+        width: 45%;
         margin: 10px;
         flex-grow: 1;
+        background: #f9989c;
+        color: white;
+        cursor: pointer;
+    }
+}
+:host::ng-deep {
+    .service-times {
+        .ant-card-body {
+            padding: 9px !important;
+        }
+    }
+}
+.service-times {
+    flex-wrap: wrap;
+    .times-item {
+        margin: 10px;
+        width:calc(33.3% - 20px);
+        border-radius: 16px;
+        .item {
+            margin: 5px 0;
+        }
     }
 }

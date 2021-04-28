@@ -1,7 +1,15 @@
 <!-- <nz-calendar [(ngModel)]="date" [(nzMode)]="mode" ></nz-calendar> -->
-<nz-calendar [nzFullscreen]="false" [(ngModel)]="date" (ngModelChange)="panelChange($event)"></nz-calendar>
+<nz-calendar [nzFullscreen]="false" [formControl]="dateControl"></nz-calendar>
 <div class="services">
-    <button>service 1</button>
-    <button>service 2</button>
-    <button>service 3</button>
+    <button *ngFor="let item of services">{{item.service_details.name_en}}</button>
+
+</div>
+<div class="service-times d-flex align-items-center ">
+    <nz-card *ngFor="let item of [1,2,3,4,5,6,7,5,8]" class="times-item">
+        <div class="item d-flex align-items-center justify-content-between">
+            <span>10:30 - 12:30</span>
+            <div>Свободно</div>
+        </div>
+        <p>Наращивание ресний</p>
+      </nz-card>
 </div>

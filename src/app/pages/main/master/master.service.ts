@@ -20,4 +20,13 @@ export class MasterService {
     public getOrderHistory(offset: number, userId: number) {
         return this._httpClient.get(`schedule/order/?offset=${offset}&master_id=${userId}`)
     }
+    public getServices(userId:number) {
+        return this._httpClient.get(`userdetails/master-service/?user_id=${userId}&limit=100000`)
+    }
+    public getCalendarByDate(date: string, masterId: number) {
+        return this._httpClient.post(`schedule/get-calendar-by-date/`, {
+            "date": date,
+            "master_id": masterId
+        })
+    }
 }

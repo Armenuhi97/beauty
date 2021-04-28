@@ -55,6 +55,6 @@
         <app-master-tarif [id]="id"></app-master-tarif>
     </nz-tab>
     <nz-tab [nzTitle]="'USER.CALENDAR' | translate">
-        <app-calendar-item [id]="id"></app-calendar-item>
+        <app-calendar-item [service]="services" [id]="id"></app-calendar-item>
     </nz-tab>
 </nz-tabset>
