@@ -1,15 +1,45 @@
 <!-- <nz-calendar [(ngModel)]="date" [(nzMode)]="mode" ></nz-calendar> -->
-<nz-calendar [nzFullscreen]="false" [formControl]="dateControl"></nz-calendar>
+<!-- <nz-calendar [nzFullscreen]="false" [formControl]="dateControl"></nz-calendar> -->
+<nz-calendar [nzFullscreen]="true" [formControl]="dateControl">
+    <ul *nzDateCell="let date" class="events d-flex">
+        <ng-container *ngIf="monthOrders">
+            <div class="d-flex align-items-center ">
+                <nz-badge nzStandalone [nzCount]="monthOrders[formatDate(date)]?.pending"
+                    [nzStyle]="{ backgroundColor:'orange' }"></nz-badge>
+                <nz-badge nzStandalone [nzCount]="monthOrders[formatDate(date)]?.accepted"
+                    [nzStyle]="{ backgroundColor:'green','marginLeft':'10px' }"></nz-badge>
+            </div>
+        </ng-container>
+    </ul>
+</nz-calendar>
+
 <div class="services">
-    <button *ngFor="let item of services">{{item.service_details.name_en}}</button>
+    <button [class.select]="item?.id == activeService?.id" (click)="selectService(item)"
+        *ngFor="let item of services">{{item.service_details.name_en}}</button>
 
 </div>
-<div class="service-times d-flex align-items-center ">
-    <nz-card *ngFor="let item of [1,2,3,4,5,6,7,5,8]" class="times-item">
-        <div class="item d-flex align-items-center justify-content-between">
-            <span>10:30 - 12:30</span>
-            <div>Свободно</div>
+<div *ngIf="activeService" id="active-service" class="service-times">
+    <nz-card *ngIf="activeService?.workingTimes && activeService?.workingTimes.length">
+        <div class="d-flex justify-content-between">
+            <div>
+                <div *ngFor="let item of activeService?.workingTimes" class="times-item" class="item ">
+                    <span>{{item.start | date:'HH:mm'}} - {{item.end | date:'HH:mm'}}</span>
+                </div>
+            </div>
+            <div>Working</div>
         </div>
-        <p>Наращивание ресний</p>
-      </nz-card>
+        <p>{{activeService?.service_details?.name_en}}</p>
+    </nz-card>
+
+    <nz-card *ngIf="activeService?.busyTimes && activeService?.busyTimes.length">
+        <div class="d-flex  justify-content-between">
+            <div>
+                <div *ngFor="let item of activeService?.busyTimes" class="times-item" class="item ">
+                    <span>{{item.start | date:'HH:mm'}} - {{item.end | date:'HH:mm'}}</span>
+                </div>
+            </div>
+            <div>Busy</div>
+        </div>
+        <p>{{activeService?.service_details?.name_en}}</p>
+    </nz-card>
 </div>

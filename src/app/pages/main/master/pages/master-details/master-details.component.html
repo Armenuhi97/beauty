@@ -22,7 +22,15 @@
             <nz-descriptions-item [nzTitle]="'USER.RATING' | translate"><span
                     class="status-primary">{{master?.rating}}</span>
             </nz-descriptions-item>
+            <nz-descriptions-item [nzTitle]="'USER.CERTIFICATES' | translate">
+                <div class="d-flex flex-wrap align-items-center status-primary">
+                    <div class="cerificate" *ngFor="let certificate of master?.master_certificates">
+                        <img [src]="certificate.image" alt="">
+                    </div>
+                </div>
+            </nz-descriptions-item>
         </nz-descriptions>
+   
     </nz-tab>
     <nz-tab [nzTitle]="'USER.REVIEW' | translate">
         <nz-table #usersTable [nzData]="reviews" (nzPageIndexChange)="nzPageIndexChange($event)" [nzTotal]="total"
@@ -55,6 +63,6 @@
         <app-master-tarif [id]="id"></app-master-tarif>
     </nz-tab>
     <nz-tab [nzTitle]="'USER.CALENDAR' | translate">
-        <app-calendar-item [service]="services" [id]="id"></app-calendar-item>
+        <app-calendar-item *ngIf="services && services.length" [service]="services" [id]="id"></app-calendar-item>
     </nz-tab>
 </nz-tabset>

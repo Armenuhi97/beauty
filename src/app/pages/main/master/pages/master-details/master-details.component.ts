@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MasterServiceType } from '@globals/masters';
 import { Service } from '@models/category';
 import { Reviews } from '@models/review';
 import { ServerResponse } from '@models/server-respoce';
@@ -12,7 +13,7 @@ import { MasterService } from '../../master.service';
 
 @Component({
   templateUrl: './master-details.component.html',
-  styleUrls: ['./master-details.component.css'],
+  styleUrls: ['./master-details.component.scss'],
   providers: [DatePipe]
 })
 export class MasterDetailsComponent implements OnInit {
@@ -23,25 +24,25 @@ export class MasterDetailsComponent implements OnInit {
   public pageIndex = 1;
   public pageSize = 10;
   total: number;
-  services: any[] = []
+  services: MasterServiceType[] = [];
+
   constructor(private route: ActivatedRoute,
     private _masterService: MasterService) {
-
   }
   ngOnInit() {
     this.route.params.pipe(takeUntil(this.unsubscribe$),
-    switchMap((params)=>{
-      this.id = params['id'];
-     return this._combineObservable()
-    })).subscribe();
+      switchMap((params) => {
+        this.id = params['id'];
+        return this._combineObservable()
+      })).subscribe();
   }
   private _combineObservable() {
     const combine = forkJoin(
       this._getInfo(),
       this.getServices()
     )
-   return combine
-    } 
+    return combine
+  }
   changeTab($event) {
     if ($event.index == 0)
       this._getInfo().pipe(takeUntil(this.unsubscribe$))
@@ -61,8 +62,7 @@ export class MasterDetailsComponent implements OnInit {
     })
   }
   public getServices() {
-    return this._masterService.getServices(this.id).pipe(map((data: ServerResponse<any[]>) => {
-      console.log(data);
+    return this._masterService.getServices(this.id).pipe(map((data: ServerResponse<MasterServiceType[]>) => {
       this.services = data.results
     }))
   }

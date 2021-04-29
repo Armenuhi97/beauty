@@ -59,7 +59,8 @@
         "HISTORY":"Histoire",
         "ABOUT":"à propos de nous",
         "PHONE":"Numéro de téléphone",
-        "CALENDAR":"Calendrier"
+        "CALENDAR":"Calendrier",
+        "CERTIFICATES":"Certificate"
     },
     "UTILS": {
         "DATE": "la date",

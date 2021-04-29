@@ -16,6 +16,7 @@ export interface IUser {
     rating:string;
     orders:any;
     amount:string
+    master_certificates?:Array<{image:string}>
     user_role: {
         id: number;
         code: string;

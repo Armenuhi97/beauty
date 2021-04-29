@@ -1,4 +1,4 @@
-import { IUser } from '@models/index';
+import { IUser, Service } from '@models/index';
 
 export const DEFAULT_MASTERS: IUser[] = [
     {
@@ -13,9 +13,9 @@ export const DEFAULT_MASTERS: IUser[] = [
         city_latitude: 'User City Latitude',
         city_longitude: 'User City Longitude',
         gender: 'User Gender',
-        rating:'4.9',
-        orders:'order',
-        amount:'1700',
+        rating: '4.9',
+        orders: 'order',
+        amount: '1700',
         image: 'https://miro.medium.com/max/1838/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg',
         phone_number: '+37498783092',
         zip_code: '4525',
@@ -33,3 +33,19 @@ export const DEFAULT_MASTERS: IUser[] = [
         }
     }
 ];
+
+export interface MasterServiceType {
+    busyTimes: Array<{ start: Date, end: Date }>
+    created_at: string
+    go_home: boolean
+    go_home_price: number
+    id: number
+    minutes: number
+    prepay_percent: number
+    price: number
+    service: number
+    service_details: Service
+    user: number
+    user_details: IUser
+    workingTimes: Array<{ start: Date, end: Date }>
+}
