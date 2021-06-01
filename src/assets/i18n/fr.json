@@ -30,7 +30,8 @@
         "CATEGORY_UTILS": "Catégorie de services",
         "TARIF": "Tarifs",
         "ORDERS": "Commandes",
-        "BOUGHT_TARIF":"Tarifs achetés"
+        "BOUGHT_TARIF":"Tarifs achetés",
+        "CHAT":"Chat"
     },
     "LOGIN": {
         "SIGN_IN": "Entrer",

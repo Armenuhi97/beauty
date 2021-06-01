@@ -13,7 +13,7 @@ export class LoaderInterceptor implements HttpInterceptor {
   constructor(private loaderService: LoaderService) {
       this.urlsToNotUse = [
       'notifications/.+',
-    //   'products/search-product/.+'
+      'chat/.+'
     ];
   }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

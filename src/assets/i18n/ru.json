@@ -30,7 +30,8 @@
         "CATEGORY_UTILS": "Услуги категорий",
         "TARIF": "Тарифы",
         "ORDERS": "Заказы",
-        "BOUGHT_TARIF": "Купленные тарифы"
+        "BOUGHT_TARIF": "Купленные тарифы",
+        "CHAT": "Чат"
     },
     "LOGIN": {
         "SIGN_IN": "Войти",
@@ -60,7 +61,7 @@
         "ABOUT": "О себе",
         "PHONE": "Номер телефона",
         "CALENDAR": "Календарь",
-        "CERTIFICATES":"сертификаты"
+        "CERTIFICATES": "сертификаты"
     },
     "UTILS": {
         "DATE": "Дата",

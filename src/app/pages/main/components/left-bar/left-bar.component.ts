@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class LeftBarComponent implements OnInit {
   @Input() isCollapsed: boolean;
+  @Input() messagCount: { unseen_message_room_count: number };
   public sideNavItems$: Observable<ISideNavItem[]>;
   constructor(
     private _store: Store<{ sideNav: SideNavState }>

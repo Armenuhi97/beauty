@@ -11,7 +11,10 @@ import {
   SettingOutline,
   EditOutline,
   PlusCircleFill,
-  PlusCircleOutline
+  PlusCircleOutline,
+  MessageOutline,
+  SendOutline,
+  WechatOutline
 } from '@ant-design/icons-angular/icons';
 
 const icons = [
@@ -24,7 +27,10 @@ const icons = [
   SettingOutline,
   EditOutline,
   PlusCircleFill,
-  PlusCircleOutline
+  PlusCircleOutline,
+  MessageOutline,
+  SendOutline,
+  WechatOutline
 ];
 
 @NgModule({

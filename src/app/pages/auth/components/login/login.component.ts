@@ -37,8 +37,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private _initForm(): void {
     this.loginForm = this._fb.group({
-      username: ['admin3', [Validators.required, Validators.minLength(6)]],
-      password: ['12345678', [Validators.required, Validators.minLength(6)]],
+      username: ['beauty_admin', [Validators.required, Validators.minLength(6)]],
+      password: ['beauty_admin', [Validators.required, Validators.minLength(6)]],
       role_code: 'ADM'
     });
   }
@@ -65,6 +65,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         takeUntil(this._unsubscribe),
       )
       .subscribe((res) => {
+        this._cookieService.set('userId', (res.user.id).toString());
         this._cookieService.set('token', res.token);
         this._router.navigate(['/dashboard']);
       });

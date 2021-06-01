@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  API_URL: 'http://api-beauty.annaniks.com/'
+  API_URL: 'http://api-beauty.annaniks.com/',
+  SOCKET_ENDPOINT:'ws://api-beauty.annaniks.com/'
 };
 
 /*

@@ -1,6 +1,6 @@
 <nz-layout>
   <nz-sider nzCollapsible (nzCollapsedChange)="toggleCollapsed($event)" nzWidth="200px" nzTheme="light">
-    <app-left-bar [isCollapsed]="isCollapsed"></app-left-bar>
+    <app-left-bar [messagCount]="metric" [isCollapsed]="isCollapsed"></app-left-bar>
   </nz-sider>
   <nz-layout>
     <nz-header>

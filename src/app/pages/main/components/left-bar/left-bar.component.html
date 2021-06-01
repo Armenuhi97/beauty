@@ -4,6 +4,9 @@
 <ul nz-menu nzTheme="light" nzMode="inline">
   <li class="side-nav-item" [routerLink]="[item.routerLink]" routerLinkActive="ant-menu-item-selected" nz-menu-item
     *ngFor="let item of sideNavItems$ | async">
+    <nz-badge [nzCount]="messagCount?.unseen_message_room_count" *ngIf="!isCollapsed && item.routerLink == 'chat'">
+      <!-- <i nz-icon nzType="message"></i> -->
+    </nz-badge>
     <i nz-icon nzTheme="outline" [nzType]="item.icon"></i>
     <span [class.is-finish]="!item.isFinish" *ngIf="!isCollapsed">{{item.label | translate}}</span>
   </li>

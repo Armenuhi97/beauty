@@ -111,6 +111,10 @@ const routes: Routes = [
             (m) => m.StatisticModule
           ),
       },
+      {
+        path: 'chat',
+        loadChildren: () => import('./chat/chat.module').then(m => m.ChatModule)
+      }
     ],
   },
 ];

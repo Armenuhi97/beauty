@@ -122,8 +122,6 @@ export class CalendarItemComponent {
     }
 
     selectService(service: MasterServiceType) {
-        console.log(service);
-
         this.activeService = service;
         setTimeout(() => {
             let serviceTimes = document.getElementById('active-service');
@@ -137,3 +135,4 @@ export class CalendarItemComponent {
     }
 }
 // token - d5b9179d8338f0d6733224928a66666dc7603e20
+// 39c3569ae5cb4c91dcc0ae0427e7878f9da84da7    57

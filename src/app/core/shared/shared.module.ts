@@ -26,11 +26,23 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { QuillModule } from 'ngx-quill'
 import { NzCalendarModule } from 'ng-zorro-antd/calendar';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
+import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
+import { NzCascaderModule } from 'ng-zorro-antd/cascader';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule,QuillModule.forRoot(), ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, QuillModule.forRoot(), ReactiveFormsModule, FormsModule],
   exports: [
+    NzTypographyModule,
+    NzDividerModule,
+    NzMessageModule,
+    NzCollapseModule,
+    NzCascaderModule,
+    NzGridModule,
     NzBadgeModule,
     NzCalendarModule,
     QuillModule,
@@ -58,7 +70,8 @@ import { NzBadgeModule } from 'ng-zorro-antd/badge';
     NzImageModule,
     NzGridModule,
     NzCardModule,
-    NzSwitchModule
+    NzSwitchModule,
+    NzAvatarModule
   ],
 })
 export class SharedModule { }

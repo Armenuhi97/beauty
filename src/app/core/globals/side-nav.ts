@@ -98,6 +98,11 @@ export const DEFAULT_NAVIGATION_ITEMS: ISideNavItem[] = [
         isFinish: true
     },
 
-
+    {
+        label: 'NAVIGATION.CHAT',
+        routerLink: 'chat',
+        icon: 'message',
+        isFinish: true
+    },
 ];
 
