@@ -31,7 +31,10 @@
         "TARIF": "Tarifs",
         "ORDERS": "Commandes",
         "BOUGHT_TARIF":"Tarifs achetés",
-        "CHAT":"Chat"
+        "CHAT":"Chat",
+        "COUNTRY":"Pays",
+        "CITY":"Villes"
+
     },
     "LOGIN": {
         "SIGN_IN": "Entrer",

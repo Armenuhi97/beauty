@@ -26,6 +26,12 @@ export const DEFAULT_NAVIGATION_ITEMS: ISideNavItem[] = [
         isFinish: true
     },
     {
+        label: 'NAVIGATION.COUNTRY',
+        routerLink: 'country',
+        icon: 'setting',
+        isFinish: true
+    },
+    {
         label: 'NAVIGATION.POSTS',
         routerLink: 'posts',
         icon: 'setting',

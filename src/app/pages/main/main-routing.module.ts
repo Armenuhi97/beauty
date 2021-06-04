@@ -114,6 +114,10 @@ const routes: Routes = [
       {
         path: 'chat',
         loadChildren: () => import('./chat/chat.module').then(m => m.ChatModule)
+      },
+      {
+        path: 'country',
+        loadChildren: () => import('./country/country.module').then(m => m.CountryModule)
       }
     ],
   },

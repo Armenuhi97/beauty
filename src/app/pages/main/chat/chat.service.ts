@@ -11,7 +11,7 @@ export class ChatService {
 
     constructor(private _cookieService: CookieService) { }
 
-    public connect(token: string): void {        
+    public connect(token: string): void {
         this._socket = io(environment.SOCKET_ENDPOINT, {
             extraHeaders: {
                 Authorization: token
@@ -44,7 +44,9 @@ export class ChatService {
             });
         });
     }
-
+    public disconnect() {
+        this._socket.on("disconnect", () => { });
+    }
     public onRoomsList(): Observable<RoomList[]> {
         return new Observable(observer => {
             this._socket.on('rooms', (res) => {

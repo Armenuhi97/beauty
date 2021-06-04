@@ -63,7 +63,7 @@ export class ChatComponent {
             // }           
             const token = String(this._cookieService.get('token'));
             if (token) {
-                
+
                 this._chatService.connect(token);
             }
         });
@@ -207,7 +207,11 @@ export class ChatComponent {
 
 
     ngOnDestroy(): void {
-        this._unsubscribe$.next();
-        this._unsubscribe$.complete();
+        this._chatService.disconnect()
+        setTimeout(() => {
+            this._unsubscribe$.next();
+            this._unsubscribe$.complete();
+        }, 100);
+
     }
 }

@@ -1,7 +1,7 @@
-<div   class="d-flex position-relative align-items-center justify-content-between service-card" (click)="onCardClicked()">
+<div   [ngClass]="{'active':active}" class="d-flex position-relative align-items-center justify-content-between service-card" (click)="onCardClicked()">
     <div class="d-flex align-items-center">
       <div>
-        <div>{{service?.name_en}}</div>
+        <div>{{cityCountry?.title_en}}</div>
       </div>
     </div>
   

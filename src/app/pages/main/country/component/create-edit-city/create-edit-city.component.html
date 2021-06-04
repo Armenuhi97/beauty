@@ -1,0 +1,29 @@
+<nz-modal [nzVisible]="isVisible" nzWidth="700px" (nzOnCancel)="closeModal()" (nzOnOk)="onSave()">
+    <form nz-form [formGroup]="validateForm" [nzLayout]="'vertical'">
+        <div nz-row [nzGutter]="24">
+            <div nz-col [nzSpan]="12">
+                <nz-form-label class="inline-labels" nzRequired>{{'CATEGORY_UTILS.NAME_EN' | translate}}</nz-form-label>
+                <nz-form-item>
+                    <nz-form-control nzHasFeedback [nzErrorTip]="userErrorTpl">
+                        <input nz-input formControlName="title_en" type="text" placeholder="" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col [nzSpan]="12">
+                <nz-form-label class="inline-labels" nzRequired>{{'CATEGORY_UTILS.NAME_FR' | translate}}</nz-form-label>
+                <nz-form-item>
+                    <nz-form-control nzHasFeedback [nzErrorTip]="userErrorTpl">
+                        <input nz-input formControlName="title_fr" type="text" placeholder="" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+
+    </form>
+</nz-modal>
+
+<ng-template #userErrorTpl let-control>
+    <ng-container *ngIf="control.hasError('required')">
+        Это обязательное поле
+    </ng-container>
+</ng-template>
