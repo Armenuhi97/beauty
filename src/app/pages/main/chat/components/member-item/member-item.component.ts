@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
-import { RoomList, RoomMember } from '@models/chat';
+import { RoomList, RoomMember } from 'src/app/core/models/chat';
 
 @Component({
   selector: 'app-member-item',

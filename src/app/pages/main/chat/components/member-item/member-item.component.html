@@ -6,7 +6,7 @@
       width="50" class="rounded-circle"> -->
     <div class="media-body margin-top-7 ml-4">
       <div class="d-flex align-items-center justify-content-between mb-1">
-        <h6 class="mb-0 d-flex align-items-center">{{member?.user?.user?.first_name + ' ' + member?.user?.user?.last_name}}</h6>
+        <h6 class="mb-0 d-flex align-items-center">{{member.user.user.first_name + ' ' + member.user.user.last_name}}</h6>
         <div class="unread-message" *ngIf="room.unseen_message_count > 0">
           <nz-badge [nzOverflowCount]="9" nzStandalone [nzCount]="room.unseen_message_count"></nz-badge>
         </div>
@@ -16,8 +16,5 @@
     </div>
 
   </div>
-  <!-- <div
-    [ngClass]="{'client-color':member.user.user_role.code == 'CL','executor-color': member.user.user_role.code == 'EXC'}">
-    {{member.user.user_role.code == 'CL'?'Заказчик':'Исполнитель'}}
-  </div> -->
+
 </a>

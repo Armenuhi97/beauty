@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
@@ -9,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class ChatService {
     private _socket;
 
-    constructor(private _cookieService: CookieService) { }
+    constructor(private _httpClient:HttpClient,private _cookieService:CookieService) { }
 
     public connect(token: string): void {
         this._socket = io(environment.SOCKET_ENDPOINT, {
@@ -28,10 +29,10 @@ export class ChatService {
         this._socket.emit('get_rooms');
     }
 
-    public getRoomMessages(id: number, index): void {
+    public getRoomMessages(id: number,index): void {
         this._socket.emit('get_room_messages', {
             room_id: id,
-            user_id: this._cookieService.get('userId'),
+            user_id:this._cookieService.get('userId'),
             start_index: index
         });
     }
@@ -44,8 +45,12 @@ export class ChatService {
             });
         });
     }
-    public disconnect() {
-        this._socket.on("disconnect", () => { });
+    public socketDisConnected(): Observable<void> {
+        return new Observable(observer => {
+            this._socket.on('disconnect', () => {
+                observer.next();
+            });
+        });
     }
     public onRoomsList(): Observable<RoomList[]> {
         return new Observable(observer => {
