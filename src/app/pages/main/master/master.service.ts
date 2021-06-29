@@ -9,10 +9,10 @@ export class MasterService {
     constructor(private _httpClient: HttpClient) { }
 
     public getMasters(offset: number) {
-        return this._httpClient.get(`userdetails/user/?user_role__code=MST&limit=10&offset=${offset}`)
+        return this._httpClient.get(`userdetails/user/?is_master=true&limit=10&offset=${offset}`)
     }
     public getMasterById(id: number) {
-        return this._httpClient.get(`userdetails/user/?user_role__code=MST&id=${id}`)
+        return this._httpClient.get(`userdetails/user/?is_master=true&id=${id}`)
     }
     public getMasterReview(id: number, offset: number) {
         return this._httpClient.get(`timeline/review/?from_user=${id}&limit&offset=${offset}`)

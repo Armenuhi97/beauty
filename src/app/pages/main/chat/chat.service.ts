@@ -45,12 +45,10 @@ export class ChatService {
             });
         });
     }
-    public socketDisConnected(): Observable<void> {
-        return new Observable(observer => {
-            this._socket.on('disconnect', () => {
-                observer.next();
-            });
-        });
+    public socketDisConnected() {
+        this._socket.on("disconnect", () => {
+            this._socket.connect();
+          });
     }
     public onRoomsList(): Observable<RoomList[]> {
         return new Observable(observer => {

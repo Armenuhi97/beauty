@@ -8,10 +8,10 @@ import { Observable } from "rxjs";
 export class UsersService {
     constructor(private _httpClient: HttpClient) { }
     public getUsers(offset: number) {
-        return this._httpClient.get(`userdetails/user/?user_role__code=CL&limit=10&offset=${offset}`)
+        return this._httpClient.get(`userdetails/user/?is_client=true&limit=10&offset=${offset}`)
     }
     public getUserById(id: number) {
-        return this._httpClient.get(`userdetails/user/?user_role__code=CL&id=${id}`)
+        return this._httpClient.get(`userdetails/user/?is_client=true&id=${id}`)
     }
     public getClientReview(id: number, offset: number) {
         return this._httpClient.get(`timeline/review/?from_user=${id}&limit&offset=${offset}`)
