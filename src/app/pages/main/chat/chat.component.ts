@@ -64,6 +64,7 @@ export class ChatComponent implements OnInit, OnDestroy {
       file_type: '',
       message: this.messageControl.value,
       replier_is_admin: true,
+      sender:+this._cookieService.get('userId')
     };
     this.messageControl.reset();
     this.fileControl.reset();
@@ -96,6 +97,12 @@ export class ChatComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._unsubscribe$))
       .subscribe(res => {
         this._loaderService.setHttpProgressStatus(false);
+        res = res.map((val) => {
+          if (!val.room.last_message_date) {
+            val.room.last_message_date = null
+          }
+          return val
+        })
         res.sort((a: any, b: any) => {
           return new Date(b.room.last_message_date).getTime() - new Date(a.room.last_message_date).getTime()
         }

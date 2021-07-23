@@ -1,6 +1,12 @@
 <nz-layout>
-  <nz-sider nzCollapsible (nzCollapsedChange)="toggleCollapsed($event)" nzWidth="200px" nzTheme="light">
+  <nz-sider nzCollapsible  [(nzCollapsed)]="isCollapsed"
+  [nzTrigger]="null" [nzTrigger]="null" (nzCollapsedChange)="toggleCollapsed($event)" nzWidth="200px" nzTheme="light">
     <app-left-bar [messagCount]="metric" [isCollapsed]="isCollapsed"></app-left-bar>
+    <div class="app-header d-flex justify-content-center">
+      <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+        <i class="trigger" nz-icon [nzType]="isCollapsed ? 'left' : 'right'"></i>
+      </span>
+    </div>
   </nz-sider>
   <nz-layout>
     <nz-header>

@@ -22,10 +22,10 @@
     color: white !important;
 }
 .client-color{
-    color: rgb(17, 160, 17);
+    color: black;
 }
 .executor-color{
-    color: #82561c;
+    color: grey;
 
 }
 .list-group-item{

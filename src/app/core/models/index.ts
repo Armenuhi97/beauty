@@ -10,4 +10,5 @@ export * from './review'
 export * from './post';
 export * from './post-review';
 export * from './server-respoce';
-export * from './category'
+export * from './category';
+export * from './create-room'

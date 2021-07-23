@@ -1,11 +1,16 @@
 nz-layout {
     height: 100vh;
-    
+
     nz-header {
         background: #fff;
         padding: 0;
     }
-
+    .app-header {
+        margin-top: auto;
+        i {
+            cursor: pointer;
+        }
+    }
     nz-content {
         margin: 0 16px;
     }

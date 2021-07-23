@@ -1,13 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { DEFAULT_MASTERS } from '@globals/index';
+import { Router } from '@angular/router';
 import { IUser, ServerResponse } from '@models/index';
-import { Store } from '@ngrx/store';
-import { BreadCrumbState } from '@store/breadcrumb/breadcrumb.state';
-import { SetMasters } from '@store/masters/masters.actions';
-import { selectMasters } from '@store/masters/masters.selectors';
-import { MastersState } from '@store/masters/masters.state';
-import { Observable, Subject } from 'rxjs';
+import {  Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { CreateChatService } from 'src/app/core/services/create-chat.service';
 import { MasterService } from '../../master.service';
 
 @Component({
@@ -22,10 +18,17 @@ export class MasterComponent implements OnInit {
   public pageIndex = 1;
   public pageSize = 10;
   masters:IUser[] = []
-  constructor(private _mesterService: MasterService) { }
+  constructor(private _mesterService: MasterService,private _router:Router, private _createChatService: CreateChatService) { }
 
   ngOnInit(): void {
     this.getUsersList()
+  }
+  public chatWithUser(id: number): void {
+    this._createChatService.createChat(id)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((room: any) => {
+        this._router.navigate([`dashboard/chat/`], { queryParams: { focusedUserId: room.id } });
+      });
   }
   public getUsersList() {
     const offset = (this.pageIndex - 1) * this.pageSize;

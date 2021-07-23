@@ -15,7 +15,10 @@ import {
   MessageOutline,
   SendOutline,
   WechatOutline,
-  UploadOutline
+  UploadOutline,
+  LeftOutline,
+  RightOutline,
+  WechatFill
 } from '@ant-design/icons-angular/icons';
 
 const icons = [
@@ -32,7 +35,10 @@ const icons = [
   MessageOutline,
   SendOutline,
   WechatOutline,
-  UploadOutline
+  UploadOutline,
+  LeftOutline,
+  RightOutline,
+  WechatFill
 ];
 
 @NgModule({

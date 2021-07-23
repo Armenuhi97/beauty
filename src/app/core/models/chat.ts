@@ -4,6 +4,7 @@ export interface MessageRequest {
     file_url: string;
     replier_is_admin: boolean;
     file_type: string
+    sender:number
 }
 
 export interface Message {

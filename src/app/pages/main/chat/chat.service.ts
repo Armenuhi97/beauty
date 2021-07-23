@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class ChatService {
     private _socket;
 
-    constructor(private _httpClient:HttpClient,private _cookieService:CookieService) { }
+    constructor(private _cookieService:CookieService) { }
 
     public connect(token: string): void {
         this._socket = io(environment.SOCKET_ENDPOINT, {

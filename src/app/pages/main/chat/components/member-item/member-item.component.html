@@ -16,5 +16,8 @@
     </div>
 
   </div>
-
+  <div
+  [ngClass]="{'client-color':member?.user?.is_client,'executor-color': member?.user?.is_master}">
+  {{member?.user?.is_client?'Пользователь':'Мастер'}}
+</div>
 </a>

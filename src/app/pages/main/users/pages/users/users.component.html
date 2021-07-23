@@ -1,5 +1,5 @@
-<nz-table #usersTable [nzData]="users"  (nzPageIndexChange)="nzPageIndexChange($event)"
-    [nzTotal]="total" [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" [nzFrontPagination]="false">
+<nz-table #usersTable [nzData]="users" (nzPageIndexChange)="nzPageIndexChange($event)" [nzTotal]="total"
+    [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" [nzFrontPagination]="false">
     <thead>
         <tr>
             <th>N</th>
@@ -8,6 +8,7 @@
             <th>{{'USER.EMAIL' | translate}}</th>
             <th>{{'USER.CITY' | translate}}</th>
             <th>{{'USER.RATING' | translate}}</th>
+            <th></th>
             <th></th>
             <th></th>
         </tr>
@@ -28,6 +29,7 @@
                     <i nz-icon nzType="edit" nzTheme="outline"></i>
                 </a>
             </td>
+            <td><i class="message-icon" (click)="chatWithUser(user?.id)" nz-icon nzType="wechat" nzTheme="outline"></i></td>
         </tr>
     </tbody>
 </nz-table>

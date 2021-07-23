@@ -11,6 +11,7 @@
             <th>{{'USER.RATING' | translate}}</th>
             <th></th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -30,6 +31,8 @@
                     <i nz-icon nzType="edit" nzTheme="outline"></i>
                 </a>
             </td>
+            <td><i class="message-icon" (click)="chatWithUser(master?.id)" nz-icon nzType="wechat" nzTheme="outline"></i></td>
+
         </tr>
     </tbody>
 </nz-table>
