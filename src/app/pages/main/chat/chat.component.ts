@@ -39,14 +39,11 @@ export class ChatComponent implements OnInit, OnDestroy {
     private _loaderService: LoaderService
   ) {
     this.windowHeight = window.innerHeight - 112 - 130;
-
+    this._subscribeToQueryChanges()
   }
 
   ngOnInit(): void {
-    const token = String(this._cookieService.get('token'));
-    if (token) {
-      this._chatService.connect(token);
-    }
+   
     this._chatService.socketConnected().pipe(takeUntil(this._unsubscribe$)).subscribe(() => { });
     this._getRoomsList();
     this._subscribeToActiveRoomMessages();
@@ -90,6 +87,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.messages = []
     this.activeRoom = this.roomsList.find(room => room.room.id === id);
     this.activeRoom.unseen_message_count = 0;
+
     this._getActiveRoomMessages();
   }
 
@@ -113,6 +111,9 @@ export class ChatComponent implements OnInit, OnDestroy {
     this._chatService.subscribeToNewMessages()
       .pipe(takeUntil(this._unsubscribe$))
       .subscribe(res => {
+        console.log(res);
+        console.log(this.activeRoom);
+
         if (this.activeRoom && res.message.room === this.activeRoom.room.id) {
           if (ispush) {
             this.messages.push(res.message);
@@ -148,12 +149,9 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.fileControl.reset()
   }
   public handleChange(info: NzUploadChangeParam) {
-    // if (type === 'file') {
     this.type = info.file.type;
     this.fileControl.setValue(info.file.originFileObj);
-    // } else if (type === 'image') {
-    // this.validateForm.get('image').setValue(info.file.originFileObj);
-    // }
+
   }
   // ROOM MESSAGES
   private _getActiveRoomMessages(): void {
@@ -186,10 +184,28 @@ export class ChatComponent implements OnInit, OnDestroy {
 
       });
   }
+  private _subscribeToQueryChanges(): void {
+    this._activatedRoute.queryParams.pipe(takeUntil(this._unsubscribe$)).subscribe((params) => {
+      console.log(params);
+      const token = String(this._cookieService.get('token'));
+      if (token) {        
+        this._chatService.connect(token);
+      }
+      // const token = String(params.token);
+      // if (token) {
+      //   this._chatService.connect(token);
+      // }
+      this._activeRoomId = +params.focusedUserId | +params.focusedRoomId | 0
+      // if(params.focusedRoomId){
+      //   this.setActiveRoom(+params.focusedRoomId)
+      // }
+     
+    });
+
+  }
 
 
   ngOnDestroy(): void {
-    this._chatService.socketDisConnected()
     this._unsubscribe$.next();
     this._unsubscribe$.complete();
   }

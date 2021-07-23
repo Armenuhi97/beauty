@@ -14,7 +14,8 @@ import {
   PlusCircleOutline,
   MessageOutline,
   SendOutline,
-  WechatOutline
+  WechatOutline,
+  UploadOutline
 } from '@ant-design/icons-angular/icons';
 
 const icons = [
@@ -30,7 +31,8 @@ const icons = [
   PlusCircleOutline,
   MessageOutline,
   SendOutline,
-  WechatOutline
+  WechatOutline,
+  UploadOutline
 ];
 
 @NgModule({
