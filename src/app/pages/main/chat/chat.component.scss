@@ -35,7 +35,7 @@
         height: 480px;
         overflow-y: scroll;
     }
-    .action-button {
+    .action-button{
         padding: 5px;
         margin: 5px 0;
     }
@@ -58,20 +58,18 @@
 
     .bg-primary,
     .list-group-item.active {
-        border-color: #f9989c;
-        background-color: #f9989c !important;
+        border-color: #F9989C;
+        background-color: #F9989C !important;
     }
 }
-.bg-grey {
+.bg-grey{
     background-color: #f8f9fa;
 }
 .success-icon {
-    svg {
-        color: #52c41a;
-    }
-}
-.file-item {
-    .file {
+    color: #52c41a;
+  }
+.file-item{
+    .file{
         border: 1px solid grey;
         height: 90px;
         width: 90px;
@@ -79,12 +77,12 @@
         display: flex;
         align-items: flex-end;
     }
-
-    img {
+    
+    img{
         height: 100%;
         width: 100%;
-    }
-    .file-name {
+    }    
+    .file-name{
         text-overflow: ellipsis;
         max-width: 100%;
         white-space: nowrap;

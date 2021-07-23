@@ -12,7 +12,7 @@ export class ChatService {
 
     constructor(private _httpClient:HttpClient,private _cookieService:CookieService) { }
 
-    public connect(token: string): void {        
+    public connect(token: string): void {
         this._socket = io(environment.SOCKET_ENDPOINT, {
             extraHeaders: {
                 Authorization: token
@@ -39,16 +39,19 @@ export class ChatService {
 
     // HANDLERS
     public socketConnected(): Observable<void> {
-        return new Observable(observer => {  
-                      
+        return new Observable(observer => {            
             this._socket.on('connect', () => {
-                console.log('connect', observer);
-
                 observer.next();
             });
         });
     }
-
+    public disconnectConnected(): Observable<void> {
+        return new Observable(observer => {            
+            this._socket.on('disconnect', () => {
+                observer.next();
+            });
+        });
+    }
     public onRoomsList(): Observable<RoomList[]> {
         return new Observable(observer => {
             this._socket.on('rooms', (res) => {

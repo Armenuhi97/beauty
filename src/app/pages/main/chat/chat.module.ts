@@ -9,9 +9,10 @@ import { SendMessageComponent } from './components/send-message/send-message.com
 import { ChatComponent } from './chat.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { SharedModule } from '@shared/shared.module';
+import { IconsProviderModule } from 'src/app/icons-provider.module';
 @NgModule({
     declarations: [MessageItemComponent, MemberItemComponent, SendMessageComponent, ChatComponent],
-    imports: [ChatRoutingModule, InfiniteScrollModule, SharedModule, CommonModule, ReactiveFormsModule],
+    imports: [ChatRoutingModule,CommonModule, InfiniteScrollModule, SharedModule, CommonModule, ReactiveFormsModule, IconsProviderModule],
     providers: [ChatService]
 })
 export class ChatModule { }

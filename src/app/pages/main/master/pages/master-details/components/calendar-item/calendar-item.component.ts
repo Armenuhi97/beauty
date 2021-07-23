@@ -67,7 +67,6 @@ export class CalendarItemComponent {
         let end = this._datePipe.transform(this._calculateLastDayInMonth(month, year), 'yyyy-MM-dd');
         let start = this._datePipe.transform(this._calculateFirstDayInMonth(month, year), 'yyyy-MM-dd')
         return this._masterService.getMounthlyOrders(start, end, this._id).pipe(map((data) => {
-            console.log(data);
             this.monthOrders = data
         }))
     }

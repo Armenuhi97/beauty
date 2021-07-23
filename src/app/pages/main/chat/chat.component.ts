@@ -10,6 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { UplopadFileService } from 'src/app/core/services/upload-file.service';
 import { LoaderService } from 'src/app/core/services/loaders.service';
 
+
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -39,11 +40,10 @@ export class ChatComponent implements OnInit, OnDestroy {
     private _loaderService: LoaderService
   ) {
     this.windowHeight = window.innerHeight - 112 - 130;
-    this._subscribeToQueryChanges()
+    this._subscribeToQueryChanges();
   }
 
   ngOnInit(): void {
-   
     this._chatService.socketConnected().pipe(takeUntil(this._unsubscribe$)).subscribe(() => { });
     this._getRoomsList();
     this._subscribeToActiveRoomMessages();
@@ -64,9 +64,9 @@ export class ChatComponent implements OnInit, OnDestroy {
       file_type: '',
       message: this.messageControl.value,
       replier_is_admin: true,
-      sender: 3
     };
-    this.messageControl.reset()
+    this.messageControl.reset();
+    this.fileControl.reset();
     if (this.fileControl.value) {
       this._mainService.uploadFile(this.fileControl.value)
         .pipe(takeUntil(this._unsubscribe$))
@@ -87,7 +87,6 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.messages = []
     this.activeRoom = this.roomsList.find(room => room.room.id === id);
     this.activeRoom.unseen_message_count = 0;
-
     this._getActiveRoomMessages();
   }
 
@@ -111,9 +110,6 @@ export class ChatComponent implements OnInit, OnDestroy {
     this._chatService.subscribeToNewMessages()
       .pipe(takeUntil(this._unsubscribe$))
       .subscribe(res => {
-        console.log(res);
-        console.log(this.activeRoom);
-
         if (this.activeRoom && res.message.room === this.activeRoom.room.id) {
           if (ispush) {
             this.messages.push(res.message);
@@ -185,12 +181,7 @@ export class ChatComponent implements OnInit, OnDestroy {
       });
   }
   private _subscribeToQueryChanges(): void {
-    this._activatedRoute.queryParams.pipe(takeUntil(this._unsubscribe$)).subscribe((params) => {
-      console.log(params);
-      const token = String(this._cookieService.get('token'));
-      if (token) {        
-        this._chatService.connect(token);
-      }
+    this._activatedRoute.queryParams.subscribe((params) => {
       // const token = String(params.token);
       // if (token) {
       //   this._chatService.connect(token);
@@ -199,13 +190,16 @@ export class ChatComponent implements OnInit, OnDestroy {
       // if(params.focusedRoomId){
       //   this.setActiveRoom(+params.focusedRoomId)
       // }
-     
+      const token = String(this._cookieService.get('token'));
+      if (token) {
+        this._chatService.connect(token);
+      }
     });
 
   }
 
-
   ngOnDestroy(): void {
+    this._chatService.disconnectConnected()
     this._unsubscribe$.next();
     this._unsubscribe$.complete();
   }

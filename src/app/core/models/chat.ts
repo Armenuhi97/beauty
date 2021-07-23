@@ -1,7 +1,6 @@
 export interface MessageRequest {
     room: number;
     message: string;
-    sender: number;
     file_url: string;
     replier_is_admin: boolean;
     file_type: string
